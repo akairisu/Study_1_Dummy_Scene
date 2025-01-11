@@ -27,6 +27,8 @@ Material:
 =======
   m_Shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
 >>>>>>> 4abe666 (add gitignoe and devided objects)
+  m_Shader: {fileID: -6465566751694194690, guid: 91dc1bb46f8451a4995d26e80953fdce,
+    type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -41,6 +43,7 @@ Material:
   stringTagMap:
     RenderType: Opaque
 >>>>>>> 4abe666 (add gitignoe and devided objects)
+  stringTagMap: {}
   disabledShaderPasses: []
   m_LockedProperties: 
   m_SavedProperties:
@@ -52,6 +55,7 @@ Material:
 =======
         m_Texture: {fileID: 0}
 >>>>>>> 4abe666 (add gitignoe and devided objects)
+        m_Texture: {fileID: 2800000, guid: 55730737d3dbd564aaff7a4f0d892f50, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
@@ -77,6 +81,7 @@ Material:
     - _MainTex:
 <<<<<<< HEAD
         m_Texture: {fileID: 2800000, guid: 5e1776ad4fddd6a40b6388f9dcfee357, type: 3}
+        m_Texture: {fileID: 2800000, guid: 5e1776ad4fddd6a40b6388f9dcfee357, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -101,11 +106,27 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _MetallicMap:
+        m_Texture: {fileID: 2800000, guid: 4d833f12647e31e4887e74c26c6bac5a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MetallicRoughMap:
+        m_Texture: {fileID: 2800000, guid: 4d833f12647e31e4887e74c26c6bac5a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NormalMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ParallaxMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _RoughnessMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -159,6 +180,7 @@ Material:
     - _QueueControl: 0
 =======
 >>>>>>> 4abe666 (add gitignoe and devided objects)
+    - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
     - _Smoothness: 0.5
@@ -171,6 +193,7 @@ Material:
     - _TransistionProgress: 0
 =======
 >>>>>>> 4abe666 (add gitignoe and devided objects)
+    - _TransistionProgress: 0
     - _UVSec: 0
     - _WorkflowMode: 1
     - _ZWrite: 1
@@ -182,5 +205,6 @@ Material:
     - _EmmiColor: {r: 2.4570339, g: 2.670157, b: 1.7003357, a: 0}
 =======
 >>>>>>> 4abe666 (add gitignoe and devided objects)
+    - _EmmiColor: {r: 2.4570339, g: 2.670157, b: 1.7003357, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
