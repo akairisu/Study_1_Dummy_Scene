@@ -98,7 +98,35 @@ public class Morph : MonoBehaviour
         SetSlider();
         MorphObject();
     }
+    // Start morphing to new object
+    public void StartMorphToNew()
+    {
+        if (!_morphed)
+        {
+            ResetMaterial(_newObj);
+            _newObj.SetActive(false);
+            _morphed = true;
+        }
+        _morphingToNew = true;
+    }
 
+    // Start morphing back to old object
+    public void StartMorphToOld()
+    {
+        _morphingToNew = false;
+    }
+
+    // Check if currently morphing
+    public bool IsMorphing()
+    {
+        return _morphingToNew;
+    }
+
+    // Get current morph progress (0-1)
+    public float GetMorphProgress()
+    {
+        return _slider;
+    }
     //Obtain the real scale of game object
     private Vector3 GetScale(GameObject obj)
     {
