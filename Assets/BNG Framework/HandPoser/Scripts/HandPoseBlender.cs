@@ -20,24 +20,31 @@ namespace BNG {
         [Header("Inputs")]
         [Range(0, 1)]
         public float ThumbValue = 0f;
+        // private float _lastThumbValue = 0;
 
         [Range(0, 1)]
         public float IndexValue = 0f;
+        // private float _lastIndexValue = 0;
 
         [Range(0, 1)]
         public float MiddleValue = 0f;
+        // private float _lastMiddleValue = 0;
 
         [Range(0, 1)]
         public float RingValue = 0f;
+        // private float _lastRingValue = 0;
 
         [Range(0, 1)]
         public float PinkyValue = 0f;
+        // private float _lastPinkyValue = 0;
 
         [Range(0, 1)]
         public float GripValue = 0f;
         private float _lastGripValue;
 
         protected HandPoser handPoser;
+
+        bool updatedPoseLastFrame = false;
 
         void Start() {
             handPoser = GetComponent<HandPoser>();
@@ -46,7 +53,35 @@ namespace BNG {
         void Update() {
             if (UpdatePose) {
                 UpdatePoseFromInputs();
+
+                updatedPoseLastFrame = true;
             }
+            else {
+                updatedPoseLastFrame = false;
+            }
+        }
+
+        float indexBlendMin = 0f;
+        float indexBlendMax = 1f;
+
+        float thumbBlendMin = 0f;
+        float thumbBlendMax = 1f;
+
+        public virtual void ResetBlendRatios() {
+            indexBlendMin = 0f;
+            indexBlendMax = 1f;
+            thumbBlendMin = 0f;
+            thumbBlendMax = 1f;
+        }
+
+        public virtual void SetIndexBlend(float minBlendAmount, float maxBlendAmount) {
+            indexBlendMin = minBlendAmount;
+            indexBlendMax = maxBlendAmount;
+        }
+
+        public virtual void SetThumbBlend(float minBlendAmount, float maxBlendAmount) {
+            thumbBlendMin = minBlendAmount;
+            thumbBlendMax = maxBlendAmount;
         }
 
         /// <summary>
@@ -57,11 +92,13 @@ namespace BNG {
         }
 
         public void UpdateThumb(float amount) {
-            handPoser.UpdateJoints(Pose2.Joints.ThumbJoints, handPoser.ThumbJoints, amount);
+            float adjustAmount = Mathf.Lerp(thumbBlendMin, thumbBlendMax, amount);
+            handPoser.UpdateJoints(Pose2.Joints.ThumbJoints, handPoser.ThumbJoints, adjustAmount);
         }
 
         public void UpdateIndex(float amount) {
-            handPoser.UpdateJoints(Pose2.Joints.IndexJoints, handPoser.IndexJoints, amount);
+            float adjustAmount = Mathf.Lerp(indexBlendMin, indexBlendMax, amount);
+            handPoser.UpdateJoints(Pose2.Joints.IndexJoints, handPoser.IndexJoints, adjustAmount);
         }
 
         public void UpdateMiddle(float amount) {
@@ -93,17 +130,19 @@ namespace BNG {
             _lastGripValue = amount;
         }
 
-
-
         public virtual void DoIdleBlendPose() {
             if (Pose1) {
+
+                if(updatedPoseLastFrame && handPoser.doSingleAnimation && GripValue == 0 && IndexValue == 0) {
+                    handPoser.ResetAnimationState();
+                }
+
                 // Start at idle
                 handPoser.UpdateHandPose(Pose1, false);
 
                 // Then lerp each finger to fist pose depending on input
                 UpdateThumb(ThumbValue);
                 UpdateIndex(IndexValue);
-
 
                 // Set Grip Amount only if it changed. This will override Middle, Ring, and Pinky
                 if (GripValue != _lastGripValue) {
@@ -116,7 +155,7 @@ namespace BNG {
                     UpdatePinky(PinkyValue);
                 }
             }
-        }
+        }        
     }
 }
 

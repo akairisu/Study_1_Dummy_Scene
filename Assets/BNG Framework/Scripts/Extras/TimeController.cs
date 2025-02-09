@@ -54,7 +54,6 @@ namespace BNG {
 
         // Start is called before the first frame update
         void Start() {
-            
             if(SetFixedDelta) {
                 Time.fixedDeltaTime = (Time.timeScale / UnityEngine.XR.XRDevice.refreshRate);
             }
@@ -66,7 +65,21 @@ namespace BNG {
 
         void Update() {
 
-            if(CheckInput) {
+            // Prioritize any remaining timers
+            if(_secondsTimer > 0) {
+                _secondsTimer -= Time.deltaTime;
+
+                // Cancel timer
+                if(_secondsTimer <= 0) {
+                    ResumeTime();
+                    _secondsTimer = 0;
+                }
+                else {
+                    SlowTime();
+                }
+            }
+            // Check if input if allowed
+            else if(CheckInput) {
                 if (SlowTimeInputDown() || ForceTimeScale) {
                     SlowTime();
                 }
@@ -76,12 +89,12 @@ namespace BNG {
             }
         }
 
-
         /// <summary>
         /// Returns true if SlowTimeAction is being held down
         /// </summary>
         /// <returns></returns>
         public virtual bool SlowTimeInputDown() {
+
             // Check default Y Key
             if ((YKeySlowsTime && InputBridge.Instance.YButton)) {
                 return true;
@@ -117,6 +130,18 @@ namespace BNG {
                 Time.fixedDeltaTime = originalFixedDelta * Time.timeScale;
 
                 _slowingTime = true;
+            }
+        }
+
+        private float _secondsTimer = 0;
+
+        /// <summary>
+        /// Slows time for (an additional) seconds
+        /// </summary>
+        /// <param name="seconds"></param>
+        public virtual void SlowTime(float seconds) {
+            if(seconds > 0) {
+                _secondsTimer += seconds;
             }
         }
 
