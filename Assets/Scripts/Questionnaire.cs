@@ -47,7 +47,7 @@ public class Questionnaire : MonoBehaviour
   {
     if (currentQuestionIndex < questions.Length)
     {
-      questionText.text = questions[currentQuestionIndex];
+      questionText.text = "(" + (currentQuestionIndex + 1) + "/" + questions.Length + ") " + questions[currentQuestionIndex];
     }
     else
     {
@@ -68,6 +68,7 @@ public class Questionnaire : MonoBehaviour
   void SaveResults()
 {
     Debug.Log("Saving results...");
+    questionText.text = "儲存中...";
 
     string timeStamp = System.DateTime.Now.ToString("yyyyMMdd_HHmmss");
     string fileName = $"Results_{timeStamp}.txt";
