@@ -8,7 +8,7 @@ public class TriggerZoneSaw : MonoBehaviour
     public float TargetDistance = 10f;
     public bool IsTriggered;
     public float CurrentDistance = 0;
-    public GameObject Saw;
+    public Transform Saw;
     private float _lastSawZPosition = 0;
     private float _currentZPosition;
     public GameObject SlicedObject;
@@ -25,9 +25,9 @@ public class TriggerZoneSaw : MonoBehaviour
         {
             if(_lastSawZPosition == 0)
             {
-                _lastSawZPosition = Saw.transform.position.z;
+                _lastSawZPosition = Saw.position.z;
             }
-            _currentZPosition = Saw.transform.position.z;
+            _currentZPosition = Saw.position.z;
             float moveDistance = Mathf.Abs(_lastSawZPosition - _currentZPosition);
             //Debug.Log("Move Distance:" + moveDistance);
             if(moveDistance > 0.001f)
@@ -43,22 +43,20 @@ public class TriggerZoneSaw : MonoBehaviour
                 _audioSource.Stop();
             }
             _lastSawZPosition = _currentZPosition;
-            if (CurrentDistance > TargetDistance)
-            {
-                //Destroy(gameObject);
-                gameObject.transform.GetComponent<Renderer>().enabled = false;
-                gameObject.transform.GetComponent<MeshCollider>().isTrigger = false;
-                IsTriggered = false;
-                Rigidbody rb = SlicedObject.AddComponent<Rigidbody>();
-                rb.useGravity = true;
-                MeshCollider collider = SlicedObject.AddComponent<MeshCollider>();
-                collider.convex = true;
-            }
+
         }
         else
         {
             _audioSource.Stop();
             _lastSawZPosition = 0;
+        }
+        if(CurrentDistance > TargetDistance)
+        {
+            Destroy(gameObject);
+            Rigidbody rb = SlicedObject.AddComponent<Rigidbody>();
+            rb.useGravity = true;
+            MeshCollider collider = SlicedObject.AddComponent<MeshCollider>();
+            collider.convex = true;
         }
     }
 }

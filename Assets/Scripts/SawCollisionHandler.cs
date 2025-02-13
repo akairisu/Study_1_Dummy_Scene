@@ -5,26 +5,23 @@ using static Oculus.Interaction.TransformerUtils;
 
 public class SawCollisionHandler : MonoBehaviour
 {
-    /*public GrabFreeTransformer GrabFreeTransformer;
+    public GrabFreeTransformer GrabFreeTransformer;
     public OneGrabTranslateTransformer OneGrabTranslateTransformer;
     public Grabbable Grabbable;
     public Transform ParentObject;
-    private bool _isSnapped = false;*/
+    private bool _isSnapped = false;
     public Material TriggerMaterial;
     public Material UntriggerMaterial;
-    public GameObject ParticlePrefab;
-    private GameObject _spawnedParticle;
-    private Vector3 _spawnPosition;
 
-    /*void Start()
+    void Start()
     {
         if (GrabFreeTransformer == null)
         {
             Debug.LogWarning("No GrabFreeTransformer found on the saw.");
         }
-    }*/
+    }
 
-    /*void OnCollisionEnter(Collision collision)
+    void OnCollisionEnter(Collision collision)
     {
         if (!_isSnapped)
         {
@@ -38,7 +35,7 @@ public class SawCollisionHandler : MonoBehaviour
             Vector3 targetPos = collidedObjectPosition + offset;
             ParentObject.position = targetPos;
 
-            TransformerUtils.PositionConstraints _positionConstraints =
+            /*TransformerUtils.PositionConstraints _positionConstraints =
             new TransformerUtils.PositionConstraints()
             {
                 XAxis = new TransformerUtils.ConstrainedAxis(),
@@ -61,63 +58,27 @@ public class SawCollisionHandler : MonoBehaviour
             OneGrabTranslateTransformer.Constraints.MaxX.Value = targetPos.x;
             OneGrabTranslateTransformer.Constraints.MaxY.Value = targetPos.y;
             Grabbable.InjectOptionalOneGrabTransformer(OneGrabTranslateTransformer);
-            OneGrabTranslateTransformer.UpdateTransform();
+            OneGrabTranslateTransformer.UpdateTransform();*/
         }
     }
 
     void OnCollisionExit(Collision collision)
     {
         _isSnapped = false;
-    }*/
+    }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other != null)
-        {
-            _spawnPosition = other.ClosestPoint(transform.position);
-            Renderer renderer = other.GetComponent<Renderer>();
-            if (renderer != null)
-            {
-                renderer.material = TriggerMaterial;
-            }
-            other.GetComponent<TriggerZoneSaw>().IsTriggered = true;
-            if(_spawnedParticle == null)
-            {
-                _spawnedParticle = Instantiate(ParticlePrefab, _spawnPosition, Quaternion.identity);
-                _spawnedParticle.transform.parent = transform;
-                _spawnedParticle.transform.localScale = new Vector3(.5f, .5f, .5f);
-            }
-            else
-            {
-                _spawnedParticle.transform.position = _spawnPosition;
-                ParticleSystem particleSystem = _spawnedParticle.GetComponent<ParticleSystem>();
-                if (!particleSystem.isPlaying)
-                {
-                    particleSystem.Play();
-                }
-            }
-        }
+        Renderer renderer = other.GetComponent<Renderer>();
+        renderer.material = TriggerMaterial;
+        other.GetComponent<TriggerZoneSaw>().IsTriggered = true;
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if(other != null)
-        {
-            Renderer renderer = other.GetComponent<Renderer>();
-            if (renderer != null)
-            {
-                renderer.material = UntriggerMaterial;
-            }
-            other.GetComponent<TriggerZoneSaw>().IsTriggered = false;
-        }
-        if(_spawnedParticle != null)
-        {
-            ParticleSystem particleSystem = _spawnedParticle.GetComponent<ParticleSystem>();
-            if (particleSystem.isPlaying)
-            {
-                particleSystem.Stop();
-            }
-        }
+        Renderer renderer = other.GetComponent<Renderer>();
+        renderer.material = UntriggerMaterial;
+        other.GetComponent<TriggerZoneSaw>().IsTriggered = false;
     }
 }
 
