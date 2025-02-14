@@ -43,20 +43,22 @@ public class TriggerZoneSaw : MonoBehaviour
                 _audioSource.Stop();
             }
             _lastSawZPosition = _currentZPosition;
-
+            if (CurrentDistance > TargetDistance)
+            {
+                //Destroy(gameObject);
+                gameObject.transform.GetComponent<Renderer>().enabled = false;
+                gameObject.transform.GetComponent<MeshCollider>().isTrigger = false;
+                IsTriggered = false;
+                Rigidbody rb = SlicedObject.AddComponent<Rigidbody>();
+                rb.useGravity = true;
+                MeshCollider collider = SlicedObject.AddComponent<MeshCollider>();
+                collider.convex = true;
+            }
         }
         else
         {
             _audioSource.Stop();
             _lastSawZPosition = 0;
-        }
-        if(CurrentDistance > TargetDistance)
-        {
-            Destroy(gameObject);
-            Rigidbody rb = SlicedObject.AddComponent<Rigidbody>();
-            rb.useGravity = true;
-            MeshCollider collider = SlicedObject.AddComponent<MeshCollider>();
-            collider.convex = true;
         }
     }
 }

@@ -8,7 +8,6 @@ public class Preview : MonoBehaviour
     public void IsSelected()
     {
         Transform parent = gameObject.transform.parent;
-        Debug.Log(parent);
         foreach (Transform child in parent)
         {
             // Check if the current child is the selected child

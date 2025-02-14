@@ -16,6 +16,7 @@ public class TriggerZonePlaner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        TargetMaterial.mainTextureScale = new Vector2(1f, 1f);
         _audioSource = GetComponent<AudioSource>();
     }
 
@@ -44,17 +45,18 @@ public class TriggerZonePlaner : MonoBehaviour
                 _audioSource.Stop();
             }
             _lastPosition = _currentPosition;
-
+            if (CurrentDistance > TargetDistance)
+            {
+                gameObject.transform.GetComponent<Renderer>().enabled = false;
+                gameObject.transform.GetComponent<MeshCollider>().isTrigger = false;
+                IsTriggered = false;
+                TargetMaterial.mainTextureScale = new Vector2(10f, 1f);
+            }
         }
         else
         {
             _audioSource.Stop();
             _lastPosition = Vector3.zero;
-        }
-        if (CurrentDistance > TargetDistance)
-        {
-            Destroy(gameObject);
-            TargetMaterial.mainTextureScale = new Vector2(10f, 1f);
         }
     }
 }
