@@ -9,8 +9,7 @@ public class TriggerZoneHammer : MonoBehaviour
     public Transform Nail;
     public void HitNail(Vector3 velocity)
     {
-        float directionalVelocity = Vector3.Dot(velocity, -this.transform.up);
-        Debug.Log(velocity + " " + -this.transform.up + " " + directionalVelocity);
+        float directionalVelocity = Vector3.Dot(velocity, -this.transform.forward);
         float displacement = Mathf.Abs(directionalVelocity) * DisplaceWeight;
         if(displacement > TargetHeight)
         {
