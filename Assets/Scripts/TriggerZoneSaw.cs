@@ -8,7 +8,7 @@ public class TriggerZoneSaw : MonoBehaviour
     public float TargetDistance = 10f;
     public bool IsTriggered;
     public float CurrentDistance = 0;
-    public Transform Saw;
+    public GameObject Saw;
     private float _lastSawZPosition = 0;
     private float _currentZPosition;
     public GameObject SlicedObject;
@@ -25,9 +25,9 @@ public class TriggerZoneSaw : MonoBehaviour
         {
             if(_lastSawZPosition == 0)
             {
-                _lastSawZPosition = Saw.position.z;
+                _lastSawZPosition = Saw.transform.position.z;
             }
-            _currentZPosition = Saw.position.z;
+            _currentZPosition = Saw.transform.position.z;
             float moveDistance = Mathf.Abs(_lastSawZPosition - _currentZPosition);
             //Debug.Log("Move Distance:" + moveDistance);
             if(moveDistance > 0.001f)

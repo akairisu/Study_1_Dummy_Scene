@@ -1091,7 +1091,7 @@ GameObject:
   - component: {fileID: 217986084}
   - component: {fileID: 217986083}
   - component: {fileID: 217986082}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Direction Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1471,7 +1471,7 @@ GameObject:
   m_Component:
   - component: {fileID: 295075314}
   - component: {fileID: 295075315}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: HandGrabInteractable
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2583,6 +2583,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8891680556032340476, guid: f865747575d9ccc4986ec7f0a4895102,
         type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8891680556032340476, guid: f865747575d9ccc4986ec7f0a4895102,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -2621,7 +2626,7 @@ GameObject:
   - component: {fileID: 540492594}
   - component: {fileID: 540492598}
   - component: {fileID: 540492599}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: TopRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2920,6 +2925,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: roughIndicator
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: e01d0a24ec5ed4c428c33a9a8fae4828,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3518,7 +3528,7 @@ GameObject:
   - component: {fileID: 679008534}
   - component: {fileID: 679008533}
   - component: {fileID: 679008537}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Plank
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3533,8 +3543,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 679008531}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.1549, y: 1.26, z: 0.4921}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3545,7 +3555,7 @@ Transform:
   - {fileID: 652667018}
   - {fileID: 1610760868}
   - {fileID: 295075314}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1428335794}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &679008533
 Rigidbody:
@@ -3725,7 +3735,7 @@ GameObject:
   - component: {fileID: 687424704}
   - component: {fileID: 687424703}
   - component: {fileID: 687424702}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3944,7 +3954,7 @@ GameObject:
   - component: {fileID: 755704024}
   - component: {fileID: 755704023}
   - component: {fileID: 755704022}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Sphere (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4275,6 +4285,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8891680556032340476, guid: f865747575d9ccc4986ec7f0a4895102,
         type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8891680556032340476, guid: f865747575d9ccc4986ec7f0a4895102,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -4311,7 +4326,7 @@ GameObject:
   - component: {fileID: 768160026}
   - component: {fileID: 768160025}
   - component: {fileID: 768160024}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Sphere (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5025,7 +5040,7 @@ GameObject:
   - component: {fileID: 999199871}
   - component: {fileID: 999199870}
   - component: {fileID: 999199869}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Sphere (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5161,7 +5176,7 @@ GameObject:
   - component: {fileID: 1027063473}
   - component: {fileID: 1027063472}
   - component: {fileID: 1027063471}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Sphere (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5904,10 +5919,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 30
       objectReference: {fileID: 0}
+    - target: {fileID: -3479273607984859305, guid: 4e893e46b786b914bbc1835c2da14de4,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: -3284564601151715352, guid: 4e893e46b786b914bbc1835c2da14de4,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 4e893e46b786b914bbc1835c2da14de4,
         type: 3}
       propertyPath: m_Name
       value: VTool_Planner
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4e893e46b786b914bbc1835c2da14de4,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4520479833707321702, guid: 4e893e46b786b914bbc1835c2da14de4,
         type: 3}
@@ -6113,7 +6143,7 @@ GameObject:
   - component: {fileID: 1277974245}
   - component: {fileID: 1277974244}
   - component: {fileID: 1277974243}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Sphere (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6218,7 +6248,7 @@ GameObject:
   - component: {fileID: 1289522612}
   - component: {fileID: 1289522611}
   - component: {fileID: 1289522610}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Sphere (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6525,6 +6555,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: roughIndicator
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: e01d0a24ec5ed4c428c33a9a8fae4828,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6554,7 +6589,7 @@ GameObject:
   - component: {fileID: 1427460174}
   - component: {fileID: 1427460173}
   - component: {fileID: 1427460172}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Direction Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6648,6 +6683,38 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1427460170}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1428335793
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1428335794}
+  m_Layer: 0
+  m_Name: PlankParent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1428335794
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1428335793}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.1549, y: 1.26, z: 0.4921}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 679008532}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1429536552
 GameObject:
   m_ObjectHideFlags: 0
@@ -6660,7 +6727,7 @@ GameObject:
   - component: {fileID: 1429536556}
   - component: {fileID: 1429536555}
   - component: {fileID: 1429536554}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Direction Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7469,7 +7536,7 @@ GameObject:
   - component: {fileID: 1610760867}
   - component: {fileID: 1610760866}
   - component: {fileID: 1610760865}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7658,7 +7725,7 @@ GameObject:
   - component: {fileID: 1624255132}
   - component: {fileID: 1624255131}
   - component: {fileID: 1624255130}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Sphere (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7794,7 +7861,7 @@ GameObject:
   - component: {fileID: 1651065926}
   - component: {fileID: 1651065925}
   - component: {fileID: 1651065924}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Sphere (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8216,6 +8283,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: roughIndicator
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: e01d0a24ec5ed4c428c33a9a8fae4828,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -9015,7 +9087,7 @@ GameObject:
   - component: {fileID: 1884424558}
   - component: {fileID: 1884424557}
   - component: {fileID: 1884424556}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Direction Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9905,6 +9977,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: roughIndicator
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: e01d0a24ec5ed4c428c33a9a8fae4828,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -10116,7 +10193,7 @@ PrefabInstance:
     - target: {fileID: 8957215570436266793, guid: 59d11832f23fa7f4383e123f03d52ae3,
         type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8957215570436266793, guid: 59d11832f23fa7f4383e123f03d52ae3,
         type: 3}
@@ -10263,6 +10340,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8891680556032340476, guid: f865747575d9ccc4986ec7f0a4895102,
         type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8891680556032340476, guid: f865747575d9ccc4986ec7f0a4895102,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -10297,4 +10379,4 @@ SceneRoots:
   - {fileID: 1585823016}
   - {fileID: 1745209006}
   - {fileID: 1828332688}
-  - {fileID: 679008532}
+  - {fileID: 1428335794}
