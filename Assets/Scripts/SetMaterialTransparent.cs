@@ -16,6 +16,7 @@ public class SetMaterialTransparent : MonoBehaviour
 
     void Awake()
     {
+        Debug.Log("Here!");
         if (TargetObjectMaterial != null)
         {
             // Store the original material properties
