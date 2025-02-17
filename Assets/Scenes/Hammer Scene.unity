@@ -787,6 +787,11 @@ PrefabInstance:
       objectReference: {fileID: 306539672}
     - target: {fileID: 1231499859685048312, guid: bf187b68367fbbc4680e2f3a3677e9a5,
         type: 3}
+      propertyPath: _ovrHand
+      value: 
+      objectReference: {fileID: 455779094}
+    - target: {fileID: 1231499859685048312, guid: bf187b68367fbbc4680e2f3a3677e9a5,
+        type: 3}
       propertyPath: _cameraRigRef
       value: 
       objectReference: {fileID: 243672631}
@@ -805,6 +810,11 @@ PrefabInstance:
       propertyPath: _trackingToWorldTransformer
       value: 
       objectReference: {fileID: 243672630}
+    - target: {fileID: 2564603489269925262, guid: bf187b68367fbbc4680e2f3a3677e9a5,
+        type: 3}
+      propertyPath: _ovrHand
+      value: 
+      objectReference: {fileID: 1240315090}
     - target: {fileID: 2564603489269925262, guid: bf187b68367fbbc4680e2f3a3677e9a5,
         type: 3}
       propertyPath: _cameraRigRef
@@ -2822,7 +2832,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2609c54f376cffc4da1ab9401cc1a36f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _skeletonType: 4
+  _skeletonType: 0
   _updateRootPose: 0
   _updateRootScale: 1
   _enablePhysicsCapsules: 0
@@ -5543,7 +5553,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2609c54f376cffc4da1ab9401cc1a36f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _skeletonType: 5
+  _skeletonType: 1
   _updateRootPose: 0
   _updateRootScale: 1
   _enablePhysicsCapsules: 0
@@ -6447,7 +6457,7 @@ MonoBehaviour:
   SimultaneousHandsAndControllersEnabled: 0
   _readOnlyWideMotionModeHandPosesEnabled: 0
   wideMotionModeHandPosesEnabled: 0
-  dynamicResolutionVersion: 0
+  dynamicResolutionVersion: 1
 --- !u!114 &1585823015
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9199,6 +9209,11 @@ PrefabInstance:
       objectReference: {fileID: 243672632}
     - target: {fileID: 6339505922184086532, guid: ea16c3c8c1688234fa81a4f39339bf1b,
         type: 3}
+      propertyPath: _ovrHand
+      value: 
+      objectReference: {fileID: 455779094}
+    - target: {fileID: 6339505922184086532, guid: ea16c3c8c1688234fa81a4f39339bf1b,
+        type: 3}
       propertyPath: _cameraRigRef
       value: 
       objectReference: {fileID: 243672631}
@@ -9227,6 +9242,11 @@ PrefabInstance:
       propertyPath: _hmdData
       value: 
       objectReference: {fileID: 243672632}
+    - target: {fileID: 7312179887322021490, guid: ea16c3c8c1688234fa81a4f39339bf1b,
+        type: 3}
+      propertyPath: _ovrHand
+      value: 
+      objectReference: {fileID: 1240315090}
     - target: {fileID: 7312179887322021490, guid: ea16c3c8c1688234fa81a4f39339bf1b,
         type: 3}
       propertyPath: _cameraRigRef
