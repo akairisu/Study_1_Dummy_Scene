@@ -12,6 +12,9 @@ public class SawCollisionHandler : MonoBehaviour
     private bool _isSnapped = false;*/
     public Material TriggerMaterial;
     public Material UntriggerMaterial;
+    public GameObject ParticlePrefab;
+    private GameObject _spawnedParticle;
+    private Vector3 _spawnPosition;
 
     /*void Start()
     {
@@ -71,12 +74,28 @@ public class SawCollisionHandler : MonoBehaviour
     {
         if (other != null)
         {
+            _spawnPosition = other.ClosestPoint(transform.position);
             Renderer renderer = other.GetComponent<Renderer>();
             if (renderer != null)
             {
                 renderer.material = TriggerMaterial;
             }
             other.GetComponent<TriggerZoneSaw>().IsTriggered = true;
+            if(_spawnedParticle == null)
+            {
+                _spawnedParticle = Instantiate(ParticlePrefab, _spawnPosition, Quaternion.identity);
+                _spawnedParticle.transform.parent = transform;
+                _spawnedParticle.transform.localScale = new Vector3(.5f, .5f, .5f);
+            }
+            else
+            {
+                _spawnedParticle.transform.position = _spawnPosition;
+                ParticleSystem particleSystem = _spawnedParticle.GetComponent<ParticleSystem>();
+                if (!particleSystem.isPlaying)
+                {
+                    particleSystem.Play();
+                }
+            }
         }
     }
 
@@ -90,6 +109,14 @@ public class SawCollisionHandler : MonoBehaviour
                 renderer.material = UntriggerMaterial;
             }
             other.GetComponent<TriggerZoneSaw>().IsTriggered = false;
+        }
+        if(_spawnedParticle != null)
+        {
+            ParticleSystem particleSystem = _spawnedParticle.GetComponent<ParticleSystem>();
+            if (particleSystem.isPlaying)
+            {
+                particleSystem.Stop();
+            }
         }
     }
 }
