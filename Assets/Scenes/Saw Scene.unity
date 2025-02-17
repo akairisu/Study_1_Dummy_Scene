@@ -795,7 +795,7 @@ MonoBehaviour:
   TargetDistance: 5
   IsTriggered: 0
   CurrentDistance: 0
-  Saw: {fileID: 1562477615}
+  Saw: {fileID: 1880445933}
   SlicedObject: {fileID: 508311487}
 --- !u!82 &157273118
 AudioSource:
@@ -1460,7 +1460,7 @@ PrefabInstance:
     - target: {fileID: 5164043817525534541, guid: 1441e5365f82be049b57b86805b496a2,
         type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 5164043817525534541, guid: 1441e5365f82be049b57b86805b496a2,
         type: 3}
@@ -2374,6 +2374,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8891680556032340476, guid: f865747575d9ccc4986ec7f0a4895102,
         type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8891680556032340476, guid: f865747575d9ccc4986ec7f0a4895102,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -2982,7 +2987,7 @@ GameObject:
   - component: {fileID: 679008534}
   - component: {fileID: 679008533}
   - component: {fileID: 679008537}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Plank
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3188,7 +3193,7 @@ GameObject:
   - component: {fileID: 687424704}
   - component: {fileID: 687424703}
   - component: {fileID: 687424702}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3407,7 +3412,7 @@ GameObject:
   - component: {fileID: 755704024}
   - component: {fileID: 755704023}
   - component: {fileID: 755704022}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Sphere (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3580,6 +3585,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8891680556032340476, guid: f865747575d9ccc4986ec7f0a4895102,
         type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8891680556032340476, guid: f865747575d9ccc4986ec7f0a4895102,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -3608,7 +3618,7 @@ GameObject:
   - component: {fileID: 768160026}
   - component: {fileID: 768160025}
   - component: {fileID: 768160024}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Sphere (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4260,7 +4270,7 @@ GameObject:
   - component: {fileID: 999199871}
   - component: {fileID: 999199870}
   - component: {fileID: 999199869}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Sphere (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4396,7 +4406,7 @@ GameObject:
   - component: {fileID: 1027063473}
   - component: {fileID: 1027063472}
   - component: {fileID: 1027063471}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Sphere (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4612,7 +4622,7 @@ MonoBehaviour:
   TargetDistance: 5
   IsTriggered: 0
   CurrentDistance: 0
-  Saw: {fileID: 1562477615}
+  Saw: {fileID: 1880445933}
   SlicedObject: {fileID: 581942798}
 --- !u!4 &1066709794 stripped
 Transform:
@@ -5151,7 +5161,7 @@ PrefabInstance:
     - target: {fileID: 4399388640102882332, guid: 60898b30241b0234ca6fa99ff49731e1,
         type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4758848592181227445, guid: 60898b30241b0234ca6fa99ff49731e1,
         type: 3}
@@ -5344,7 +5354,7 @@ GameObject:
   - component: {fileID: 1277974245}
   - component: {fileID: 1277974244}
   - component: {fileID: 1277974243}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Sphere (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5449,7 +5459,7 @@ GameObject:
   - component: {fileID: 1289522612}
   - component: {fileID: 1289522611}
   - component: {fileID: 1289522610}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Sphere (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5569,7 +5579,7 @@ MonoBehaviour:
   TargetDistance: 5
   IsTriggered: 0
   CurrentDistance: 0
-  Saw: {fileID: 1562477615}
+  Saw: {fileID: 1880445933}
   SlicedObject: {fileID: 1091704319}
 --- !u!82 &1307695605
 AudioSource:
@@ -6398,7 +6408,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1598986849}
   - component: {fileID: 1598986850}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: HandGrabInteractable
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6662,7 +6672,7 @@ GameObject:
   - component: {fileID: 1624255132}
   - component: {fileID: 1624255131}
   - component: {fileID: 1624255130}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Sphere (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6798,7 +6808,7 @@ GameObject:
   - component: {fileID: 1651065926}
   - component: {fileID: 1651065925}
   - component: {fileID: 1651065924}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Sphere (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6977,7 +6987,7 @@ PrefabInstance:
     - target: {fileID: 4844970387327517817, guid: ccc733abd1f656b4fbcbd2adbea0f9a4,
         type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4844970387327517817, guid: ccc733abd1f656b4fbcbd2adbea0f9a4,
         type: 3}
@@ -7171,6 +7181,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8891680556032340476, guid: f865747575d9ccc4986ec7f0a4895102,
         type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8891680556032340476, guid: f865747575d9ccc4986ec7f0a4895102,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -7247,7 +7262,7 @@ MonoBehaviour:
   TargetDistance: 5
   IsTriggered: 0
   CurrentDistance: 0
-  Saw: {fileID: 1562477615}
+  Saw: {fileID: 1880445933}
   SlicedObject: {fileID: 2138019256}
 --- !u!82 &1775736063
 AudioSource:
@@ -7607,7 +7622,7 @@ PrefabInstance:
     - target: {fileID: 8287250235535961448, guid: b502b9dec96a0504da15b8bfb6cf2849,
         type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8287250235535961448, guid: b502b9dec96a0504da15b8bfb6cf2849,
         type: 3}
@@ -8147,6 +8162,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c67033f580359c4581dff1ccffcca91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1880445933 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 628798469093316160, guid: f03b20947b22a364a9f61eec7264291f,
+    type: 3}
+  m_PrefabInstance: {fileID: 8231822179337631781}
+  m_PrefabAsset: {fileID: 0}
 --- !u!850595691 &1883712343
 LightingSettings:
   m_ObjectHideFlags: 0
@@ -8971,7 +8992,7 @@ PrefabInstance:
     - target: {fileID: 8957215570436266793, guid: 59d11832f23fa7f4383e123f03d52ae3,
         type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8957215570436266793, guid: 59d11832f23fa7f4383e123f03d52ae3,
         type: 3}
@@ -9090,6 +9111,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Trigger Zone
+      objectReference: {fileID: 0}
+    - target: {fileID: 8891680556032340476, guid: f865747575d9ccc4986ec7f0a4895102,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8891680556032340476, guid: f865747575d9ccc4986ec7f0a4895102,
         type: 3}
