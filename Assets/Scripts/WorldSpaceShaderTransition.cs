@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-public class WorldSpaceShaderTransition : MonoBehaviour
+public class MultiObjectShaderTransition : MonoBehaviour
 {
     [Header("Object Groups")]
     public List<GameObject> originalObjects = new List<GameObject>();
