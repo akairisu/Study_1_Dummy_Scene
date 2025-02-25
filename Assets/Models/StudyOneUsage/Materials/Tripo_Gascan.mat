@@ -21,7 +21,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Tripo_Gascan
-  m_Shader: {fileID: -6465566751694194690, guid: 91dc1bb46f8451a4995d26e80953fdce,
+  m_Shader: {fileID: -6465566751694194690, guid: ffe37daf0134dd1428132c5d4b17cd14,
     type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -118,6 +118,7 @@ Material:
     - _BumpScale: 1
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
+    - _ColorOverlay: 0.131
     - _Cull: 2
     - _Cutoff: 0.5
     - _DetailAlbedoMapScale: 1
@@ -125,12 +126,18 @@ Material:
     - _DstBlend: 0
     - _DstBlendAlpha: 0
     - _EnvironmentReflections: 1
+    - _FresnelLineThickness: 0.854
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
+    - _MagicBaseAlpha: 0.2
+    - _MagicEffectProp: 0.094
+    - _Matellic: 0.5
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
+    - _OriginColorStrength: 0.358
+    - _OverlayStrength: 0.231
     - _Parallax: 0.02
     - _QueueControl: 0
     - _QueueOffset: 0
@@ -143,12 +150,21 @@ Material:
     - _Surface: 0
     - _TransistionProgress: 0
     - _UVSec: 0
+    - _UseAlphaConcentrate: 0
+    - _UseMatMap: 1
+    - _UseRoughMap: 1
     - _WorkflowMode: 1
     - _ZWrite: 1
+    - _usePhysicColor: 1
     m_Colors:
     - _BaseColor: {r: 0.9063317, g: 0.9063317, b: 0.9063317, a: 1}
     - _Color: {r: 0.9063317, g: 0.9063317, b: 0.9063317, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 0}
     - _EmmiColor: {r: 2.4570339, g: 2.670157, b: 1.7003357, a: 0}
+    - _MassAlphaMinMax: {r: 0.1, g: 1, b: 0, a: 0}
+    - _MassCenterPosition: {r: 0, g: 0, b: 0, a: 0}
+    - _OverLayColor: {r: 0.4987651, g: 0.962264, b: 0.72543913, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
+    - _color: {r: 3.1845038, g: 3.8490558, b: 1.978996, a: 0}
+    - _textureLineColor: {r: 7.9338136, g: 12.614764, b: 10.183231, a: 0}
   m_BuildTextureStacks: []
