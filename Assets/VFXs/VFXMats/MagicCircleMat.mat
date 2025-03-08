@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: TransSampleObject
-  m_Shader: {fileID: -6465566751694194690, guid: ffe37daf0134dd1428132c5d4b17cd14,
+  m_Name: MagicCircleMat
+  m_Shader: {fileID: -6465566751694194690, guid: 8d14d1caf86bef7479c2547c7322df67,
     type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -16,7 +16,7 @@ Material:
   m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
+  m_DoubleSidedGI: 1
   m_CustomRenderQueue: -1
   stringTagMap: {}
   disabledShaderPasses: []
@@ -25,7 +25,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BaseMap:
-        m_Texture: {fileID: 2800000, guid: 55730737d3dbd564aaff7a4f0d892f50, type: 3}
+        m_Texture: {fileID: 2800000, guid: 0367b0dfe432c574c9777c7b1ea02270, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
@@ -49,7 +49,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 5e1776ad4fddd6a40b6388f9dcfee357, type: 3}
+        m_Texture: {fileID: 2800000, guid: 0367b0dfe432c574c9777c7b1ea02270, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -86,59 +86,78 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _AlphaClip: 0
+    - _AlphaClip: 1
     - _AlphaToMask: 0
-    - _BaseTransparency: 0.1
+    - _BaseTransparency: 0.2
     - _Blend: 0
     - _BlendModePreserveSpecular: 1
+    - _BlendOp: 0
     - _BumpScale: 1
+    - _CameraFadingEnabled: 0
+    - _CameraFarFadeDistance: 2
+    - _CameraNearFadeDistance: 1
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
-    - _Cull: 2
+    - _ColorMode: 0
+    - _Cull: 0
     - _Cutoff: 0.5
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
-    - _DstBlend: 0
-    - _DstBlendAlpha: 0
+    - _DistortionBlend: 0.5
+    - _DistortionEnabled: 0
+    - _DistortionStrength: 1
+    - _DistortionStrengthScaled: 0.1
+    - _DstBlend: 10
+    - _DstBlendAlpha: 10
     - _EnvironmentReflections: 1
-    - _FresnelLineThickness: 0.086
+    - _FlipbookBlending: 0
+    - _FlipbookMode: 0
+    - _FresnelLineThickness: 0.143
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
     - _Metallic: 0
+    - _Mode: 0
     - _OcclusionStrength: 1
-    - _OverlayStrength: 1
+    - _OverlayStrength: 0.771
     - _Parallax: 0.02
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
     - _RoundRadius: 0.5
-    - _ShowUpperPart: 0
+    - _ShowUpperPart: 1
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
+    - _SoftParticlesEnabled: 0
+    - _SoftParticlesFarFadeDistance: 1
+    - _SoftParticlesNearFadeDistance: 0
     - _SpecularHighlights: 1
-    - _SrcBlend: 1
+    - _SrcBlend: 5
     - _SrcBlendAlpha: 1
-    - _StrokeTransAdd: 0.1
-    - _Surface: 0
+    - _StrokeTransAdd: 0.2
+    - _Surface: 1
     - _TransLine: 0.9
     - _TransLineNoiseScale: 11.28
     - _TransLineTickness: 0.1
-    - _TransitionLineY: 1.49
+    - _TransitionLineY: 1.43
+    - _TurnSpeed: 1
     - _UseSelfAlpha: 0
     - _UseTransLine: 1
     - _WorkflowMode: 1
-    - _ZWrite: 1
-    - _baseTransparency: 0.1
+    - _ZWrite: 0
+    - _baseTransparency: 0.2
     - _translineNoisSpeed: 0.1
     m_Colors:
     - _BaseColor: {r: 0.9063317, g: 0.9063317, b: 0.9063317, a: 1}
-    - _Color: {r: 0.9063317, g: 0.9063317, b: 0.9063317, a: 1}
+    - _BaseColorAddSubDiff: {r: 0, g: 0, b: 0, a: 0}
+    - _CameraFadeParams: {r: 0, g: Infinity, b: 0, a: 0}
+    - _Color: {r: 0, g: 3.8490572, b: 1.9314277, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 0}
     - _FillingColor: {r: 0, g: 1.7965106, b: 1.3065532, a: 0}
     - _MassCenterPosition: {r: 0, g: 0, b: 0, a: 0}
+    - _SoftParticleFadeParams: {r: 0, g: 0, b: 0, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
-    - _StrokeColor: {r: 1.3350785, g: 1.3350785, b: 1.3350785, a: 0}
+    - _StrokeColor: {r: 1, g: 1, b: 1, a: 0}
     - _TransLineColor: {r: 0.18396229, g: 1, b: 0.6658132, a: 0}
     - _WeightPosition: {r: 0, g: 0, b: 0, a: 0}
     - _position: {r: -8, g: 0, b: 4.5, a: 0}

@@ -52,14 +52,18 @@ public class MultiObjectShaderTransition : MonoBehaviour
         {
             Renderer[] renderers = obj.GetComponentsInChildren<Renderer>();
             foreach (Renderer rend in renderers)
+            {
                 originalMaterials.Add(rend.material);
+            }
         }
 
         foreach (GameObject obj in transformedObjects)
         {
             Renderer[] renderers = obj.GetComponentsInChildren<Renderer>();
             foreach (Renderer rend in renderers)
+            {
                 transformedMaterials.Add(rend.material);
+            }
         }
     }
 
