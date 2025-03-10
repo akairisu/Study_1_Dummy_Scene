@@ -48,6 +48,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _GlowMap:
+        m_Texture: {fileID: 2800000, guid: 5d7069ad34f60d042a17c649e6a752a5, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _MainTex:
         m_Texture: {fileID: 2800000, guid: 0367b0dfe432c574c9777c7b1ea02270, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -151,7 +155,7 @@ Material:
     - _BaseColor: {r: 0.9063317, g: 0.9063317, b: 0.9063317, a: 1}
     - _BaseColorAddSubDiff: {r: 0, g: 0, b: 0, a: 0}
     - _CameraFadeParams: {r: 0, g: Infinity, b: 0, a: 0}
-    - _Color: {r: 0, g: 3.8490572, b: 1.9314277, a: 1}
+    - _Color: {r: 0, g: 1.6154925, b: 2.6663551, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 0}
     - _FillingColor: {r: 0, g: 1.7965106, b: 1.3065532, a: 0}
     - _MassCenterPosition: {r: 0, g: 0, b: 0, a: 0}
