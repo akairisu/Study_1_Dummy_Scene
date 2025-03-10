@@ -52,18 +52,14 @@ public class MultiObjectShaderTransition : MonoBehaviour
         {
             Renderer[] renderers = obj.GetComponentsInChildren<Renderer>();
             foreach (Renderer rend in renderers)
-            {
-                originalMaterials.Add(rend.material);
-            }
+                originalMaterials.AddRange(rend.materials);
         }
 
         foreach (GameObject obj in transformedObjects)
         {
             Renderer[] renderers = obj.GetComponentsInChildren<Renderer>();
             foreach (Renderer rend in renderers)
-            {
-                transformedMaterials.Add(rend.material);
-            }
+                transformedMaterials.AddRange(rend.materials);
         }
     }
 
@@ -120,14 +116,14 @@ public class MultiObjectShaderTransition : MonoBehaviour
         float currentY = Mathf.Lerp(intersectionLowestY, intersectionHighestY, t);
         Vector3 currentWeightPosition = Vector3.Lerp(originalWeightWorld, transformedWeightWorld, t);
 
-        foreach (Material mat in originalMaterials)
+        foreach (Material mat in transformedMaterials)
         {
             mat.SetFloat("_TransitionLineY", currentY);
             mat.SetInt("_ShowUpperPart", 0);
             mat.SetVector("_WeightPosition", currentWeightPosition);
         }
 
-        foreach (Material mat in transformedMaterials)
+        foreach (Material mat in originalMaterials)
         {
             mat.SetFloat("_TransitionLineY", currentY);
             mat.SetInt("_ShowUpperPart", 1);
