@@ -158,12 +158,12 @@ namespace BNG {
 
             EditorGUILayout.Separator();
 
-            GUILayout.Label("Installed Legacy Packages : ", EditorStyles.boldLabel);
-            EditorGUILayout.LabelField("Oculus Android Package : " + GetLabel(UsingOculusAndroid), rt);
-            EditorGUILayout.LabelField("Oculus Desktop Package : " + GetLabel(UsingOculusDesktop), rt);
-            EditorGUILayout.LabelField("OpenVR Desktop Package : " + GetLabel(UsingOpenVRDesktop), rt);
+            //GUILayout.Label("Installed Legacy Packages : ", EditorStyles.boldLabel);
+            //EditorGUILayout.LabelField("Oculus Android Package : " + GetLabel(UsingOculusAndroid), rt);
+            //EditorGUILayout.LabelField("Oculus Desktop Package : " + GetLabel(UsingOculusDesktop), rt);
+            //EditorGUILayout.LabelField("OpenVR Desktop Package : " + GetLabel(UsingOpenVRDesktop), rt);
 
-            EditorGUILayout.Separator();
+            //EditorGUILayout.Separator();
 
             // Warning about not having Render Pipeline set
             if ((UsingURP || UsingHDRP) && UnityEngine.Rendering.GraphicsSettings.renderPipelineAsset == null) {
@@ -184,11 +184,11 @@ namespace BNG {
             }
 
             // Auto Simulation Setting issue
-            if (UnityEngine.Physics.autoSimulation == false) {
-                GUILayout.Label("Project Settings Issue : ", EditorStyles.boldLabel);
-                EditorGUILayout.HelpBox("WARNING! Your Auto Simulation setting is set to false, which can result in lack of input or strange behavior. Go to Project Settings -> Physics and set to true or make sure this is enabled during gameplay.", MessageType.Error);
-                EditorGUILayout.Separator();
-            }
+            //if (UnityEngine.Physics.autoSimulation == false) {
+            //    GUILayout.Label("Project Settings Issue : ", EditorStyles.boldLabel);
+            //    EditorGUILayout.HelpBox("WARNING! Your Auto Simulation setting is set to false, which can result in lack of input or strange behavior. Go to Project Settings -> Physics and set to true or make sure this is enabled during gameplay.", MessageType.Error);
+            //    EditorGUILayout.Separator();
+            //}
 
             EditorGUILayout.Separator();
 

@@ -17,6 +17,13 @@ namespace BNG {
         [Tooltip("If true the game window must have focus for the emulator to be active")]
         public bool RequireGameFocus = true;
 
+        [Tooltip("Set to true if you want the cursor to be locked on Start. Otherwise the cursor will be locked with right click / lock screen input action")]
+        public bool AutoLockCursor = false;
+        private bool _cursorLocked = false;
+
+        [Tooltip("AutoLockCursor must be enabled. If set to true, right click will act as right side grip. This way you can use right click for grab, and left click for trigger.")]
+        public bool RightClickGrab = false;
+
         [Header("Input : ")]
         [SerializeField]
         [Tooltip("Action set used specifically to mimic or supplement a vr setup")]
@@ -29,6 +36,9 @@ namespace BNG {
         [Header("Move Player Up / Down")]
         [Tooltip("If true, move the player eye offset up / down whenever PlayerUpAction / PlayerDownAction is called.")]
         public bool AllowUpDownControls = true;
+
+        [Tooltip("If true, the players height will be elevated in the BNGPlayerController")]
+        public bool ElevatePlayerHeightOnDisconnect = true;
 
         [Tooltip("Unity Input Action used to move the player up")]
         public InputActionReference PlayerUpAction;
@@ -80,7 +90,12 @@ namespace BNG {
         [Tooltip("Unity Input Action used to mimic having your thumb near a button")]
         public InputActionReference RightThumbNearAction;
 
-       
+        [Header("Remote Grabber Visualization")]
+        [Tooltip("Enable this object when remote grabber is enabled and nothing held in LeftPlayerGrabber. Leave empty to disable this feature.")]
+        public GameObject LeftRemoteGrabberPreviewObject;
+
+        [Tooltip("Enable this object when remote grabber is enabled and nothing held in RightPlayerGrabber. Leave empty to disable this feature.")]
+        public GameObject RightRemoteGrabberPreviewObject;
 
         float mouseRotationX;
         float mouseRotationY;
@@ -110,16 +125,19 @@ namespace BNG {
 
         bool priorStraightSetting;
 
+        bool emulatorWasActive = false;
+        bool emulatorActivatedBefore = false;
+
         void Start() {
 
-            if(GameObject.Find("CameraRig")) {
+            if (GameObject.Find("CameraRig")) {
                 mainCameraTransform = GameObject.Find("CameraRig").transform;
             }
             // Oculus Rig Setup
-            else if(GameObject.Find("OVRCameraRig")) {
+            else if (GameObject.Find("OVRCameraRig")) {
                 mainCameraTransform = GameObject.Find("OVRCameraRig").transform;
             }
-            
+
             leftHandAnchor = GameObject.Find("LeftHandAnchor").transform;
             rightHandAnchor = GameObject.Find("RightHandAnchor").transform;
 
@@ -128,32 +146,43 @@ namespace BNG {
 
             player = FindObjectOfType<BNGPlayerController>();
 
-            if(player) {
+            if (player) {
                 // Use this to keep our head up high
-                player.ElevateCameraIfNoHMDPresent = true;
+                player.ElevateCameraIfNoHMDPresent = ElevatePlayerHeightOnDisconnect;
                 _originalPlayerYOffset = player.ElevateCameraHeight;
 
                 smoothLocomotion = player.GetComponentInChildren<SmoothLocomotion>(true);
 
                 // initialize component if it's currently disabled
-                if(smoothLocomotion != null && !smoothLocomotion.isActiveAndEnabled) {
+                if (smoothLocomotion != null && !smoothLocomotion.isActiveAndEnabled) {
                     smoothLocomotion.CheckControllerReferences();
                 }
 
                 playerTeleport = player.GetComponentInChildren<PlayerTeleport>(true);
-                if(playerTeleport) {
+                if (playerTeleport) {
                     priorStraightSetting = playerTeleport.ForceStraightArrow;
                 }
 
                 if (smoothLocomotion == null) {
                     Debug.Log("No Smooth Locomotion component found. Will not be able to use SmoothLocomotion without calling it manually.");
-                }
-                else if (smoothLocomotion.MoveAction == null) {
+                } else if (smoothLocomotion.MoveAction == null) {
                     Debug.Log("Smooth Locomotion Move Action has not been assigned. Make sure to assign this in the inspector if you want to be able to move around using the VR Emulator.");
                 }
             }
         }
-        
+
+        public virtual void LockCursor() {
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+            _cursorLocked = true;
+        }
+
+        public virtual void UnlockCursor() {
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+            _cursorLocked = false;
+        }
+
         public void OnBeforeRender() {
             HMDIsActive = InputBridge.Instance.HMDActive;
 
@@ -164,7 +193,7 @@ namespace BNG {
         }
 
         void onFirstActivate() {
-            UpdateControllerPositions();            
+            UpdateControllerPositions();
 
             didFirstActivate = true;
         }
@@ -176,10 +205,25 @@ namespace BNG {
             // Updated to show in Debug Settings
             HMDIsActive = InputBridge.Instance.HMDActive;
 
+            if (emulatorWasActive != HMDIsActive) {
+                OnEmulatorStateChange();
+            }
+
             // Ready to go
             if (EmulatorEnabled && !HMDIsActive) {
 
-                if(!didFirstActivate) {
+                // Check cursor lock
+                // Toggle cursor lock state when Escape is pressed
+                if (_cursorLocked && Input.GetKeyDown(KeyCode.Escape)) {
+                    UnlockCursor();
+                } 
+                // Lock cursor when clicked in again
+                else if (AutoLockCursor && !_cursorLocked && Input.GetMouseButtonDown(0)) {
+                    // Wait briefly so any UI events can fire
+                    Invoke("LockCursor", 0.1f);
+                }
+
+                if (!didFirstActivate) {
                     onFirstActivate();
                 }
 
@@ -193,10 +237,42 @@ namespace BNG {
                 }
             }
 
+            UpdateRemoteGrabberPreviews();
+
             // Device came online after emulator had started
-            if(EmulatorEnabled && didFirstActivate && HMDIsActive) {
+            if (EmulatorEnabled && didFirstActivate && HMDIsActive) {
                 ResetAll();
             }
+
+            /// Update our state
+            emulatorWasActive = HMDIsActive;
+        }
+
+        void OnEmulatorStateChange() {
+            // Switched from vr back to flat screen
+            if (!HMDIsActive) {
+                OnSwitchToPC();
+            }
+            // Flat screen back to VR
+            else {
+                OnSwitchToVR();
+            }
+        }
+
+        public virtual void OnSwitchToVR() {
+            mainCameraTransform.localPosition = Vector3.zero;
+            mainCameraTransform.localEulerAngles = Vector3.zero;
+
+            // No longer elevate camera now that hmd is back online
+            if(emulatorActivatedBefore || didFirstActivate) {
+                player.ElevateCameraIfNoHMDPresent = false;
+            }
+        }
+
+        public virtual void OnSwitchToPC() {
+            emulatorActivatedBefore = true;
+            mainCameraTransform.localEulerAngles = Vector3.zero;
+            ResetHands();
         }
 
         public virtual bool HasRequiredFocus() {
@@ -209,37 +285,45 @@ namespace BNG {
             return Application.isFocused;
         }
 
+        
+
         public void CheckHeadControls() {
 
             // Hold LockCameraAction (example : right mouse button down ) to move camera around
             if (LockCameraAction != null) {
 
+                bool doMouseLook = (AutoLockCursor && _cursorLocked) || (!AutoLockCursor && LockCameraAction.action.ReadValue<float>() == 1);
+
                 // Lock
-                if (LockCameraAction.action.ReadValue<float>() == 1) {
+                if (doMouseLook) {
 
                     // Lock Camera and cursor
                     Cursor.visible = false;
                     Cursor.lockState = CursorLockMode.Locked;
                    
-                    Vector3 mouseLook = Vector2.zero;
-                    if(CameraLookAction != null) {
-                        mouseLook = CameraLookAction.action.ReadValue<Vector2>();
-                    }
-                    // Fall back to mouse
-                    else {
-                        mouseLook = Mouse.current.delta.ReadValue();
-                    }
-                    // Rotation Y
-                    mouseRotationY += mouseLook.y * CameraLookSensitivityY;
+                    // Make sure cursor is indeed locked / invisible
+                    if(!Cursor.visible && Cursor.lockState == CursorLockMode.Locked) {
+                        Vector3 mouseLook = Vector2.zero;
+                        if (CameraLookAction != null) {
+                            mouseLook = CameraLookAction.action.ReadValue<Vector2>();
+                        }
+                        // Fall back to mouse
+                        else {
+                            mouseLook = Mouse.current.delta.ReadValue();
+                        }
+                        // Rotation Y
+                        mouseRotationY += mouseLook.y * CameraLookSensitivityY;
 
-                    mouseRotationY = Mathf.Clamp(mouseRotationY, MinimumCameraY, MaximumCameraY);
-                    mainCameraTransform.localEulerAngles = new Vector3(-mouseRotationY, mainCameraTransform.localEulerAngles.y, 0);
+                        mouseRotationY = Mathf.Clamp(mouseRotationY, MinimumCameraY, MaximumCameraY);
+                        mainCameraTransform.localEulerAngles = new Vector3(-mouseRotationY, mainCameraTransform.localEulerAngles.y, 0);
 
-                    // Move PLayer on X Axis
-                    player.transform.Rotate(0, mouseLook.x * CameraLookSensitivityX, 0);
+                        // Move PLayer on X Axis
+                        player.transform.Rotate(0, mouseLook.x * CameraLookSensitivityX, 0);
+                    }
+                   
                 }
                 // Unlock Camera
-                else {
+                else if(!AutoLockCursor && LockCameraAction.action.ReadValue<float>() == 0) {
                     Cursor.lockState = CursorLockMode.None;
                     Cursor.visible = true;
                 }
@@ -296,6 +380,12 @@ namespace BNG {
             if (RightGripAction != null) {
                 prevVal = InputBridge.Instance.RightGrip;
                 InputBridge.Instance.RightGrip = RightGripAction.action.ReadValue<float>();
+
+                // Simulate grip with right click if option is enabled
+                if(AutoLockCursor && RightClickGrab && Input.GetMouseButton(1)) {
+                    InputBridge.Instance.RightGrip = 1f;
+                }
+
                 InputBridge.Instance.RightGripDown = prevVal < InputBridge.Instance.DownThreshold && InputBridge.Instance.RightGrip >= InputBridge.Instance.DownThreshold;
             }
 
@@ -341,12 +431,12 @@ namespace BNG {
             }
         }
 
-        void FixedUpdate() {
-            // Player Move Forward / Back, Snap Turn
-            //if (smoothLocomotion != null && smoothLocomotion.enabled == false && smoothLocomotion.ControllerType == PlayerControllerType.Rigidbody) {
-            //    smoothLocomotion.MoveRigidCharacter();
-            //}
-        }
+        //void FixedUpdate() {
+        //    // Player Move Forward / Back, Snap Turn
+        //    //if (smoothLocomotion != null && smoothLocomotion.enabled == false && smoothLocomotion.ControllerType == PlayerControllerType.Rigidbody) {
+        //    //    smoothLocomotion.MoveRigidCharacter();
+        //    //}
+        //}
 
         public virtual void UpdateControllerPositions() {
             leftControllerTranform.transform.localPosition = LeftControllerPosition;
@@ -355,6 +445,30 @@ namespace BNG {
             rightControllerTranform.transform.localPosition = RightControllerPosition;
             rightControllerTranform.transform.localEulerAngles = Vector3.zero;
         }
+
+
+        public virtual void UpdateRemoteGrabberPreviews() {
+
+            // Only show preview in Emulator Mode
+            if(HMDIsActive) {
+                if(LeftRemoteGrabberPreviewObject != null && LeftRemoteGrabberPreviewObject.activeSelf) {
+                    LeftRemoteGrabberPreviewObject.SetActive(false);
+                }
+                if (RightRemoteGrabberPreviewObject != null && RightRemoteGrabberPreviewObject.activeSelf) {
+                    RightRemoteGrabberPreviewObject.SetActive(false);
+                }
+                return;
+            }
+
+            // Object was specified so we can check to activate it or not
+            if(LeftRemoteGrabberPreviewObject != null && grabberLeft != null) {
+                LeftRemoteGrabberPreviewObject.SetActive(!grabberLeft.HoldingItem && !grabberLeft.RemoteGrabbingItem);
+            }
+            if (RightRemoteGrabberPreviewObject != null && grabberRight != null) {
+                RightRemoteGrabberPreviewObject.SetActive(!grabberRight.HoldingItem && !grabberRight.RemoteGrabbingItem);
+            }
+        }
+
 
         void checkGrabbers() {
             // Find Grabber Left
