@@ -438,6 +438,16 @@ namespace BNG {
         // Used for showing a custom inspector
         [HideInInspector]
         public bool ShowInputDebugger = false;
+
+        [Tooltip("If true XR will be force started / stopped. Enable this if XR only initializes once in the editor and then requires a restart. Only executes in the editor. May require restarting Unity after enabling.")]
+        [HideInInspector]
+        public bool ForceStartXRInEditor = false;
+
+        /// <summary>
+        /// If true  Time.fixedDeltaTime wlil be check for Unity default of 0.02 and forced higher if found.
+        /// </summary>
+        [HideInInspector]
+        public bool CheckFixedDeltaTime = true;
         #endregion
 
         private void Awake() {
@@ -447,22 +457,51 @@ namespace BNG {
                 return;
             }
 
-            _instance = this;
+            _instance = this;           
 
             // Update all device properties
-            if(GetSupportsXRInput()) {
+            if (GetSupportsXRInput()) {
                 List<InputDevice> devices = new List<InputDevice>();
                 InputDevices.GetDevices(devices);
 
                 setDeviceProperties();
             }
-        }       
+        }
+
+        void OnApplicationQuit() {
+#if UNITY_2021
+            // Deinitialize / clean up any XR Loaders that may be active
+            if (GetSupportsXRInput() && UnityEngine.XR.Management.XRGeneralSettings.Instance.Manager.activeLoader != null) {
+                // Debug.Log("Cleaning up active loader. This could indicate an issue with XR mgmg not being able to close the active loader.");
+                UnityEngine.XR.Management.XRGeneralSettings.Instance.Manager.StopSubsystems();
+                UnityEngine.XR.Management.XRGeneralSettings.Instance.Manager.DeinitializeLoader();
+            }
+#endif
+        }
 
         void Start() {
-
+#if UNITY_EDITOR
+            // Patch to fix issue where xr only initializes once before needing to restart Unity
+            //  https://communityforums.atmeta.com/t5/Unity-VR-Development/Meta-XR-Simulator-starts-only-once/m-p/1142983/highlight/true#M23492
+            if (GetSupportsXRInput()) {
+                EnableXR();
+            }
+#endif
             // Set tracking mode to floor, device, etc. on Start
-            if(GetSupportsXRInput()) {
+            if (GetSupportsXRInput()) {
                 SetTrackingOriginMode(TrackingOrigin);
+            }
+
+            if(CheckFixedDeltaTime && Time.fixedDeltaTime >= 0.019f) {
+                Debug.LogWarning("Time.fixedDeltaTime is set to Unity's default of 0.02, which can cause jittery movement in VR, especially with Rotations. Setting to device refresh rate instead. You can disable this by adjusting your Fixed Timestep manually in your project or via script.");
+                float refreshRate = UnityEngine.XR.XRDevice.refreshRate;
+                if(refreshRate != 0) {
+                    Time.fixedDeltaTime = (Time.timeScale / UnityEngine.XR.XRDevice.refreshRate);
+                }
+                else {
+                    // Default to 72fp : 1/72 =   0.0138889
+                    Time.fixedDeltaTime = 0.0138889f; 
+                }
             }
 
 #if STEAM_VR_SDK
@@ -482,8 +521,52 @@ namespace BNG {
             }
 
             SteamVR.Initialize();
-#endif
+#endif            
         }
+#if UNITY_EDITOR
+        public void EnableXR() {
+            if(ForceStartXRInEditor) {
+                StartCoroutine(StartXRCoroutine());
+            }
+        }
+
+        public void DisableXR() {
+            if (UnityEngine.XR.Management.XRGeneralSettings.Instance != null && UnityEngine.XR.Management.XRGeneralSettings.Instance.Manager != null && UnityEngine.XR.Management.XRGeneralSettings.Instance.Manager.isInitializationComplete) {
+                UnityEngine.XR.Management.XRGeneralSettings.Instance.Manager.StopSubsystems();
+                UnityEngine.XR.Management.XRGeneralSettings.Instance.Manager.DeinitializeLoader();
+            } 
+            else {
+                // Debug.LogWarning("XR Manager not initialized. Skipping DisableXR.");
+            }
+        }
+
+        public IEnumerator StartXRCoroutine() {
+            if (UnityEngine.XR.Management.XRGeneralSettings.Instance == null) {
+                UnityEngine.XR.Management.XRGeneralSettings.Instance = UnityEngine.XR.Management.XRGeneralSettings.CreateInstance<UnityEngine.XR.Management.XRGeneralSettings>();
+            }
+
+            if (UnityEngine.XR.Management.XRGeneralSettings.Instance.Manager == null) {
+                yield return new WaitUntil(() => UnityEngine.XR.Management.XRGeneralSettings.Instance.Manager != null);
+            }
+
+            UnityEngine.XR.Management.XRGeneralSettings.Instance?.Manager?.InitializeLoaderSync();
+
+            if (UnityEngine.XR.Management.XRGeneralSettings.Instance?.Manager?.activeLoader == null) {
+                // Debug.LogError("Initializing XR Failed. Check Editor or Player log for details.");
+            } 
+            else {
+                UnityEngine.XR.Management.XRGeneralSettings.Instance?.Manager?.StartSubsystems();
+            }
+        }
+#endif
+
+#if UNITY_EDITOR
+        void OnDestroy() {
+            if (ForceStartXRInEditor) {
+                DisableXR();
+            }
+        }
+#endif
 
         void OnEnable() {
 #if UNITY_WEBGL
@@ -510,11 +593,15 @@ namespace BNG {
             InputDevices.deviceDisconnected -= onDeviceChanged;
 #endif
             DisableActions();
-        }        
+        }
 
         void Update() {
             UpdateDeviceActive();
             UpdateInputs();
+
+            if (Input.GetKeyDown(KeyCode.R)) {
+                SetTrackingOriginMode(TrackingOrigin);
+            }
         }
 
         public virtual void UpdateInputs() {
@@ -1541,27 +1628,49 @@ namespace BNG {
 
         IEnumerator changeOriginModeRoutine(TrackingOriginModeFlags trackingOrigin) {
 
-            // Wait one frame as Unity has an issue with calling this immediately
+            // Wait briefly as Unity has an issue with calling this immediately
             yield return null;
 
-            if(!setTrackingOrigin) {
+            if (!setTrackingOrigin && trackingOrigin != TrackingOriginModeFlags.Unknown) {
                 List<XRInputSubsystem> subsystems = new List<XRInputSubsystem>();
                 SubsystemManager.GetInstances(subsystems);
                 int subSystemsCount = subsystems.Count;
 
                 if (subSystemsCount > 0) {
                     for (int x = 0; x < subSystemsCount; x++) {
-                        if (subsystems[x].TrySetTrackingOriginMode(trackingOrigin)) {
-                            setTrackingOrigin = true;
-                            // Debug.Log("Successfully set TrackingOriginMode to " + trackingOrigin);
+                        var supportedModes = subsystems[x].GetSupportedTrackingOriginModes();
+                        bool supportsMode = (supportedModes & trackingOrigin) != 0;
+                        if (supportsMode) {
+                            // Make sure system is fully running. Could be connected to pcvr but not on the head yet.
+                            // Added an attempt check so we don't wait forever. Can be reinitialized o xr device change
+                            int maxAttempts = 50;
+                            int currentAttempts = 0;
+                            while(subsystems[x].running == false && currentAttempts < maxAttempts) {
+                                yield return new WaitForSeconds(0.1f);
+                                currentAttempts++;
+                            }
+
+                            // Bail after max attempts.  Can retry on device connect
+                            if(currentAttempts == maxAttempts) {
+                                continue;
+                            }
+
+                            if (subsystems[x].TrySetTrackingOriginMode(trackingOrigin)) {
+                                // Only set the tracking origin once, once the headset is on
+                                setTrackingOrigin = true;
+                                // Debug.Log("Successfully set TrackingOriginMode to " + trackingOrigin);
+                            } 
+                            else {
+                                Debug.LogWarning("Failed to set TrackingOriginMode to " + trackingOrigin);
+                            }
                         }
                         else {
-                            Debug.LogWarning("Failed to set TrackingOriginMode to " + trackingOrigin);
+                            Debug.Log("No support for mode " + trackingOrigin);
                         }
                     }
                 }
                 else {
-                    // Debug.LogWarning("No subsystems detected. Unable to set Tracking Origin to " + trackingOrigin);
+                    Debug.LogWarning("No subsystems detected. Unable to set Tracking Origin to " + trackingOrigin);
                 }
             }
         }

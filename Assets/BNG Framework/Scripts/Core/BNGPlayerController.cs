@@ -116,6 +116,9 @@ namespace BNG {
         // Use smooth movement if available
         protected SmoothLocomotion smoothLocomotion;
 
+        // PlayerTeleport can be used to instantly move a player (optional)
+        PlayerTeleport playerTeleport;
+
         // Optional components can be used to update LastMoved Time
         protected PlayerClimbing playerClimbing;
         protected bool isClimbing, wasClimbing = false;
@@ -135,6 +138,7 @@ namespace BNG {
             playerRigid = GetComponent<Rigidbody>();
             playerCapsule = GetComponent<CapsuleCollider>();
             smoothLocomotion = GetComponentInChildren<SmoothLocomotion>();
+            playerTeleport = GetComponentInChildren<PlayerTeleport>();
 
             mainCamera = GameObject.FindGameObjectWithTag("MainCamera").transform;
 
@@ -179,6 +183,11 @@ namespace BNG {
             if(playerClimbing != null && playerClimbing.GrippingAtLeastOneClimbable() && playerRigid != null) {
                 playerCapsule.height = playerClimbing.ClimbingCapsuleHeight;
             }
+
+            // Static height while attached to a seat
+            if(attachedToSeat) {
+                playerCapsule.height = playerClimbing.ClimbingCapsuleHeight;
+            }
 			
             // After positioning the camera rig, we can update our main camera's height
             UpdateCameraHeight();
@@ -189,6 +198,8 @@ namespace BNG {
             if (RotateCharacterWithCamera) {
                 RotateTrackingSpaceToCamera();
             }
+
+            MovePlayerWithSeat();
         }
        
         void FixedUpdate() {
@@ -196,6 +207,21 @@ namespace BNG {
             UpdateDistanceFromGround();
 
             CheckPlayerElevationRespawn();
+
+            MovePlayerWithSeat();
+        }
+
+        public void MovePlayerWithSeat() {
+            // Keep Locked to seat position
+            if (attachedToSeat && attachedTransform != null) {
+                if (playerRigid != null) {
+                    playerRigid.transform.position = attachedTransform.position;
+                } 
+                else {
+                    transform.parent = attachedTransform;
+                    transform.localPosition = Vector3.zero;
+                }
+            }
         }
 
         /// <summary>
@@ -319,6 +345,7 @@ namespace BNG {
                 yPos += ElevateCameraHeight;
             }
 
+            // CameraRig.transform.localPosition = new Vector3(0, yPos, 0);
             CameraRig.transform.localPosition = new Vector3(CameraRig.transform.localPosition.x, yPos, CameraRig.transform.localPosition.z);
         }
 
@@ -402,7 +429,7 @@ namespace BNG {
 
             // Cast capsule shape at the desired position to see if it is about to hit anything
             if (Physics.SphereCast(movePosition, capsuleRadius, transform.up, out hit, playerCapsule.height / 2, GroundedLayers, QueryTriggerInteraction.Ignore)) {
-                Debug.Log(hit.collider);
+                //Debug.Log(hit.collider);
                 noCollision = false;
             }
 
@@ -432,6 +459,74 @@ namespace BNG {
             // Just let go
             else {
 
+            }
+        }
+
+        bool attachedToSeat = false;
+        Transform attachedTransform = null;
+        bool smoothLocoWasEnabled = false;
+        bool teleportWasEnabled = false;
+        Transform lastTransformParent;
+
+
+        public void AttachPlayerToSeat(Transform seatTransform) {
+            if (attachedToSeat) {
+                Debug.Log("Already attached to another seat.");
+                return;
+            }
+
+            attachedToSeat = true;
+            attachedTransform = seatTransform;
+
+            if(smoothLocomotion) {
+                smoothLocoWasEnabled = smoothLocomotion.enabled;
+                smoothLocomotion.enabled = false;
+            }
+
+            if(characterController) {
+                characterController.enabled = false;
+            }
+
+            lastTransformParent = transform.parent;
+            transform.parent = seatTransform;
+            transform.localPosition = Vector3.zero;
+            transform.localEulerAngles = Vector3.zero;
+
+            if (playerTeleport) {
+                teleportWasEnabled = playerTeleport.enabled;
+                //playerTeleport.TeleportPlayerToTransform(attachedTransform);
+                playerTeleport.BeforeTeleportFade();
+                playerTeleport.AfterTeleportFade();
+
+                playerTeleport.enabled = false;
+
+            }
+        }
+
+        public void DetachPlayerFromSeat(Transform exitTransform) {
+
+            // Only detach if not attached..
+            if(!attachedToSeat) {
+                return;
+            }
+
+            attachedToSeat = false;
+
+            transform.position = exitTransform.position;
+            transform.rotation = exitTransform.rotation;
+
+            transform.parent = lastTransformParent;
+
+            if (smoothLocomotion && smoothLocoWasEnabled) {
+                smoothLocomotion.enabled = true;
+            }
+
+            if (playerTeleport && teleportWasEnabled) {
+                playerTeleport.enabled = true;
+            }
+
+            if (characterController) {
+                characterController.enabled = true;
             }
         }
 

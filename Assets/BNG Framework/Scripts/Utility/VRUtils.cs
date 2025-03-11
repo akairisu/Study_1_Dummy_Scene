@@ -25,7 +25,8 @@ namespace BNG {
 
         // Where to put our text messages
         // public Color DebugTextColor = Color.white;
-
+        
+        public Font DebugFont;
         public Color LogTextColor = Color.cyan;
         public Color WarnTextColor = Color.yellow;
         public Color ErrTextColor = Color.red;
@@ -43,12 +44,27 @@ namespace BNG {
 
 
         void Awake() {
+
+            // Setup singletone so only one object exists at a time
             if (_instance != null && _instance != this) {
                 Destroy(this);
                 return;
             }
 
             _instance = this;
+            
+            // Default to LegacyRuntime (should work for most newer Unity versions)
+            if(DebugFont == null) {
+                Debug.Log("DebugFont not specified for VRUTils component.");
+                // Causing some issues in newer Unity. Commenting out for now in favor of manually specifying on the prefab
+                //DebugFont = Resources.GetBuiltinResource(typeof(Font), "Arial.ttf") as Font;
+
+                //// Arial fallback for older versions of Unity
+                //if (DebugFont == null) {
+                //    Debug.Log("Could not load Arial font. Attempting fallback to LegacyRuntime. You can remove this error by specifying the DebugFont on the VRUtils component");
+                //    DebugFont = Resources.GetBuiltinResource(typeof(Font), "LegacyRuntime.ttf") as Font;
+                //}
+            }
         }                    
         
         public void Log(string msg) {
@@ -65,7 +81,6 @@ namespace BNG {
             Debug.LogError(msg, gameObject);
             VRDebugLog(msg, ErrTextColor);
         }
-
 
         public void VRDebugLog(string msg, Color logColor) {
             // Add to Holder if available
@@ -90,7 +105,8 @@ namespace BNG {
                     textLine.verticalOverflow = VerticalWrapMode.Overflow;
                     textLine.color = logColor;
                     textLine.fontSize = 32;
-                    textLine.font = Resources.GetBuiltinResource(typeof(Font), "LegacyRuntime.ttf") as Font;
+                    textLine.font = DebugFont;                                        
+
                     textLine.raycastTarget = false;
 
                     RectTransform rect = go.GetComponent<RectTransform>();
@@ -112,9 +128,9 @@ namespace BNG {
             }
         }
 
-        public AudioSource PlaySpatialClipAt(AudioClip clip, Vector3 pos, float volume, float spatialBlend = 1f, float randomizePitch = 0) {
+        public AudioSource PlaySpatialClipAt(AudioClip clip, Vector3 pos, float volume, float spatialBlend, float randomizePitchMinimum, float randomizePitchMaximum, float randomizePitch = 0) {
 
-            if(clip == null) {
+            if (clip == null) {
                 return null;
             }
 
@@ -128,7 +144,15 @@ namespace BNG {
 #if OCULUS_INTEGRATION
             source.spatialize = true;
 #endif
-            source.pitch = getRandomizedPitch(randomizePitch);
+            // Use offset method of getting pitch
+            if(randomizePitch  != 0) {
+                source.pitch = getRandomizedPitch(randomizePitch);
+            }
+            // Use min / max method of getting pitch (preferred)
+            else {
+                source.pitch = getRandomizedPitch(randomizePitchMinimum, randomizePitchMaximum);
+            }
+           
             source.spatialBlend = spatialBlend;
             source.volume = volume;
             source.Play();
@@ -138,13 +162,40 @@ namespace BNG {
             return source;
         }
 
-        float getRandomizedPitch(float randomAmount) {
+        public AudioSource PlaySpatialClipAt(AudioClip clip, Vector3 pos, float volume, float spatialBlend = 1f, float randomizePitch = 0) {
+            return PlaySpatialClipAt(clip, pos, volume, spatialBlend, 1, 1, randomizePitch);
+        }
 
-            if(randomAmount != 0) {
-                float randomPitch = Random.Range(-randomAmount, randomAmount);
+        /// <summary>
+        /// Returns a randomized pitch between randomMin and randomMax (inclusive)
+        /// </summary>
+        /// <param name="randomMin"></param>
+        /// <param name="randomMax"></param>
+        /// <returns></returns>
+        float getRandomizedPitch(float randomMin, float randomMax) {
+
+            if (randomMin != 1 || randomMax != 1) {
+                return Time.timeScale * Random.Range(randomMin, randomMax);
+            }
+
+            //Default to timescale currently used
+            return Time.timeScale;
+        }
+
+        /// <summary>
+        /// Get a randomized pitch offset between -randomizePitch and randomizePitch
+        /// </summary>
+        /// <param name="randomizePitch"></param>
+        /// <returns></returns>
+        float getRandomizedPitch(float randomizePitch) {
+
+            // If no range is specified, use randomMin / Max Range
+            if (randomizePitch != 0) {
+                float randomPitch = Random.Range(-randomizePitch, randomizePitch);
                 return Time.timeScale + randomPitch;
             }
 
+            //Default to timescale currently used
             return Time.timeScale;
         }
     }

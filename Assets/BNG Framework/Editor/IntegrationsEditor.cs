@@ -20,7 +20,7 @@ namespace BNG {
             VRIFSettings.XRITIntegration = EditorGUILayout.Toggle("XR Interaction Toolkit Integration", VRIFSettings.XRITIntegration);
             VRIFSettings.OculusIntegration = EditorGUILayout.Toggle("Oculus Integration", VRIFSettings.OculusIntegration);
             VRIFSettings.SteamVRIntegration = EditorGUILayout.Toggle("SteamVR Integration", VRIFSettings.SteamVRIntegration);
-            VRIFSettings.PicoIntegration = EditorGUILayout.Toggle("Pico Integration (Legacy)", VRIFSettings.PicoIntegration);
+            // VRIFSettings.PicoIntegration = EditorGUILayout.Toggle("Pico Integration (Legacy)", VRIFSettings.PicoIntegration);
 
             GUILayout.Label("", EditorStyles.boldLabel);
 
