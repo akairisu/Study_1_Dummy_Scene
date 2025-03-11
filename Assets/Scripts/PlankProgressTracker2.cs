@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class PlankProgressTracker : MonoBehaviour
+public class PlankProgressTracker2 : MonoBehaviour
 {
     [Header("UI References")]
     [SerializeField] private TextMeshProUGUI progressText;
@@ -10,10 +10,10 @@ public class PlankProgressTracker : MonoBehaviour
     [SerializeField] private GameObject progressDialog;
 
     [Header("Targets")]
-    [SerializeField] private TriggerZoneSaw target1;
-    [SerializeField] private TriggerZoneSaw target2;
-    [SerializeField] private TriggerZoneSaw target3;
-    [SerializeField] private TriggerZoneSaw target4;
+    [SerializeField] private TriggerZonePlaner target1;
+    [SerializeField] private TriggerZonePlaner target2;
+    [SerializeField] private TriggerZonePlaner target3;
+    [SerializeField] private TriggerZonePlaner target4;
 
     [Header("Progress Settings")]
     [SerializeField] private float maxProgress = 100f;
@@ -71,7 +71,6 @@ public class PlankProgressTracker : MonoBehaviour
         if (currentProgress < maxProgress)
         {
             currentProgress = target1.CurrentDistance + target2.CurrentDistance + target3.CurrentDistance + target4.CurrentDistance;
-            // currentProgress = 100 * currentProgress / maxProgress;
             
             if (progressSlider != null)
             {
@@ -90,7 +89,8 @@ public class PlankProgressTracker : MonoBehaviour
     {
         if (progressText != null)
         {
-            progressText.text = $"Progress: {currentProgress.ToString("F2")} / {maxProgress.ToString("F2")}";
+            float progressPercentage = (currentProgress / maxProgress) * 100;
+            progressText.text = $"Progress: {progressPercentage.ToString("F2")}%";
         }
     }
 
