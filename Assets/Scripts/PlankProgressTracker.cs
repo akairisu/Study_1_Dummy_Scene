@@ -9,15 +9,23 @@ public class PlankProgressTracker : MonoBehaviour
     [SerializeField] private Slider progressSlider;
     [SerializeField] private GameObject progressDialog;
 
+    [Header("Targets")]
+    [SerializeField] private TriggerZoneSaw target1;
+    [SerializeField] private TriggerZoneSaw target2;
+    [SerializeField] private TriggerZoneSaw target3;
+    [SerializeField] private TriggerZoneSaw target4;
+
     [Header("Progress Settings")]
     [SerializeField] private float maxProgress = 100f;
     [SerializeField] private float currentProgress = 0f;
-    [SerializeField] private float progressIncreaseRate = 1f;
 
-    private bool isProcessing = false;
+    private bool isProcessing = true;
 
     private void Start()
     {
+        // reset maxProgress to target value
+        maxProgress = target1.TargetDistance + target2.TargetDistance + target3.TargetDistance + target4.TargetDistance;
+
         if (progressSlider != null)
         {
             progressSlider.maxValue = maxProgress;
@@ -62,8 +70,8 @@ public class PlankProgressTracker : MonoBehaviour
     {
         if (currentProgress < maxProgress)
         {
-            currentProgress += progressIncreaseRate * Time.deltaTime;
-            currentProgress = Mathf.Clamp(currentProgress, 0f, maxProgress);
+            currentProgress = target1.CurrentDistance + target2.CurrentDistance + target3.CurrentDistance + target4.CurrentDistance;
+            // currentProgress = 100 * currentProgress / maxProgress;
             
             if (progressSlider != null)
             {
@@ -82,7 +90,7 @@ public class PlankProgressTracker : MonoBehaviour
     {
         if (progressText != null)
         {
-            progressText.text = $"Progress: {Mathf.Round(currentProgress)}%";
+            progressText.text = $"Progress: {currentProgress.ToString("F2")} / {maxProgress.ToString("F2")}";
         }
     }
 
