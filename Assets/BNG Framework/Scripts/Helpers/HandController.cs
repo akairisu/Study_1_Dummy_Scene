@@ -30,6 +30,12 @@ namespace BNG {
         [Tooltip("How to handle the hand when nothing is being grabbed / idle. Ex : Can use an Animator to control the hand via blending, a HandPoser to control via blend states, AutoPoser to continually auto pose while nothing is being held, or 'None' if you want to handle the idle state yourself.")]
         public HandPoserType IdlePoseType = HandPoserType.HandPoser;
 
+        [Tooltip("Used for idle pose blending between open and close")]
+        public HandPose DefaultOpenPose;
+
+        [Tooltip("Used for idle pose blending between open and close, as well as blend animation that blend between a custom pose and closed")]
+        public HandPose DefaultClosePose;
+
         [Tooltip("If true, the idle hand pose will be determined by the connected Valve Index Controller's finger tracking. Requires the SteamVR SDK. Make sure IdlePoseType is set to 'HandPoser'")]
         public bool UseIndexFingerTracking = true;
 
@@ -45,6 +51,9 @@ namespace BNG {
         [Header("Override : ")]
         [Tooltip("If specified this HandPose will be set. Grabbables and Idle Poses will be ignored.")]
         public HandPose HandPoseOverride;
+
+        [Tooltip("If true GripAmount, PointAmount, and ThumbAmount will be retrieved from the InputBridge. Set to false if you want to set these values yourself.")]
+        public bool ReadControllerInputs = true;
 
         [Header("Shown for Debug : ")]
         /// <summary>
@@ -137,7 +146,9 @@ namespace BNG {
             CheckForGrabChange();
 
             // Set Hand state according to InputBridge
-            UpdateFromInputs();
+            if(ReadControllerInputs) {
+                UpdateFromInputs();
+            }
             
             // If a handpose override is specified, we can skip checking grabbables and idle state and go straight to updating hand pose
             if(HandPoseOverride != null) {
@@ -145,7 +156,22 @@ namespace BNG {
             }
             // Holding something - update the appropriate component
             else if (HoldingObject()) {
-                UpdateHeldObjectState();
+                if(UseBlending) {
+
+                    bool adjustLive = true;
+                    // Useful for testing
+                    if(adjustLive) {
+                        poseBlender.SetIndexBlend(grabber.HeldGrabbable.ActiveGrabPoint.IndexBlendMin, grabber.HeldGrabbable.ActiveGrabPoint.IndexBlendMax);
+                        poseBlender.SetThumbBlend(grabber.HeldGrabbable.ActiveGrabPoint.ThumbBlendMin, grabber.HeldGrabbable.ActiveGrabPoint.ThumbBlendMax);
+                    }
+
+                    // We can use Idle State for blending since it uses the pose blender
+                    UpdateHandPoserBlendState();
+                }
+                else {
+                    UpdateHeldObjectState();
+                }
+                
             }
             // Lastly switch to idle state
             else {
@@ -207,6 +233,8 @@ namespace BNG {
             }
         }
 
+        public bool UseBlending = false;
+
         public virtual void OnGrabChange(GameObject newlyHeldObject) {
 
             // Update Component state if the held object has changed
@@ -235,13 +263,31 @@ namespace BNG {
                     if (grabber.HeldGrabbable.SelectedHandPose != null) {
                         EnableHandPoser();
 
-                        // Make sure blender isn't active
+                        // Make sure blender isn't active by default
                         if(poseBlender != null) {
                             poseBlender.UpdatePose = false;
                         }
 
                         if(handPoser != null) {
-                            handPoser.CurrentPose = grabber.HeldGrabbable.SelectedHandPose;
+                            handPoser.CurrentPose = grabber.HeldGrabbable.SelectedHandPose;                            
+
+                            // Use blending if index or thumb isnt default
+                            if(grabber.HeldGrabbable.ActiveGrabPoint != null && (grabber.HeldGrabbable.ActiveGrabPoint.IndexBlendMin != 0 || grabber.HeldGrabbable.ActiveGrabPoint.IndexBlendMax != 0)) {
+
+                                UseBlending = true;
+
+                                poseBlender.UpdatePose = true;
+
+
+                                // poseBlender.Pose2 = GetDefaultOpenPose();
+                                poseBlender.Pose1 = handPoser.CurrentPose;
+                                poseBlender.Pose2 = GetDefaultClosedPose();
+
+
+                                // Set blending values
+                                poseBlender.SetIndexBlend(grabber.HeldGrabbable.ActiveGrabPoint.IndexBlendMin, grabber.HeldGrabbable.ActiveGrabPoint.IndexBlendMax);
+                                poseBlender.SetThumbBlend(grabber.HeldGrabbable.ActiveGrabPoint.ThumbBlendMin, grabber.HeldGrabbable.ActiveGrabPoint.ThumbBlendMax);
+                            }
                         }
                     }
                     else {
@@ -264,11 +310,27 @@ namespace BNG {
             }
             else if (IdlePoseType == HandPoserType.HandPoser) {
                 DisableAutoPoser();
+                if(handPoser != null) {
+                    handPoser.ResetAnimationState();
+                    
+                    // Reset pose blender if was previously in use
+                    if (UseBlending && poseBlender != null && poseBlender.UpdatePose) {
+                        // Set up the blend to use some default poses
+                        poseBlender.Pose1 = GetDefaultOpenPose();
+                        poseBlender.Pose2 = GetDefaultClosedPose();
+                    }
+                }
             }
             else if (IdlePoseType == HandPoserType.Animator) {
                 DisablePoseBlender();
                 EnableHandAnimator();
                 DisableAutoPoser();
+            }
+
+            // Reset blending status
+            UseBlending = false;
+            if(poseBlender) {
+                poseBlender.ResetBlendRatios();
             }
 
             PreviousHeldObject = null;
@@ -429,10 +491,10 @@ namespace BNG {
             // Make sure blending isn't active
             if(poseBlender != null && poseBlender.UpdatePose) {
                 poseBlender.UpdatePose = false;
-            }
+            }            
 
             // Use HandPoseOverride if specified
-            if(HandPoseOverride) {
+            if (HandPoseOverride) {
                 UpdateCurrentHandPose();
                 if (handPoser.CurrentPose != HandPoseOverride) {
                     
@@ -446,6 +508,14 @@ namespace BNG {
 
         public virtual bool IsHandPoserGrabbable() {
             return handPoser != null && grabber != null && grabber.HeldGrabbable != null && grabber.HeldGrabbable.handPoseType == HandPoseType.HandPose;
+        }
+
+        public virtual void UpdateHandPoserBlendState() {
+            // Start with same values as idle state
+            UpdateHandPoserIdleState();
+
+            // But keep grip value from pose instead of input as there is no blend value for that
+            poseBlender.GripValue = 0;
         }
 
         public virtual void UpdateHandPoserIdleState() {
@@ -482,10 +552,9 @@ namespace BNG {
             poseBlender.IndexValue = Mathf.Lerp(poseBlender.IndexValue, targetIndexValue, Time.deltaTime * handPoser.AnimationSpeed);
 
             // Grip
-            poseBlender.GripValue = _gripValue;
+            //poseBlender.GripValue = _gripValue;
+            poseBlender.GripValue = Mathf.Lerp(poseBlender.GripValue, _gripValue, Time.deltaTime * handPoser.AnimationSpeed);
         }
-
-
 
         public virtual void UpdateIndexFingerBlending() {
 #if STEAM_VR_SDK
@@ -546,11 +615,21 @@ namespace BNG {
         }
 
         public virtual HandPose GetDefaultOpenPose() {
-            return Resources.Load<HandPose>("Open");
+            if(DefaultOpenPose) {
+                return DefaultOpenPose;
+            }
+            else {
+                return DefaultOpenPose = Resources.Load<HandPose>("Open");
+            }
         }
 
         public virtual HandPose GetDefaultClosedPose() {
-            return Resources.Load<HandPose>("Closed");
+            if (DefaultClosePose) {
+                return DefaultClosePose;
+            }
+            else {
+                return DefaultClosePose = Resources.Load<HandPose>("Closed");
+            }
         }
 
         public virtual void EnableHandPoser() {
