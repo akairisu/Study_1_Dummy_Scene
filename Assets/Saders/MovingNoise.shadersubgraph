@@ -8,18 +8,11 @@
         },
         {
             "m_Id": "2f92b3a0cb1f413dbf37ee8c42f2d80a"
-        },
-        {
-            "m_Id": "4ab3c76a207044c9bdef15c8b25e0245"
         }
     ],
     "m_Keywords": [],
     "m_Dropdowns": [],
-    "m_CategoryData": [
-        {
-            "m_Id": "54099e393219431291003a26d009edbf"
-        }
-    ],
+    "m_CategoryData": [],
     "m_Nodes": [
         {
             "m_Id": "9e39dddfe7b94d50bfd1c0270d6521cb"
@@ -41,9 +34,6 @@
         },
         {
             "m_Id": "304661b1181c42239cc67d53b11d352c"
-        },
-        {
-            "m_Id": "32e325c61a02414d979dfdf691824576"
         }
     ],
     "m_GroupDatas": [],
@@ -73,20 +63,6 @@
             "m_InputSlot": {
                 "m_Node": {
                     "m_Id": "7ea32439f457492f898be69b9b16f96d"
-                },
-                "m_SlotId": 1
-            }
-        },
-        {
-            "m_OutputSlot": {
-                "m_Node": {
-                    "m_Id": "32e325c61a02414d979dfdf691824576"
-                },
-                "m_SlotId": 0
-            },
-            "m_InputSlot": {
-                "m_Node": {
-                    "m_Id": "1a6c04f55a7c4373b4b274b245876442"
                 },
                 "m_SlotId": 1
             }
@@ -273,27 +249,6 @@
 
 {
     "m_SGVersion": 0,
-    "m_Type": "UnityEditor.ShaderGraph.Vector2MaterialSlot",
-    "m_ObjectId": "287400179b414c509a8bd29538a59cbc",
-    "m_Id": 0,
-    "m_DisplayName": "Tilling",
-    "m_SlotType": 1,
-    "m_Hidden": false,
-    "m_ShaderOutputName": "Out",
-    "m_StageCapability": 3,
-    "m_Value": {
-        "x": 0.0,
-        "y": 0.0
-    },
-    "m_DefaultValue": {
-        "x": 0.0,
-        "y": 0.0
-    },
-    "m_Labels": []
-}
-
-{
-    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
     "m_ObjectId": "2da5fbe4270c428d9e11fafa9da22f46",
     "m_Id": 0,
@@ -394,42 +349,6 @@
 
 {
     "m_SGVersion": 0,
-    "m_Type": "UnityEditor.ShaderGraph.PropertyNode",
-    "m_ObjectId": "32e325c61a02414d979dfdf691824576",
-    "m_Group": {
-        "m_Id": ""
-    },
-    "m_Name": "Property",
-    "m_DrawState": {
-        "m_Expanded": true,
-        "m_Position": {
-            "serializedVersion": "2",
-            "x": -113.75029754638672,
-            "y": -156.48887634277345,
-            "width": 0.0,
-            "height": 0.0
-        }
-    },
-    "m_Slots": [
-        {
-            "m_Id": "287400179b414c509a8bd29538a59cbc"
-        }
-    ],
-    "synonyms": [],
-    "m_Precision": 0,
-    "m_PreviewExpanded": true,
-    "m_DismissedVersion": 0,
-    "m_PreviewMode": 0,
-    "m_CustomColors": {
-        "m_SerializableColors": []
-    },
-    "m_Property": {
-        "m_Id": "4ab3c76a207044c9bdef15c8b25e0245"
-    }
-}
-
-{
-    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.UVMaterialSlot",
     "m_ObjectId": "3a2ae7b0cabe46379082fc92649f8ce0",
     "m_Id": 0,
@@ -448,52 +367,6 @@
     },
     "m_Labels": [],
     "m_Channel": 0
-}
-
-{
-    "m_SGVersion": 1,
-    "m_Type": "UnityEditor.ShaderGraph.Internal.Vector2ShaderProperty",
-    "m_ObjectId": "4ab3c76a207044c9bdef15c8b25e0245",
-    "m_Guid": {
-        "m_GuidSerialized": "2604d63d-b236-46b1-b0d8-aea8f68cbcee"
-    },
-    "m_Name": "Tilling",
-    "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "Tilling",
-    "m_DefaultReferenceName": "_Tilling",
-    "m_OverrideReferenceName": "",
-    "m_GeneratePropertyBlock": true,
-    "m_UseCustomSlotLabel": false,
-    "m_CustomSlotLabel": "",
-    "m_DismissedVersion": 0,
-    "m_Precision": 0,
-    "overrideHLSLDeclaration": false,
-    "hlslDeclarationOverride": 0,
-    "m_Hidden": false,
-    "m_Value": {
-        "x": 1.0,
-        "y": 1.0,
-        "z": 0.0,
-        "w": 0.0
-    }
-}
-
-{
-    "m_SGVersion": 0,
-    "m_Type": "UnityEditor.ShaderGraph.CategoryData",
-    "m_ObjectId": "54099e393219431291003a26d009edbf",
-    "m_Name": "",
-    "m_ChildObjectList": [
-        {
-            "m_Id": "69184f51dcef4d58a16ea6602eb611ea"
-        },
-        {
-            "m_Id": "2f92b3a0cb1f413dbf37ee8c42f2d80a"
-        },
-        {
-            "m_Id": "4ab3c76a207044c9bdef15c8b25e0245"
-        }
-    ]
 }
 
 {
