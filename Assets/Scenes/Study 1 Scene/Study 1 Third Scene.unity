@@ -15242,7 +15242,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2609c54f376cffc4da1ab9401cc1a36f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _skeletonType: 4
+  _skeletonType: 0
   _updateRootPose: 0
   _updateRootScale: 1
   _enablePhysicsCapsules: 0
@@ -32474,7 +32474,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2609c54f376cffc4da1ab9401cc1a36f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _skeletonType: 5
+  _skeletonType: 1
   _updateRootPose: 0
   _updateRootScale: 1
   _enablePhysicsCapsules: 0
@@ -34970,7 +34970,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1320924787
 Transform:
   m_ObjectHideFlags: 0
@@ -41135,7 +41135,7 @@ MonoBehaviour:
   useRecommendedMSAALevel: 1
   _monoscopic: 0
   _sharpenType: 0
-  enableDynamicResolution: 0
+  enableDynamicResolution: 1
   minDynamicResolutionScale: 1
   maxDynamicResolutionScale: 1
   quest2MinDynamicResolutionScale: 0.7
@@ -41185,7 +41185,7 @@ MonoBehaviour:
   requestBodyTrackingPermissionOnStartup: 1
   requestFaceTrackingPermissionOnStartup: 0
   requestEyeTrackingPermissionOnStartup: 0
-  requestScenePermissionOnStartup: 0
+  requestScenePermissionOnStartup: 1
   requestRecordAudioPermissionOnStartup: 0
   _localDimming: 1
   _trackingOriginType: 1
@@ -44323,7 +44323,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1704461588
 MonoBehaviour:
   m_ObjectHideFlags: 0
