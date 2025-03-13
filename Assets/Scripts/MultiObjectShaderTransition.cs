@@ -116,7 +116,11 @@ public class MultiObjectShaderTransition : MonoBehaviour
         Vector3 currentWeightPosition = Vector3.Lerp(originalWeightWorld, transformedWeightWorld, t);
 
         // If transition is at 0 or 1, set currentY to a very low value to hide the line
-        if (t == 0f || t == 1f) {
+        if (t == 1f)
+        {
+            currentY = 100000f;
+        }
+        else if (t == 0f){
             currentY = -100000f;
         }
 
