@@ -7414,7 +7414,7 @@ PrefabInstance:
     - target: {fileID: 5974931537713500869, guid: 1c4fd306f52c59d4a90a7bcc4b1d1e39,
         type: 3}
       propertyPath: m_Name
-      value: Room (1)
+      value: Room
       objectReference: {fileID: 0}
     - target: {fileID: 8924662104568077546, guid: 1c4fd306f52c59d4a90a7bcc4b1d1e39,
         type: 3}
@@ -12285,7 +12285,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2609c54f376cffc4da1ab9401cc1a36f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _skeletonType: 0
+  _skeletonType: 4
   _updateRootPose: 0
   _updateRootScale: 1
   _enablePhysicsCapsules: 0
@@ -17200,6 +17200,12 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1222522028}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &761505237 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5974931537713500869, guid: 1c4fd306f52c59d4a90a7bcc4b1d1e39,
+    type: 3}
+  m_PrefabInstance: {fileID: 202794731}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &787877411
 GameObject:
   m_ObjectHideFlags: 0
@@ -24942,7 +24948,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2609c54f376cffc4da1ab9401cc1a36f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _skeletonType: 1
+  _skeletonType: 5
   _updateRootPose: 0
   _updateRootScale: 1
   _enablePhysicsCapsules: 0
@@ -27791,6 +27797,16 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -1940806421920676810, guid: 2f3a2f2015ac87546ad63d8b011e95a1,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 5965f1a2663b29b4aba00a970a03d8a2, type: 2}
+    - target: {fileID: -132508581865311681, guid: 2f3a2f2015ac87546ad63d8b011e95a1,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 5965f1a2663b29b4aba00a970a03d8a2, type: 2}
     - target: {fileID: 919132149155446097, guid: 2f3a2f2015ac87546ad63d8b011e95a1,
         type: 3}
       propertyPath: m_Name
@@ -40098,7 +40114,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _objects:
-  - {fileID: 0}
+  - {fileID: 761505237}
   _passThroughText: {fileID: 2076701117}
   _locomotionInteractable: {fileID: 1766159453}
   _passThroughInteractable: {fileID: 565869626}
