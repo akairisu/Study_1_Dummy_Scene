@@ -22,7 +22,6 @@ using System.Threading;
 using UnityEngine;
 using NaturalPoint;
 using NaturalPoint.NatNetLib;
-using static TMPro.SpriteAssetUtilities.TexturePacker_JsonArray;
 
 
 /// <summary>Skeleton naming conventions supported by OptiTrack Motive.</summary>
@@ -66,20 +65,11 @@ public class OptitrackRigidBodyState
 {
     public OptitrackHiResTimer.Timestamp DeliveryTimestamp;
     public OptitrackPose Pose;
-    public bool IsTracked;
 }
 
 
 /// <summary>Represents the state of a streamed skeleton at an instant in time.</summary>
 public class OptitrackSkeletonState
-{
-    /// <summary>Maps from OptiTrack bone IDs to their corresponding bone poses.</summary>
-    public Dictionary<Int32, OptitrackPose> BonePoses;
-    public Dictionary<Int32, OptitrackPose> LocalBonePoses;
-}
-
-/// <summary>Represents the state of a streamed trained markerset at an instant in time.</summary>
-public class OptitrackTMarkersetState // trained markerset added
 {
     /// <summary>Maps from OptiTrack bone IDs to their corresponding bone poses.</summary>
     public Dictionary<Int32, OptitrackPose> BonePoses;
@@ -133,55 +123,6 @@ public class OptitrackSkeletonDefinition
     /// <summary>Bone hierarchy information</summary>
     public Dictionary<Int32, Int32> BoneIdToParentIdMap;
 }
-
-
-public class OptitrackTMarkersetDefinition // trained markerset added // check where this is coming from
-{
-    public class BoneDefinition
-    {
-        /// <summary>The ID of this bone within this trained markerset.</summary>
-        public Int32 Id;
-
-        /// <summary>The ID of this bone's parent bone. A value of 0 means that this is the root bone.</summary>
-        public Int32 ParentId;
-
-        /// <summary>The name of this bone.</summary>
-        public string Name;
-
-        /// <summary>
-        /// This bone's position offset from its parent in the skeleton's neutral pose.
-        /// (The neutral orientation is always <see cref="Quaternion.identity"/>.)
-        /// </summary>
-        public Vector3 Offset;
-    }
-
-    public class MarkerDefinition
-    {
-        /// <summary>The name of this marker.</summary>
-        public string Name;
-        public Vector3 Position;
-        public Int32 Id;
-
-        //public float Size;
-        //public bool Labeled;
-        //public bool IsActive;
-    }
-
-    /// <summary>Asset ID. Used as an argument to <see cref="OptitrackStreamingClient.GetLatestTMarkersetState"/>.</summary>
-    public Int32 Id;
-
-    /// <summary>Skeleton asset name.</summary>
-    public string Name;
-
-    /// <summary>Bone names, hierarchy, and neutral pose position information.</summary>
-    public List<BoneDefinition> Bones;
-
-    /// <summary>Bone hierarchy information</summary>
-    public Dictionary<Int32, Int32> BoneIdToParentIdMap;
-
-    public List<MarkerDefinition> Markers;
-}
-
 
 public class OptitrackMarkersDefinition
 {
@@ -294,9 +235,6 @@ public class OptitrackStreamingClient : MonoBehaviour
     [Tooltip("Controls whether skeleton data is streamed with local or global coordinates.")]
     public StreamingCoordinatesValues SkeletonCoordinates = StreamingCoordinatesValues.Local;
 
-    [Tooltip("Controls whether tmarkerset data is streamed with local or global coordinates.")]
-    public StreamingCoordinatesValues TMarkersetCoordinates = StreamingCoordinatesValues.Local;
-
     [Tooltip("Controls the Bone Naming Convention in the streamed data.")]
     public OptitrackBoneNameConvention BoneNamingConvention = OptitrackBoneNameConvention.Motive;
 
@@ -304,9 +242,6 @@ public class OptitrackStreamingClient : MonoBehaviour
 
     [Tooltip("Draws marker visuals in the viewport for debugging and other uses. Using this will increase the data rate in Unicast mode.")]
     public bool DrawMarkers = false;
-
-    [Tooltip("Draws trained markerset marker visuals in the viewport for debugging and other uses. Using this will increase the data rate in Unicast mode.")]
-    public bool DrawTMarkersetMarkers = false; // trained markerset added
 
     [Tooltip("Draws camera visuals in the viewport for debugging and other uses. Motive 3.0+ only.")]
     public bool DrawCameras = false;
@@ -320,9 +255,6 @@ public class OptitrackStreamingClient : MonoBehaviour
     [Tooltip("Skips getting data descriptions. Skeletons will not work with this feature turned on, but it will reduce network usage with a large number of rigid bodies.")]
     public bool SkipDataDescriptions = false;
 
-    //[Tooltip("Timecode Provider")]
-    //public bool TimecodeProvider = false;
-
 
     #region Private fields
     //private UInt16 ServerCommandPort = NatNetConstants.DefaultCommandPort;
@@ -332,8 +264,6 @@ public class OptitrackStreamingClient : MonoBehaviour
     private bool m_receivedFrameSinceConnect = false;
     private bool m_hasDrawnCameras = false;
     private bool m_hasDrawnForcePlates = false;
-    private bool m_subscribedToMarkers = false;
-    private bool m_subscribedToTMarkMarkers = false; // trained markerset added
 
     private OptitrackHiResTimer.Timestamp m_lastFrameDeliveryTimestamp;
     private Coroutine m_connectionHealthCoroutine = null;
@@ -342,8 +272,6 @@ public class OptitrackStreamingClient : MonoBehaviour
     private NatNetClient.DataDescriptions m_dataDescs;
     private List<OptitrackRigidBodyDefinition> m_rigidBodyDefinitions = new List<OptitrackRigidBodyDefinition>();
     private List<OptitrackSkeletonDefinition> m_skeletonDefinitions = new List<OptitrackSkeletonDefinition>();
-    private List<OptitrackTMarkersetDefinition> m_tmarkersetDefinitions = new List<OptitrackTMarkersetDefinition>(); // trained markerset added
-    private List<OptitrackMarkersDefinition> m_tmarkmarkersDefinitions = new List<OptitrackMarkersDefinition>(); // trained markerset added
     private List<OptitrackMarkersDefinition> m_markersDefinitions = new List<OptitrackMarkersDefinition>();
     private List<OptitrackCameraDefinition> m_cameraDefinitions = new List<OptitrackCameraDefinition>();
     private List<OptitrackForcePlateDefinition> m_forcePlateDefinitions = new List<OptitrackForcePlateDefinition>();
@@ -354,14 +282,8 @@ public class OptitrackStreamingClient : MonoBehaviour
     /// <summary>Maps from a streamed skeleton's ID to its most recent available pose data.</summary>
     private Dictionary<Int32, OptitrackSkeletonState> m_latestSkeletonStates = new Dictionary<Int32, OptitrackSkeletonState>();
 
-    /// <summary>Maps from a streamed trained markerset's ID to its most recent available pose data.</summary>
-    private Dictionary<Int32, OptitrackTMarkersetState> m_latestTMarkersetStates = new Dictionary<Int32, OptitrackTMarkersetState>(); // trained markerset added
-
     /// <summary>Maps from a streamed marker's ID to its most recent available position.</summary>
     private Dictionary<Int32, OptitrackMarkerState> m_latestMarkerStates = new Dictionary<Int32, OptitrackMarkerState>();
-
-    /// <summary>Maps from a streamed trained markerset marker's ID to its most recent available position.</summary>
-    private Dictionary<Int32, OptitrackMarkerState> m_latestTMarkMarkerStates = new Dictionary<Int32, OptitrackMarkerState>(); // trained markerset added
 
     /// <summary>Maps from a streamed rigid body's ID to its component.</summary>
     private Dictionary<Int32, MonoBehaviour> m_rigidBodies = new Dictionary<Int32, MonoBehaviour>();
@@ -369,14 +291,8 @@ public class OptitrackStreamingClient : MonoBehaviour
     /// <summary>Maps from a streamed skeleton names to its component.</summary>
     private Dictionary<string, MonoBehaviour> m_skeletons = new Dictionary<string, MonoBehaviour>();
 
-    /// <summary>Maps from a streamed trained markerset names to its component.</summary>
-    private Dictionary<string, MonoBehaviour> m_tmarkersets = new Dictionary<string, MonoBehaviour>(); // trained markerset added
-
     /// <summary>Maps from a streamed marker's ID to its sphere game object. Used for drawing markers.</summary>
     private Dictionary<Int32, GameObject> m_latestMarkerSpheres = new Dictionary<Int32, GameObject>();
-
-    /// <summary>Maps from a streamed trained markerset marker's ID to its sphere game object. Used for drawing markers.</summary>
-    private Dictionary<Int32, GameObject> m_latestTMarkMarkerSpheres = new Dictionary<Int32, GameObject>(); // trained markerset added
 
     /// <summary>
     /// Lock held during access to fields which are potentially modified by <see cref="OnNatNetFrameReceived"/> (which
@@ -390,13 +306,12 @@ public class OptitrackStreamingClient : MonoBehaviour
     {
         if (DrawMarkers)
         {
-            if (m_client != null && ConnectionType == ClientConnectionType.Unicast && !m_subscribedToMarkers)
+            if (m_client != null && ConnectionType == ClientConnectionType.Unicast)
             {
                 SubscribeMarkers();
             }
 
             List<Int32> markerIds = new List<Int32>();
-            //Debug.Log("markers: " + m_latestMarkerStates.Count);
             lock (m_frameDataUpdateLock)
             {
                 // Move existing spheres and create new ones if necessary
@@ -408,7 +323,7 @@ public class OptitrackStreamingClient : MonoBehaviour
                     }
                     else
                     {
-                        var sphere = GameObject.CreatePrimitive( PrimitiveType.Cube );
+                        var sphere = GameObject.CreatePrimitive( PrimitiveType.Sphere );
                         sphere.transform.parent = this.transform;
                         sphere.transform.localScale = new Vector3( markerEntry.Value.Size, markerEntry.Value.Size, markerEntry.Value.Size );
                         sphere.transform.position = markerEntry.Value.Position;
@@ -521,77 +436,6 @@ public class OptitrackStreamingClient : MonoBehaviour
             
         }
 
-        //if (TimecodeProvider) 
-        //{
-        //    Debug.Log("");
-        //}
-
-        // Trained Markerset Markers if requested to draw // trained markerset added
-        if (DrawTMarkersetMarkers)
-        {
-            //if (m_client != null && ConnectionType == ClientConnectionType.Unicast && !m_subscribedToTMarkMarkers)
-            //{
-            //    SubscribeTMarkMarkers();
-            //}
-
-            List<Int32> tmarkmarkerIds = new List<Int32>();
-            //Debug.Log("tmark states: " + m_latestTMarkMarkerStates.Count);
-            lock (m_frameDataUpdateLock)
-            {
-                // Move existing spheres and create new ones if necessary
-                foreach (KeyValuePair<Int32, OptitrackMarkerState> markerEntry in m_latestTMarkMarkerStates)
-                {
-                    if (m_latestTMarkMarkerSpheres.ContainsKey(markerEntry.Key))
-                    {
-                        m_latestTMarkMarkerSpheres[markerEntry.Key].transform.position = markerEntry.Value.Position;
-                    }
-                    else
-                    {
-                        var cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
-                        cube.transform.parent = this.transform;
-                        cube.transform.localScale = new Vector3(markerEntry.Value.Size, markerEntry.Value.Size, markerEntry.Value.Size);
-                        cube.transform.position = markerEntry.Value.Position;
-                        cube.name = markerEntry.Value.Name;
-                        if (markerEntry.Value.IsActive)
-                        {
-                            // Make active markers cyan colored
-                            cube.GetComponent<Renderer>().material.SetColor("_Color", Color.cyan);
-                        }
-                        m_latestTMarkMarkerSpheres[markerEntry.Key] = cube;
-                    }
-                    tmarkmarkerIds.Add(markerEntry.Key);
-                }
-                // find spheres to remove that weren't in the previous frame
-                List<Int32> markerCubeIdsToDelete = new List<Int32>();
-                foreach (KeyValuePair<Int32, GameObject> markerCubeEntry in m_latestTMarkMarkerSpheres)
-                {
-                    if (!tmarkmarkerIds.Contains(markerCubeEntry.Key))
-                    {
-                        // stale marker, tag for removal
-                        markerCubeIdsToDelete.Add(markerCubeEntry.Key);
-                    }
-                }
-                // remove stale spheres
-                foreach (Int32 markerId in markerCubeIdsToDelete)
-                {
-                    if (m_latestTMarkMarkerSpheres.ContainsKey(markerId))
-                    {
-                        Destroy(m_latestTMarkMarkerSpheres[markerId]);
-                        m_latestTMarkMarkerSpheres.Remove(markerId);
-                    }
-                }
-            }
-        }
-        else
-        {
-            // not drawing markers, remove all marker spheres
-            foreach (KeyValuePair<Int32, GameObject> markerCubeEntry in m_latestTMarkMarkerSpheres)
-            {
-                Destroy(m_latestTMarkMarkerSpheres[markerCubeEntry.Key]);
-            }
-            m_latestTMarkMarkerSpheres.Clear();
-        }
-
     }
 
 
@@ -648,7 +492,7 @@ public class OptitrackStreamingClient : MonoBehaviour
     /// <summary>Get the most recently received state for the specified rigid body.</summary>
     /// <param name="rigidBodyId">Corresponds to the "User ID" field in Motive.</param>
     /// <returns>The most recent available state, or null if none available.</returns>
-    public OptitrackRigidBodyState GetLatestRigidBodyState( Int32 rigidBodyId, bool networkCompensation = true )
+    public OptitrackRigidBodyState GetLatestRigidBodyState( Int32 rigidBodyId, bool networkCompensation = true)
     {
         OptitrackRigidBodyState rbState;
 
@@ -666,12 +510,10 @@ public class OptitrackStreamingClient : MonoBehaviour
 
             rbState = new OptitrackRigidBodyState();
             RigidBodyDataToState( rbData, OptitrackHiResTimer.Now(), rbState );
-
-            
         }
 
         return rbState;
-    }
+    }   
 
 
     /// <summary>Get the most recently received state for the specified skeleton.</summary>
@@ -691,25 +533,6 @@ public class OptitrackStreamingClient : MonoBehaviour
 
         return skelState;
     }
-
-    /// <summary>Get the most recently received state for the specified trained markerset.</summary>
-    /// <param name="tmarkersetId">
-    /// Taken from the corresponding <see cref="OptitrackTMarkersetDefinition.Id"/> field.
-    /// To find the appropriate skeleton definition, use <see cref="GetTMarkersetDefinitionByName"/>.
-    /// </param>
-    /// <returns>The most recent available state, or null if none available.</returns>
-    public OptitrackTMarkersetState GetLatestTMarkersetState(Int32 tmarkersetId)
-    {
-        OptitrackTMarkersetState tmarState;
-
-        lock (m_frameDataUpdateLock)
-        {
-            m_latestTMarkersetStates.TryGetValue(tmarkersetId, out tmarState);
-        }
-
-        return tmarState;
-    }
-
 
     /// <summary>Get the most recently received state for streamed markers.</summary>
     /// <returns>The most recent available marker states, or null if none available.</returns>
@@ -791,68 +614,6 @@ public class OptitrackStreamingClient : MonoBehaviour
         return null;
     }
 
-    /// <summary>Retrieves the definition of the tmarkerset with the specified asset name.</summary>
-    /// <param name="TMarkersetName">The name of the tmarkerset for which to retrieve the definition.</param>
-    /// <returns>The specified tmarkerset definition, or null if not found.</returns> // trained markerset added
-    public OptitrackTMarkersetDefinition GetTMarkersetDefinitionByName(string TMarkersetName)
-    {
-        for (int i = 0; i < m_tmarkersetDefinitions.Count; i++)
-        {
-            OptitrackTMarkersetDefinition tmarDef = m_tmarkersetDefinitions[i];
-
-            if (tmarDef.Name.Equals(TMarkersetName, StringComparison.InvariantCultureIgnoreCase))
-            {
-                return tmarDef;
-            }
-        }
-
-        return null;
-    }
-
-    /// <summary>Retrieves the definition of the tmarkerset with the specified tmarkerset id.</summary>
-    /// <param name="tmarkersetId">The id of the tmarkerset for which to retrieve the definition.</param>
-    /// <returns>The specified tmarkerset definition, or null if not found.</returns> // trained markerset added
-    public OptitrackTMarkersetDefinition GetTMarkersetDefinitionById(Int32 tmarkersetId)
-    {
-        for (int i = 0; i < m_tmarkersetDefinitions.Count; ++i)
-        {
-            OptitrackTMarkersetDefinition tmarDef = m_tmarkersetDefinitions[i];
-
-            if (tmarDef.Id == tmarkersetId)
-            {
-                return tmarDef;
-            }
-        }
-
-        return null;
-    }
-
-    /// <summary>Get the most recently received state for streamed trained markerset markers.</summary>
-    /// <returns>The most recent available trained markerset marker states, or null if none available.</returns>
-    public List<OptitrackMarkerState> GetLatestTMarkMarkerStates() // trained markerset added
-    {
-        List<OptitrackMarkerState> tmarkmarkerStates = new List<OptitrackMarkerState>();
-        Debug.Log("GetLatestTMarkMarker: " + m_latestTMarkMarkerStates.Count);
-
-        lock (m_frameDataUpdateLock)
-        {
-            foreach (KeyValuePair<Int32, OptitrackMarkerState> markerEntry in m_latestTMarkMarkerStates)
-            {
-                OptitrackMarkerState newMarkerState = new OptitrackMarkerState
-                {
-                    Position = markerEntry.Value.Position,
-                    Labeled = markerEntry.Value.Labeled,
-                    Size = markerEntry.Value.Size,
-                    Id = markerEntry.Value.Id
-                };
-                tmarkmarkerStates.Add(newMarkerState);
-            }
-        }
-
-        return tmarkmarkerStates;
-    }
-
-
     /// <summary>Request data descriptions from the host, then update our definitions.</summary>
     /// <exception cref="NatNetException">
     /// Thrown by <see cref="NatNetClient.GetDataDescriptions"/> if the request to the server fails.
@@ -863,7 +624,6 @@ public class OptitrackStreamingClient : MonoBehaviour
         UInt32 descriptionTypeMask = 0;
         descriptionTypeMask |= (1 << (int)NatNetDataDescriptionType.NatNetDataDescriptionType_RigidBody);
         descriptionTypeMask |= (1 << (int)NatNetDataDescriptionType.NatNetDataDescriptionType_Skeleton);
-        descriptionTypeMask |= (1 << (int)NatNetDataDescriptionType.NatNetDataDescriptionType_Asset); // trained markerset added
         if (DrawMarkers)
         {
             descriptionTypeMask |= (1 << (int)NatNetDataDescriptionType.NatNetDataDescriptionType_MarkerSet);
@@ -880,7 +640,6 @@ public class OptitrackStreamingClient : MonoBehaviour
 
         m_rigidBodyDefinitions.Clear();
         m_skeletonDefinitions.Clear();
-        m_tmarkersetDefinitions.Clear();
 
         // ----------------------------------
         // - Translate Rigid Body Definitions
@@ -955,68 +714,6 @@ public class OptitrackStreamingClient : MonoBehaviour
             m_skeletonDefinitions.Add( skelDef );
         }
 
-        // --------------------------------------------------------------------
-        // - Translate Trained Markerset Definitions // trained markerset added
-        // --------------------------------------------------------------------
-        for (int nativeTmarkDescIdx = 0; nativeTmarkDescIdx < m_dataDescs.AssetDescriptions.Count; ++nativeTmarkDescIdx)
-        {
-            sAssetDescription nativeTmark = m_dataDescs.AssetDescriptions[nativeTmarkDescIdx];
-            // Debug.Log("#rbs: " + nativeTmark.RigidBodyCount); // correct
-
-            OptitrackTMarkersetDefinition tmarkDef = new OptitrackTMarkersetDefinition
-            {
-                Id = nativeTmark.AssetID,
-                Name = nativeTmark.Name,
-                Bones = new List<OptitrackTMarkersetDefinition.BoneDefinition>(nativeTmark.RigidBodyCount),
-                BoneIdToParentIdMap = new Dictionary<int, int>(),
-                Markers = new List<OptitrackTMarkersetDefinition.MarkerDefinition>(nativeTmark.MarkerCount),
-            };
-
-            // Populate nested bone definitions.
-            for (int nativeBoneIdx = 0; nativeBoneIdx < nativeTmark.RigidBodyCount; ++nativeBoneIdx)
-            {
-                sRigidBodyDescription nativeBone = nativeTmark.RigidBodies[nativeBoneIdx];
-
-                OptitrackTMarkersetDefinition.BoneDefinition boneDef =
-                    new OptitrackTMarkersetDefinition.BoneDefinition
-                    {
-                        Id = nativeBone.Id,
-                        ParentId = nativeBone.ParentId,
-                        Name = nativeBone.Name,
-                        Offset = new Vector3(-nativeBone.OffsetX, nativeBone.OffsetY, nativeBone.OffsetZ),
-                    };
-
-                tmarkDef.Bones.Add(boneDef);
-                tmarkDef.BoneIdToParentIdMap[boneDef.Id] = boneDef.ParentId;
-            }
-
-            // Populate nested marker definitions
-            for (int nativeMarkerIdx = 0; nativeMarkerIdx < nativeTmark.MarkerCount; ++nativeMarkerIdx)
-            {
-                sMarkerDescription nativeMarker = nativeTmark.Markers[nativeMarkerIdx];
-                //Debug.Log("TMarkerset (X, Y, Z): " + nativeMarker.X + " " + nativeMarker.Y + " " + nativeMarker.Z);
-                //Debug.Log(nativeMarker.Id + " " + nativeMarker.Name);
-
-                OptitrackTMarkersetDefinition.MarkerDefinition markerDef =
-                    new OptitrackTMarkersetDefinition.MarkerDefinition
-                    {
-                        Name = nativeMarker.Name,
-                        Id = nativeMarker.Id,
-                        Position = new Vector3(-nativeMarker.X, nativeMarker.Y, nativeMarker.Z),
-                    };
-                tmarkDef.Markers.Add(markerDef);
-
-            }
-
-            //foreach (KeyValuePair<int, int> kvp in tmarkDef.BoneIdToParentIdMap)
-            //{
-            //    Debug.Log("Key: " + kvp.Key + "Value: " + kvp.Value);
-            //} // correct
-
-            m_tmarkersetDefinitions.Add(tmarkDef);
-        }
-
-
         // ----------------------------------
         // - Get Marker Definitions (ToDo)
         // ----------------------------------
@@ -1060,8 +757,7 @@ public class OptitrackStreamingClient : MonoBehaviour
             OptitrackCameraDefinition cameraDef = new OptitrackCameraDefinition
             {
                 Name = camera.Name,
-                //Unity and motive use opposite positive-x directions, so positionX needs to be set to negative
-                Position = new Vector3(-camera.PositionX, camera.PositionY, camera.PositionZ),
+                Position = new Vector3(camera.PositionX, camera.PositionY, camera.PositionZ),
                 Orientation = new Quaternion(camera.RotationX, camera.RotationY, camera.RotationZ, camera.RotationW),
             };
 
@@ -1144,18 +840,6 @@ public class OptitrackStreamingClient : MonoBehaviour
         SubscribeSkeleton(component, name);
     }
 
-    public void RegisterTMarkerset(MonoBehaviour component, string name) // trained markerset added
-    {
-        if (m_tmarkersets.ContainsKey(name))
-        {
-            return;
-        }
-
-        m_tmarkersets[name] = component;
-
-        SubscribeTMarkerset(component, name);
-    }
-
 
     /// <summary>
     /// (Re)initializes <see cref="m_client"/> and connects to the configured streaming server.
@@ -1227,10 +911,6 @@ public class OptitrackStreamingClient : MonoBehaviour
                 foreach (KeyValuePair<string, MonoBehaviour> skel in m_skeletons)
                 {
                     SubscribeSkeleton(skel.Value, skel.Key);
-                }
-                foreach (KeyValuePair<string, MonoBehaviour> tmark in m_tmarkersets) // trained markerset added
-                {
-                    SubscribeTMarkerset(tmark.Value, tmark.Key);
                 }
             }
 
@@ -1375,7 +1055,6 @@ public class OptitrackStreamingClient : MonoBehaviour
             result = NaturalPoint.NatNetLib.NativeMethods.NatNet_Frame_GetTimecode(pFrame, out timecode, out timecodeSubframe);
             Int32 hour, minute, second, frameNumber, subframeNumber;
             NaturalPoint.NatNetLib.NativeMethods.NatNet_DecodeTimecode(timecode, timecodeSubframe, out hour, out minute, out second, out frameNumber, out subframeNumber);
-            //Debug.Log(hour + "......" + minute + second + frameNumber + subframeNumber);
 
             // ----------------------
             // - Update rigid bodies
@@ -1391,7 +1070,6 @@ public class OptitrackStreamingClient : MonoBehaviour
                 NatNetException.ThrowIfNotOK( result, "NatNet_Frame_GetRigidBody failed." );
 
                 bool bTrackedThisFrame = (rbData.Params & 0x01) != 0;
-                
                 if (bTrackedThisFrame == false)
                 {
                     continue;
@@ -1473,104 +1151,6 @@ public class OptitrackStreamingClient : MonoBehaviour
                 }
             }
 
-            // -----------------------------------------------------
-            // - Update trained markerset // trained markerset added
-            // -----------------------------------------------------
-            Int32 frameTMarkersetCount;
-            result = NaturalPoint.NatNetLib.NativeMethods.NatNet_Frame_GetTMarkersetCount(pFrame, out frameTMarkersetCount);
-            NatNetException.ThrowIfNotOK(result, "NatNet_Frame_GetTMarkersetCount failed.");
-
-            for (int tmarkIdx = 0; tmarkIdx < frameTMarkersetCount; ++tmarkIdx)
-            {
-                Int32 tmarkersetId;
-                result = NaturalPoint.NatNetLib.NativeMethods.NatNet_Frame_TMarkerset_GetId(pFrame, tmarkIdx, out tmarkersetId);
-                NatNetException.ThrowIfNotOK(result, "NatNet_Frame_TMarkerset_GetId failed.");
-
-                // Ensure we have a state corresponding to this tmarkerset ID.
-                OptitrackTMarkersetState tmarkState = GetOrCreateTMarkersetState(tmarkersetId);
-
-                // Enumerate this tmarkerset's bone rigid bodies.
-                Int32 tmarkRbCount;
-                result = NaturalPoint.NatNetLib.NativeMethods.NatNet_Frame_TMarkerset_GetRigidBodyCount(pFrame, tmarkIdx, out tmarkRbCount);
-                NatNetException.ThrowIfNotOK(result, "NatNet_Frame_TMarkerset_GetRigidBodyCount failed.");
-
-                for (int boneIdx = 0; boneIdx < tmarkRbCount; ++boneIdx)
-                {
-                    sRigidBodyData boneData = new sRigidBodyData();
-                    result = NaturalPoint.NatNetLib.NativeMethods.NatNet_Frame_TMarkerset_GetRigidBody(pFrame, tmarkIdx, boneIdx, out boneData);
-                    NatNetException.ThrowIfNotOK(result, "NatNet_Frame_TMarkerset_GetRigidBody failed.");
-
-                    // In the context of frame data (unlike in the definition data), this ID value is a
-                    // packed composite of both the asset/entity (tmarkerset) ID and member (bone) ID.
-                    Int32 boneTMarkId, boneId;
-                    NaturalPoint.NatNetLib.NativeMethods.NatNet_DecodeID(boneData.Id, out boneTMarkId, out boneId);
-
-                    // TODO: Could pre-populate this map when the definitions are retrieved.
-                    // Should never allocate after the first frame, at least.
-                    if (tmarkState.BonePoses.ContainsKey(boneId) == false)
-                    {
-                        tmarkState.BonePoses[boneId] = new OptitrackPose();
-                    }
-                    if (tmarkState.LocalBonePoses.ContainsKey(boneId) == false)
-                    {
-                        tmarkState.LocalBonePoses[boneId] = new OptitrackPose();
-                    }
-
-                    // Flip coordinate handedness from right to left by inverting X and W.
-                    Vector3 bonePos = new Vector3(-boneData.X, boneData.Y, boneData.Z);
-                    Quaternion boneOri = new Quaternion(-boneData.QX, boneData.QY, boneData.QZ, -boneData.QW);
-                    tmarkState.BonePoses[boneId].Position = bonePos;
-                    tmarkState.BonePoses[boneId].Orientation = boneOri;
-
-                    Vector3 parentBonePos = new Vector3(0, 0, 0);
-                    Quaternion parentBoneOri = new Quaternion(0, 0, 0, 1);
-
-                    OptitrackTMarkersetDefinition tmarkDef = GetTMarkersetDefinitionById(tmarkersetId);
-                    if (tmarkDef == null)
-                    {
-                        Debug.LogError(GetType().FullName + ": OnNatNetFrameReceived, no corresponding tmarkerset definition for received tmarkerset frame data.", this);
-                        continue;
-                    }
-
-                    Int32 pId = tmarkDef.BoneIdToParentIdMap[boneId];
-                    if (pId != -1)
-                    {
-                        parentBonePos = tmarkState.BonePoses[pId].Position;
-                        parentBoneOri = tmarkState.BonePoses[pId].Orientation;
-                    }
-                    tmarkState.LocalBonePoses[boneId].Position = bonePos - parentBonePos;
-                    tmarkState.LocalBonePoses[boneId].Orientation = Quaternion.Inverse(parentBoneOri) * boneOri;
-                }
-
-                // --------------------------------------------
-                // - Update trained markerset markers
-                // --------------------------------------------
-                Int32 tmarkMarkerCount;
-                result = NaturalPoint.NatNetLib.NativeMethods.NatNet_Frame_TMarkerset_GetMarkerCount(pFrame, tmarkIdx, out tmarkMarkerCount);
-                NatNetException.ThrowIfNotOK(result, "NatNet_Frame_TMarkerset_GetMarkerCount failed.");
-                //Debug.Log("tmark marker count: " + tmarkMarkerCount); // working finally
-
-                m_latestTMarkMarkerStates.Clear();
-
-                // Update Trained Markerset Marker data
-                for (int markerIdx = 0; markerIdx < tmarkMarkerCount; ++markerIdx)
-                {
-                    sMarker tmarker = new sMarker(); // markerData
-                    result = NaturalPoint.NatNetLib.NativeMethods.NatNet_Frame_TMarkerset_GetMarker(pFrame, tmarkIdx, markerIdx, out tmarker);
-                    NatNetException.ThrowIfNotOK(result, "NatNet_Frame_TMarkerset_GetMarker failed.");
-                    //Debug.Log("result: " + result);
-
-                    // Flip coordinate handedness
-                    OptitrackMarkerState tmarkerState = GetOrCreateTMarkMarkerState(tmarker.Id);
-                    tmarkerState.Name = GetMarkerName(tmarker);
-                    tmarkerState.Position = new Vector3(-tmarker.X, tmarker.Y, tmarker.Z);
-                    tmarkerState.Size = tmarker.Size;
-                    tmarkerState.Labeled = (tmarker.Params & 0x10) == 0;
-                    tmarkerState.Id = tmarker.Id;
-                    tmarkerState.IsActive = (tmarker.Params & 0x20) != 0;
-                }
-
-            }
 
             // ----------------------
             // - Update markers
@@ -1580,7 +1160,6 @@ public class OptitrackStreamingClient : MonoBehaviour
             NatNetException.ThrowIfNotOK( result, "NatNet_Frame_GetLabeledMarkerCount failed.");
 
             m_latestMarkerStates.Clear();
-            //Debug.Log("marker count: " + MarkerCount);
 
             for (int markerIdx = 0; markerIdx < MarkerCount; ++markerIdx)
             {
@@ -1597,7 +1176,6 @@ public class OptitrackStreamingClient : MonoBehaviour
                 markerState.Id = marker.Id;
                 markerState.IsActive = (marker.Params & 0x20) != 0;
             }
-
         }
         catch (Exception ex)
         {
@@ -1614,13 +1192,12 @@ public class OptitrackStreamingClient : MonoBehaviour
     {
         int hashKey = marker.Id.GetHashCode();
         int assetID = marker.Id.GetHashCode() >> 16; // high word = Asset ID Number
-        int memberID = marker.Id.GetHashCode() & 0x00ffff; // low word = Member ID Number (constraint number)
+        int memberID = marker.Id.GetHashCode() & 0x0000ff; // low word = Member ID Number (constraint number)
 
         // Figure out the asset name if it exists. 
         string assetName = "";
         OptitrackRigidBodyDefinition rigidBodyDef = GetRigidBodyDefinitionById( assetID );
-        OptitrackSkeletonDefinition skeletonDef = GetSkeletonDefinitionById( assetID );
-        OptitrackTMarkersetDefinition tmarkersetDef = GetTMarkersetDefinitionById( assetID );
+        OptitrackSkeletonDefinition skeletonDef = GetSkeletonDefinitionById(assetID);
 
         if (rigidBodyDef != null)
         {
@@ -1630,33 +1207,28 @@ public class OptitrackStreamingClient : MonoBehaviour
         {
             assetName = skeletonDef.Name;
         }
-        else if (tmarkersetDef != null) 
-        {
-            assetName = tmarkersetDef.Name;
-        }
 
         // Figure out if the marker is labeled or active
         bool IsLabeled = (marker.Params & 0x10) == 0;
         bool IsActive = (marker.Params & 0x20) != 0;
         string name = "";
 
-        // Go through the possible naming conventions for the markers
-        // Check different Active/Passive Labeled/Unlabeled Configurations.
-        if (IsActive && !IsLabeled)
+        // Go through the possible naming conventions for the marker
+        if (IsActive)
         {
             name = "Active " + marker.Id.ToString();
         }
-        else if (IsActive && IsLabeled)
+        else //Passive
         {
-            name = "Active " + marker.Id.ToString() +" (" + assetName + " Member ID: " + memberID + " )";
-        }
-        else if (!IsActive && !IsLabeled)
-        {
-            name = "Passive " + marker.Id.ToString();
-        }
-        else if (!IsActive && IsLabeled)
-        {
-            name = "Passive (" + assetName + " Member ID: " + memberID + ")";
+            if (!IsLabeled || assetName == "")
+            {
+                name = "Passive (PointCloud ID: " + marker.Id + ")";
+            }
+            else
+            {
+                //name = "Passive (AssetID: " + assetID + "  MemberID: " + memberID + ")";
+                name = "(" + assetName + "  Marker: " + memberID + ")";
+            }
         }
 
         return name;
@@ -1668,9 +1240,8 @@ public class OptitrackStreamingClient : MonoBehaviour
         rbState.Pose = new OptitrackPose
         {
             Position = new Vector3(-rbData.X, rbData.Y, rbData.Z),
-            Orientation = new Quaternion(-rbData.QX, rbData.QY, rbData.QZ, -rbData.QW),                  
+            Orientation = new Quaternion(-rbData.QX, rbData.QY, rbData.QZ, -rbData.QW),
         };
-        rbState.IsTracked = (rbData.Params & 0x01) != 0;
     }
 
     private void ResetStreamingSubscriptions()
@@ -1752,81 +1323,6 @@ public class OptitrackStreamingClient : MonoBehaviour
         }
     }
 
-    private void SubscribeTMarkerset(MonoBehaviour component, string name) // check the version numbers // trained markerset added
-    {
-        if (m_client != null && ConnectionType == ClientConnectionType.Unicast)
-        {
-            if (m_client.ServerAppVersion >= new Version(2, 2, 1))
-            {
-                // Try subscribing up to 3 times with a 2000 ms timeout before giving up. 
-                bool subscribeSucceeded = m_client.RequestCommand("SubscribeToData,TrainedMarkersets," + name, 2000, 3);
-
-                // Log a warning on the first failure.
-                if (!subscribeSucceeded && !m_doneSubscriptionNotice)
-                {
-                    Debug.LogError("Failed to subscribe to trained markerset streaming data for component", component);
-                    m_doneSubscriptionNotice = true;
-                }
-            }
-
-            else if (m_client.ServerAppVersion == new Version(2, 2, 0, 0))
-            {
-                // Motive 2.2.0 has a bug were Motive says it subscribes successfully, but doesn't.
-                // Subscribing to all skeletons still works, so for this version that is done instead. 
-
-                // Try subscribing up to 3 times with a 2000 ms timeout before giving up. 
-                bool subscribeSucceeded = m_client.RequestCommand("SubscribeToData,TrainedMarkersets,All" + name, 2000, 3);
-
-                if (!subscribeSucceeded && !m_doneSubscriptionNotice)
-                {
-                    Debug.LogError("Failed to subscribe to all trained markersets streaming data some unknown reason.", component);
-                    m_doneSubscriptionNotice = true;
-                }
-            }
-
-            else
-            {
-                Debug.LogWarning("Your version of Motive is too old to support NatNet skeleton data subscription; streaming bandwidth consumption may be higher than necessary. This feature works in Motive 2.2.1+.");
-                m_doneSubscriptionNotice = true;
-            }
-        }
-
-    }
-
-    private void SubscribeTMarkMarkers()
-    {
-        if (m_client != null && ConnectionType == ClientConnectionType.Unicast)
-        {
-            bool subscribeSucceeded4 = m_client.RequestCommand("SubscribeToData, TrainedMarkersetMarkers,All", 2000, 3);
-            //Debug.Log("TMMarkers: " + subscribeSucceeded4);
-
-            // Log a warning on the first failure.
-            if (!subscribeSucceeded4 && !m_doneSubscriptionNotice)
-            {
-                if (m_client.ServerDescription.HostApp == "Motive")
-                {
-                    // Host app is Motive: If new enough to support subscription, failure is an error.
-                    // Otherwise, warn them that they may want to update Motive to reduce bandwidth consumption.
-                    if (m_client.ServerAppVersion >= new Version(2, 2, 0))
-                    {
-                        Debug.LogError("Failed to subscribe to tmark marker streaming data");
-                    }
-                    else
-                    {
-                        Debug.LogWarning("Your version of Motive is too old to support NatNet tmark marker data subscription; streaming bandwidth consumption may be higher than necessary. This feature works in Motive 2.2.0+.");
-                    }
-                }
-                else
-                {
-                    // Not Motive, we don't know whether it "should" support this. Warning instead of error.
-                    Debug.LogWarning("Failed to subscribe to tmark marker streaming data");
-                }
-
-                m_doneSubscriptionNotice = true;
-            }
-        }
-    }
-
     private void SubscribeMarkers( )
     {
         if (m_client != null && ConnectionType == ClientConnectionType.Unicast)
@@ -1835,10 +1331,7 @@ public class OptitrackStreamingClient : MonoBehaviour
             bool subscribeSucceeded = m_client.RequestCommand("SubscribeToData,MarkerSetMarkers,All", 2000, 3);
             bool subscribeSucceeded2 = m_client.RequestCommand("SubscribeToData,LabeledMarkers,All", 2000, 3);
             bool subscribeSucceeded3 = m_client.RequestCommand("SubscribeToData,LegacyUnlabeledMarkers,All", 2000, 3);
-            //bool subscribeSucceeded4 = m_client.RequestCommand("SubscribeToData, TrainedMarkersetMarkers,All", 2000, 3);
-            //bool allSubscribeSucceeded = subscribeSucceeded4;
             bool allSubscribeSucceeded = subscribeSucceeded && subscribeSucceeded2 && subscribeSucceeded3;
-            m_subscribedToMarkers = allSubscribeSucceeded;
 
             // Log a warning on the first failure.
             if (!allSubscribeSucceeded && !m_doneSubscriptionNotice)
@@ -1928,60 +1421,6 @@ public class OptitrackStreamingClient : MonoBehaviour
         return returnedState;
     }
 
-    private OptitrackTMarkersetState GetOrCreateTMarkersetState(Int32 tmarkersetId)
-    {
-        OptitrackTMarkersetState returnedState = null;
-
-        if (m_latestTMarkersetStates.ContainsKey(tmarkersetId))
-        {
-            returnedState = m_latestTMarkersetStates[tmarkersetId];
-        }
-        else
-        {
-            OptitrackTMarkersetState newTMarkersetState = new OptitrackTMarkersetState
-            {
-                BonePoses = new Dictionary<Int32, OptitrackPose>(),
-                LocalBonePoses = new Dictionary<int, OptitrackPose>(),
-            };
-
-            m_latestTMarkersetStates[tmarkersetId] = newTMarkersetState;
-
-            returnedState = newTMarkersetState;
-        }
-
-        return returnedState;
-    }
-
-    /// <summary>
-    /// Returns the <see cref="OptitrackMarkerState"/> corresponding to the provided <paramref name="markerId"/>.
-    /// If the requested state object does not exist yet, it will initialize and return a newly-created one.
-    /// </summary>
-    /// <remarks>Makes the assumption that the lock on <see cref="m_frameDataUpdateLock"/> is already held.</remarks>
-    /// <param name="markerId">The ID of the bone in trained markerset for which to retrieve the corresponding state.</param>
-    /// <returns>The existing state object, or a newly created one if necessary.</returns>
-    private OptitrackMarkerState GetOrCreateTMarkMarkerState(Int32 markerId)
-    {
-        OptitrackMarkerState returnedState = null;
-
-        if (m_latestTMarkMarkerStates.ContainsKey(markerId))
-        {
-            returnedState = m_latestTMarkMarkerStates[markerId];
-        }
-        else
-        {
-            OptitrackMarkerState newMarkerState = new OptitrackMarkerState
-            {
-                Position = new Vector3(),
-            };
-
-            m_latestTMarkMarkerStates[markerId] = newMarkerState;
-
-            returnedState = newMarkerState;
-        }
-
-        //Debug.Log(returnedState);
-        return returnedState;
-    }
 
     /// <summary>
     /// Returns the <see cref="OptitrackMarkerState"/> corresponding to the provided <paramref name="markerId"/>.
