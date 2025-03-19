@@ -157,7 +157,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StreamingClient: {fileID: 2037732237}
-  RigidBodyId: 1018
+  RigidBodyId: 1011
   NetworkCompensation: 1
 --- !u!54 &561727957
 Rigidbody:
@@ -181,7 +181,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
@@ -556,9 +556,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a331805347588fe4a8161c8875d24396, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ServerAddress: 192.168.50.56
-  LocalAddress: 192.168.50.56
-  ConnectionType: 0
+  ServerAddress: 127.0.0.1
+  LocalAddress: 127.0.0.1
+  ConnectionType: 1
   SkeletonCoordinates: 0
   TMarkersetCoordinates: 0
   BoneNamingConvention: 0
