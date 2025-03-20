@@ -32522,6 +32522,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1320924787}
   - component: {fileID: 1320924788}
+  - component: {fileID: 1320924789}
   m_Layer: 0
   m_Name: MugHammer
   m_TagString: Untagged
@@ -32559,8 +32560,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  positionOffset: {x: 0, y: 0, z: -0.2}
+  positionOffset: {x: 0, y: 0, z: 0}
   trackRotationChanges: 1
+--- !u!114 &1320924789
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1320924786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f77bc200897df4f4483b478b598b0c51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  StreamingClient: {fileID: 2058357904}
+  RigidBodyId: 1011
+  NetworkCompensation: 1
 --- !u!1 &1321764011
 GameObject:
   m_ObjectHideFlags: 0
@@ -54285,6 +54301,60 @@ Transform:
   - {fileID: 407650714}
   m_Father: {fileID: 11912911}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2058357903
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2058357905}
+  - component: {fileID: 2058357904}
+  m_Layer: 0
+  m_Name: OptitrackClient
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2058357904
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2058357903}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a331805347588fe4a8161c8875d24396, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ServerAddress: 127.0.0.1
+  LocalAddress: 127.0.0.1
+  ConnectionType: 1
+  SkeletonCoordinates: 0
+  BoneNamingConvention: 0
+  DrawMarkers: 0
+  DrawCameras: 0
+  DrawForcePlates: 0
+  RecordOnPlay: 0
+  SkipDataDescriptions: 0
+--- !u!4 &2058357905
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2058357903}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2063019008 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 334943588623464968, guid: d28c823da0ebe374dbcc58a2808b63db,
@@ -57474,3 +57544,4 @@ SceneRoots:
   - {fileID: 1320924787}
   - {fileID: 1704461589}
   - {fileID: 1497838305}
+  - {fileID: 2058357905}
