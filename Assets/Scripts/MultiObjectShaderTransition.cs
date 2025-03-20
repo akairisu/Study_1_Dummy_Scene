@@ -111,20 +111,26 @@ public class MultiObjectShaderTransition : MonoBehaviour
         transformedWeightWorld = transformedPivot.TransformPoint(transformedWeightPoint);
     }
 
-    void UpdateShader(float t)
-    {
+    void UpdateShader(float t) {
         float currentY = Mathf.Lerp(intersectionLowestY, intersectionHighestY, t);
         Vector3 currentWeightPosition = Vector3.Lerp(originalWeightWorld, transformedWeightWorld, t);
 
-        foreach (Material mat in transformedMaterials)
+        // If transition is at 0 or 1, set currentY to a very low value to hide the line
+        if (t == 1f)
         {
+            currentY = 100000f;
+        }
+        else if (t == 0f){
+            currentY = -100000f;
+        }
+
+        foreach (Material mat in transformedMaterials) {
             mat.SetFloat("_TransitionLineY", currentY);
             mat.SetInt("_ShowUpperPart", 0);
             mat.SetVector("_WeightPosition", currentWeightPosition);
         }
 
-        foreach (Material mat in originalMaterials)
-        {
+        foreach (Material mat in originalMaterials) {
             mat.SetFloat("_TransitionLineY", currentY);
             mat.SetInt("_ShowUpperPart", 1);
             mat.SetVector("_WeightPosition", currentWeightPosition);
