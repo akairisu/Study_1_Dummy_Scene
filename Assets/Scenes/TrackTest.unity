@@ -135,57 +135,14 @@ GameObject:
   - component: {fileID: 561727960}
   - component: {fileID: 561727959}
   - component: {fileID: 561727958}
-  - component: {fileID: 561727957}
-  - component: {fileID: 561727956}
+  - component: {fileID: 561727962}
   m_Layer: 0
-  m_Name: Rigidbody - Optitrack
+  m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &561727956
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 561727955}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f77bc200897df4f4483b478b598b0c51, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  StreamingClient: {fileID: 2037732237}
-  RigidBodyId: 1011
-  NetworkCompensation: 1
---- !u!54 &561727957
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 561727955}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!65 &561727958
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -272,6 +229,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &561727962
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 561727955}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 089cd6e8660a642438a6c24e2e4a8f85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rigidBodyID: 1011
+  serverIP: 127.0.0.1
+  dataPort: 1511
 --- !u!1 &970422127
 GameObject:
   m_ObjectHideFlags: 0
@@ -536,38 +508,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2037732238}
-  - component: {fileID: 2037732237}
+  - component: {fileID: 2037732239}
   m_Layer: 0
-  m_Name: Client - Optitrack
+  m_Name: Client - Custom Optitrack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &2037732237
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2037732236}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a331805347588fe4a8161c8875d24396, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ServerAddress: 127.0.0.1
-  LocalAddress: 127.0.0.1
-  ConnectionType: 1
-  SkeletonCoordinates: 0
-  TMarkersetCoordinates: 0
-  BoneNamingConvention: 0
-  DrawMarkers: 1
-  DrawTMarkersetMarkers: 0
-  DrawCameras: 0
-  DrawForcePlates: 0
-  RecordOnPlay: 0
-  SkipDataDescriptions: 0
+  m_IsActive: 0
 --- !u!4 &2037732238
 Transform:
   m_ObjectHideFlags: 0
@@ -583,6 +531,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2037732239
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2037732236}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33b3bf8b0e90c8244bdadd8f347b7cda, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectsToUpdate:
+  - {fileID: 561727955}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
