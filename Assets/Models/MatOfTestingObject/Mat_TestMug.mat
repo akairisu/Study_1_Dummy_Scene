@@ -88,7 +88,7 @@ Material:
     m_Floats:
     - _AlphaClip: 0
     - _AlphaToMask: 0
-    - _BaseTransparency: 0.3
+    - _BaseTransparency: 1
     - _Blend: 0
     - _BlendModePreserveSpecular: 1
     - _BumpScale: 1
@@ -98,6 +98,7 @@ Material:
     - _Cutoff: 0.5
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
+    - _DisableEffects: 0
     - _DstBlend: 0
     - _DstBlendAlpha: 0
     - _EnvironmentReflections: 1
@@ -122,8 +123,8 @@ Material:
     - _StrokeTransAdd: 0.1
     - _Surface: 0
     - _TransLine: 0.9
-    - _TransLineNoiseScale: 11.28
-    - _TransLineTickness: 0.1
+    - _TransLineNoiseScale: 30
+    - _TransLineTickness: 0.025
     - _TransitionLineY: 2.11
     - _UseSelfAlpha: 0
     - _UseTransLine: 1
