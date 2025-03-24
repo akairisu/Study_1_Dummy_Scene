@@ -1,5 +1,5 @@
 /* 
-Copyright © 2016 NaturalPoint Inc.
+Copyright ï¿½ 2016 NaturalPoint Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -19,7 +19,7 @@ using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Runtime.InteropServices;
-
+using UnityEngine;
 
 namespace NaturalPoint.NatNetLib
 {
@@ -252,6 +252,7 @@ namespace NaturalPoint.NatNetLib
             public List<sMarkerSetDescription> MarkerSetDescriptions;
             public List<sRigidBodyDescription> RigidBodyDescriptions;
             public List<sSkeletonDescription> SkeletonDescriptions;
+            public List<sAssetDescription> AssetDescriptions; // trained markerset added
             public List<sForcePlateDescription> ForcePlateDescriptions;
             public List<sCameraDescription> CameraDescriptions;
         }
@@ -385,6 +386,10 @@ namespace NaturalPoint.NatNetLib
 
             if ( Connected )
             {
+                // Send a message back to Motive saying that the NatNet client is going to disconnect.
+                RequestCommand("Disconnect");
+
+                // Disconnect from Motive on the local NatNet client.
                 NatNetError retval = NatNetLib.NativeMethods.NatNet_Client_Disconnect( m_clientHandle );
                 NatNetException.ThrowIfNotOK( retval, "NatNet_Client_Disconnect failed." );
 
@@ -468,6 +473,7 @@ namespace NaturalPoint.NatNetLib
             Int32 numMarkerSetDescs = 0;
             Int32 numRigidBodyDescs = 0;
             Int32 numSkeletonDescs = 0;
+            Int32 numAssetDescs = 0; // trained markerset added
             Int32 numForcePlateDescs = 0;
             Int32 numCameraDescs = 0;
 
@@ -486,6 +492,9 @@ namespace NaturalPoint.NatNetLib
                     case (Int32)NatNetDataDescriptionType.NatNetDataDescriptionType_Skeleton:
                         ++numSkeletonDescs;
                         break;
+                    case (Int32)NatNetDataDescriptionType.NatNetDataDescriptionType_Asset:
+                        ++numAssetDescs; // trained markerset added
+                        break;
                     case (Int32)NatNetDataDescriptionType.NatNetDataDescriptionType_ForcePlate:
                         ++numForcePlateDescs;
                         break;
@@ -500,6 +509,7 @@ namespace NaturalPoint.NatNetLib
                 MarkerSetDescriptions = new List<sMarkerSetDescription>( numMarkerSetDescs ),
                 RigidBodyDescriptions = new List<sRigidBodyDescription>( numRigidBodyDescs ),
                 SkeletonDescriptions = new List<sSkeletonDescription>( numSkeletonDescs ),
+                AssetDescriptions = new List<sAssetDescription>(numAssetDescs), // trained markerset added
                 ForcePlateDescriptions = new List<sForcePlateDescription>( numForcePlateDescs ),
                 CameraDescriptions = new List<sCameraDescription>( numCameraDescs ),
             };
@@ -522,6 +532,10 @@ namespace NaturalPoint.NatNetLib
                     case (Int32)NatNetDataDescriptionType.NatNetDataDescriptionType_Skeleton:
                         sSkeletonDescription skeletonDesc = (sSkeletonDescription)Marshal.PtrToStructure( desc.Description, typeof( sSkeletonDescription ) );
                         retDescriptions.SkeletonDescriptions.Add( skeletonDesc );
+                        break;
+                    case (Int32)NatNetDataDescriptionType.NatNetDataDescriptionType_Asset: // trained markerset added
+                        sAssetDescription assetDesc = (sAssetDescription)Marshal.PtrToStructure(desc.Description, typeof(sAssetDescription));
+                        retDescriptions.AssetDescriptions.Add(assetDesc);
                         break;
                     case (Int32)NatNetDataDescriptionType.NatNetDataDescriptionType_ForcePlate:
                         sForcePlateDescription forcePlateDesc = (sForcePlateDescription)Marshal.PtrToStructure( desc.Description, typeof( sForcePlateDescription ) );
