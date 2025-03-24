@@ -21,6 +21,13 @@ public class MultiObjectShaderTransition : MonoBehaviour
     [Header("Shader Offset Settings")]
     public float boundaryOffset = 0.1f;
 
+    [Header("Shader Additional Parameters")]
+    public float roundRadius = 0.5f;
+    public float transLineThickness = 0.1f;
+    public float transLineNoiseScale = 1.0f;
+    public float transLineNoiseSpeed = 1.0f;
+    [ColorUsage(true, true)] public Color transLineColor = Color.white;
+
     private float intersectionLowestY;
     private float intersectionHighestY;
 
@@ -112,28 +119,34 @@ public class MultiObjectShaderTransition : MonoBehaviour
     }
 
     void UpdateShader(float t) {
-        float currentY = Mathf.Lerp(intersectionLowestY, intersectionHighestY, t);
+        // If transition is at 0 or 1, set currentY to a very low value to hide the line
+
+        float currentY = (t == 0f) ? -100000f : (t == 1f) ? 100000f : Mathf.Lerp(intersectionLowestY, intersectionHighestY, t);
         Vector3 currentWeightPosition = Vector3.Lerp(originalWeightWorld, transformedWeightWorld, t);
 
-        // If transition is at 0 or 1, set currentY to a very low value to hide the line
-        if (t == 1f)
+        foreach (Material mat in originalMaterials)
         {
-            currentY = 100000f;
-        }
-        else if (t == 0f){
-            currentY = -100000f;
-        }
-
-        foreach (Material mat in transformedMaterials) {
-            mat.SetFloat("_TransitionLineY", currentY);
-            mat.SetInt("_ShowUpperPart", 0);
-            mat.SetVector("_WeightPosition", currentWeightPosition);
-        }
-
-        foreach (Material mat in originalMaterials) {
+            mat.SetFloat("_BaseTransparency", 1f);
             mat.SetFloat("_TransitionLineY", currentY);
             mat.SetInt("_ShowUpperPart", 1);
             mat.SetVector("_WeightPosition", currentWeightPosition);
+            mat.SetFloat("_RoundRadius", roundRadius);
+            mat.SetFloat("_TransLineThickness", transLineThickness);
+            mat.SetFloat("_TransLineNoiseScale", transLineNoiseScale);
+            mat.SetFloat("_TransLineNoiseSpeed", transLineNoiseSpeed);
+            mat.SetColor("_TransLineColor", transLineColor);
+        }
+
+        foreach (Material mat in transformedMaterials)
+        {
+            mat.SetFloat("_TransitionLineY", currentY);
+            mat.SetInt("_ShowUpperPart", 0);
+            mat.SetVector("_WeightPosition", currentWeightPosition);
+            mat.SetFloat("_RoundRadius", roundRadius);
+            mat.SetFloat("_TransLineThickness", transLineThickness);
+            mat.SetFloat("_TransLineNoiseScale", transLineNoiseScale);
+            mat.SetFloat("_TransLineNoiseSpeed", transLineNoiseSpeed);
+            mat.SetColor("_TransLineColor", transLineColor);
         }
     }
 
