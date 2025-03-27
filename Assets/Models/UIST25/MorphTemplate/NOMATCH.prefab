@@ -53,8 +53,8 @@ MonoBehaviour:
   visualObject: {fileID: 8495409327868474953}
   originalObjects: []
   transformedObjects: []
-  affiliatedObjects: []
-  hiddenObjects: []
+  showObjects: []
+  hideObjects: []
   originalWeightPoint: {x: 0, y: 0, z: 0}
   transformedWeightPoint: {x: 0, y: 0, z: 0}
   originalPivot: {fileID: 7904900015407044077}
@@ -383,7 +383,7 @@ MonoBehaviour:
         Max: 0
   _rotationConstraints:
     XAxis:
-      ConstrainAxis: 1
+      ConstrainAxis: 0
       AxisRange:
         Min: 0
         Max: 0
@@ -393,7 +393,7 @@ MonoBehaviour:
         Min: 0
         Max: 0
     ZAxis:
-      ConstrainAxis: 1
+      ConstrainAxis: 0
       AxisRange:
         Min: 0
         Max: 0
@@ -537,7 +537,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 5382647063385819377}
-  positionOffset: {x: 0, y: 0, z: 0}
+  positionOffset: {x: -0.08, y: 0, z: 0.08}
   trackRotationChanges: 1
 --- !u!1001 &5457028199600850578
 PrefabInstance:

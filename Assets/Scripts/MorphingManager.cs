@@ -31,17 +31,17 @@ public class MorphingManager : MonoBehaviour
     public Transform transformedPivot;
 
     [Header("Transition Settings")]
-    public float transitionDuration = 1.5f;
+    public float transitionDuration = 1f;
     [Range(0f, 1f)] public float transitionSlider = 0f;
 
     [Header("Shader Offset Settings")]
     public float boundaryOffset = 0.1f;
 
     [Header("Shader Additional Parameters")]
-    public float roundRadius = 0.5f;
-    public float transLineThickness = 0.1f;
-    public float transLineNoiseScale = 1.0f;
-    public float transLineNoiseSpeed = 1.0f;
+    public float roundRadius = 0.2f;
+    public float transLineThickness = 0.01f;
+    public float transLineNoiseScale = 12.0f;
+    public float transLineNoiseSpeed = 0.1f;
 
     [ColorUsage(true, true)] public Color transLineColor = Color.white;
 
@@ -85,21 +85,21 @@ public class MorphingManager : MonoBehaviour
 
     public void StartMorphing() {
         visualObject.SetActive(true);
-        foreach (GameObject obj in showObjects) {
-            obj.SetActive(true);
-        }
-        foreach (GameObject obj in showObjects) {
-            obj.SetActive(false);
-        }
+        // foreach (GameObject obj in showObjects) {
+        //     obj.SetActive(false);
+        // }
+        // foreach (GameObject obj in hideObjects) {
+        //     obj.SetActive(true);
+        // }
         if (noMatchMode) {
             return;
         }
         StartTransition(true);
         foreach (GameObject obj in showObjects) {
-            obj.SetActive(false);
-        }
-        foreach (GameObject obj in showObjects) {
             obj.SetActive(true);
+        }
+        foreach (GameObject obj in hideObjects) {
+            obj.SetActive(false);
         }
     }
 
@@ -109,10 +109,10 @@ public class MorphingManager : MonoBehaviour
             return;
         }
         foreach (GameObject obj in showObjects) {
-            obj.SetActive(true);
-        }
-        foreach (GameObject obj in showObjects) {
             obj.SetActive(false);
+        }
+        foreach (GameObject obj in hideObjects) {
+            obj.SetActive(true);
         }
         StartTransition(false);
     }
