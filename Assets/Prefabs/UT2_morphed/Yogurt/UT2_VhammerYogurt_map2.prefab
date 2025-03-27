@@ -1,5 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+<<<<<<< HEAD
 --- !u!1 &323599214817773715
 GameObject:
   m_ObjectHideFlags: 0
@@ -115,6 +116,8 @@ Transform:
   - {fileID: 8731250756280657386}
   m_Father: {fileID: 2233063767699641625}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+=======
+>>>>>>> 58c70bd (add the combat scene)
 --- !u!1 &2546401217971226775
 GameObject:
   m_ObjectHideFlags: 0
@@ -141,13 +144,22 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2546401217971226775}
   serializedVersion: 2
+<<<<<<< HEAD
   m_LocalRotation: {x: 0.0117697865, y: 0.00924171, z: 0.7005535, w: 0.7134431}
   m_LocalPosition: {x: 0.12, y: 0.05, z: 0.116}
+=======
+  m_LocalRotation: {x: 0.016150698, y: -3.586175e-18, z: -1.1945168e-25, w: 0.9998696}
+  m_LocalPosition: {x: 0.007, y: -0.097, z: 0.022301313}
+>>>>>>> 58c70bd (add the combat scene)
   m_LocalScale: {x: 1.44, y: 0.8696702, z: 0.8696702}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2233063767699641625}
+<<<<<<< HEAD
   m_LocalEulerAnglesHint: {x: 0.22, y: 1.701, z: 88.959}
+=======
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+>>>>>>> 58c70bd (add the combat scene)
 --- !u!33 &1247851136928279538
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -208,7 +220,11 @@ GameObject:
   m_Component:
   - component: {fileID: 1211732657545671113}
   m_Layer: 0
+<<<<<<< HEAD
   m_Name: Weight Morphed
+=======
+  m_Name: morphed_weight
+>>>>>>> 58c70bd (add the combat scene)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -255,13 +271,22 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2739087418433973431}
   serializedVersion: 2
+<<<<<<< HEAD
   m_LocalRotation: {x: -0.70591617, y: 0.005550036, z: -0.0073785, w: 0.7082352}
   m_LocalPosition: {x: 0.022360826, y: 0.07078548, z: 0.11691101}
+=======
+  m_LocalRotation: {x: -0.5, y: 0.5, z: -0.5, w: 0.5}
+  m_LocalPosition: {x: 0.026, y: 0.0010000169, z: 0.0234}
+>>>>>>> 58c70bd (add the combat scene)
   m_LocalScale: {x: 0.19, y: 0.19, z: 0.19}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 2233063767699641625}
+<<<<<<< HEAD
   m_LocalEulerAnglesHint: {x: -88.936, y: 79.757, z: -79.905}
+=======
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: -90}
+>>>>>>> 58c70bd (add the combat scene)
 --- !u!33 &3469721559062148600
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -329,7 +354,11 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
+<<<<<<< HEAD
   m_IsActive: 0
+=======
+  m_IsActive: 1
+>>>>>>> 58c70bd (add the combat scene)
 --- !u!4 &8657945893693412159
 Transform:
   m_ObjectHideFlags: 0
@@ -412,7 +441,11 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
+<<<<<<< HEAD
   m_IsActive: 0
+=======
+  m_IsActive: 1
+>>>>>>> 58c70bd (add the combat scene)
 --- !u!4 &3933578795075250569
 Transform:
   m_ObjectHideFlags: 0
@@ -478,6 +511,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+<<<<<<< HEAD
 --- !u!1 &5351862915580535224
 GameObject:
   m_ObjectHideFlags: 0
@@ -510,6 +544,8 @@ Transform:
   - {fileID: 1489867520207436066}
   m_Father: {fileID: 2233063767699641625}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+=======
+>>>>>>> 58c70bd (add the combat scene)
 --- !u!1 &6135610066326380666
 GameObject:
   m_ObjectHideFlags: 0
@@ -540,8 +576,11 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
+<<<<<<< HEAD
   - {fileID: 6905842373910655825}
   - {fileID: 5236844929390784076}
+=======
+>>>>>>> 58c70bd (add the combat scene)
   - {fileID: 8657945893693412159}
   - {fileID: 3933578795075250569}
   - {fileID: 6769665520791905927}
@@ -590,7 +629,11 @@ GameObject:
   m_Component:
   - component: {fileID: 9099195697935309654}
   m_Layer: 0
+<<<<<<< HEAD
   m_Name: Weight Original
+=======
+  m_Name: ori_weight
+>>>>>>> 58c70bd (add the combat scene)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -605,12 +648,17 @@ Transform:
   m_GameObject: {fileID: 7006185125353756586}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+<<<<<<< HEAD
   m_LocalPosition: {x: -0.014, y: 0.069, z: 0}
+=======
+  m_LocalPosition: {x: 0, y: 0.251, z: 0}
+>>>>>>> 58c70bd (add the combat scene)
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2233063767699641625}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+<<<<<<< HEAD
 --- !u!1 &9108507974152989542
 GameObject:
   m_ObjectHideFlags: 0
@@ -694,3 +742,5 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+=======
+>>>>>>> 58c70bd (add the combat scene)
