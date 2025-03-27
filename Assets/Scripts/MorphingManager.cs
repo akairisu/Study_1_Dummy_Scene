@@ -2,11 +2,27 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-public class MultiObjectShaderTransition : MonoBehaviour
+public class MorphingManager : MonoBehaviour
 {
-    [Header("Object Groups")]
+    [Header("No Match Mode")]
+    public bool noMatchMode = false;
+
+    [Header("Visual Object")]
+    [Tooltip("Visual object is the object that will be shown to the player. It should be set to inactive initially.")]
+    public GameObject visualObject;
+
+    [Header("Magical Objects (Morphing State)")]
+    [Tooltip("Magical objects are usually a pair of a physical object and a virtual object. Both objects should use magical materials (shader) in their renderer components.")]
     public List<GameObject> originalObjects = new List<GameObject>();
     public List<GameObject> transformedObjects = new List<GameObject>();
+
+    [Header("Show Objects")]
+    [Tooltip("Show objects hide initially and will be shown right before the transition starts")]
+    public List<GameObject> showObjects = new List<GameObject>();
+
+    [Header("Hide Objects")]
+    [Tooltip("Hide objects show initially and will be hidden right before the transition starts")]
+    public List<GameObject> hideObjects = new List<GameObject>();
 
     [Header("Weight Points and Pivots")]
     public Vector3 originalWeightPoint;
@@ -26,7 +42,12 @@ public class MultiObjectShaderTransition : MonoBehaviour
     public float transLineThickness = 0.1f;
     public float transLineNoiseScale = 1.0f;
     public float transLineNoiseSpeed = 1.0f;
+
     [ColorUsage(true, true)] public Color transLineColor = Color.white;
+
+    [Header("(Debug Mode) Transition Controls")]
+    public bool startMorphing = false;
+    public bool resetMorphing = false;
 
     private float intersectionLowestY;
     private float intersectionHighestY;
@@ -43,11 +64,57 @@ public class MultiObjectShaderTransition : MonoBehaviour
         CalculateWorldSpaceBounds();
         CalculateWeightPointsWorld();
         UpdateShader(transitionSlider);
+        
+        foreach (GameObject obj in showObjects) {
+            obj.SetActive(false);
+        }
     }
 
     void Update()
     {
         UpdateShader(transitionSlider);
+        if (startMorphing) {
+            StartMorphing();
+            startMorphing = false;
+        }
+        if (resetMorphing) {
+            ResetMorphing();
+            resetMorphing = false;
+        }
+    }
+
+    public void StartMorphing() {
+        visualObject.SetActive(true);
+        foreach (GameObject obj in showObjects) {
+            obj.SetActive(true);
+        }
+        foreach (GameObject obj in showObjects) {
+            obj.SetActive(false);
+        }
+        if (noMatchMode) {
+            return;
+        }
+        StartTransition(true);
+        foreach (GameObject obj in showObjects) {
+            obj.SetActive(false);
+        }
+        foreach (GameObject obj in showObjects) {
+            obj.SetActive(true);
+        }
+    }
+
+    public void ResetMorphing() {
+        visualObject.SetActive(false);
+        if (noMatchMode) {
+            return;
+        }
+        foreach (GameObject obj in showObjects) {
+            obj.SetActive(true);
+        }
+        foreach (GameObject obj in showObjects) {
+            obj.SetActive(false);
+        }
+        StartTransition(false);
     }
 
     void InitializeMaterials()
