@@ -10,6 +10,8 @@ public class MappingNormalHandler : MonoBehaviour
     public List<Renderer> RemoveList;
     public EventHandler EventHandler;
 
+    public List<GameObject> HideList;
+
     public void SetLocalTransform()
     {
         VirtualObject.localPosition = DummyObject.localPosition;
@@ -18,5 +20,11 @@ public class MappingNormalHandler : MonoBehaviour
         EventHandler.RemoveList = RemoveList;
         EventHandler.Menu = Menu;
         EventHandler.InteractionObject = VirtualObject.gameObject;
+
+        foreach (GameObject obj in HideList)
+        {
+            obj.SetActive(false);
+        }
+
     }
 }
