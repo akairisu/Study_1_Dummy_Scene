@@ -87,20 +87,20 @@ MonoBehaviour:
   - {fileID: 7823895585988395653}
   transformedObjects:
   - {fileID: 1284277039256069534}
-  affiliatedObjects:
-  - {fileID: 7804209938728460234}
+  showObjects: []
+  hideObjects: []
   originalWeightPoint: {x: 0, y: 0, z: 0}
   transformedWeightPoint: {x: 0, y: 0, z: 0}
   originalPivot: {fileID: 2012592704938985808}
   transformedPivot: {fileID: 5309736778882489819}
-  transitionDuration: 1.5
+  transitionDuration: 1
   transitionSlider: 0
   boundaryOffset: 0.1
-  roundRadius: 0.5
-  transLineThickness: 0.1
-  transLineNoiseScale: 1
-  transLineNoiseSpeed: 1
-  transLineColor: {r: 1, g: 1, b: 1, a: 1}
+  roundRadius: 0.2
+  transLineThickness: 0.01
+  transLineNoiseScale: 12
+  transLineNoiseSpeed: 0.1
+  transLineColor: {r: 0, g: 8, b: 7.676491, a: 1}
   startMorphing: 0
   resetMorphing: 0
 --- !u!114 &7265610430349747287
@@ -378,12 +378,6 @@ GameObject:
 --- !u!4 &3898265773520608415 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1190077295875191228, guid: 24273e0c35fec7b479d35348cb22bb00,
-    type: 3}
-  m_PrefabInstance: {fileID: 2782499922382400803}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &7804209938728460234 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5391780141806138089, guid: 24273e0c35fec7b479d35348cb22bb00,
     type: 3}
   m_PrefabInstance: {fileID: 2782499922382400803}
   m_PrefabAsset: {fileID: 0}
