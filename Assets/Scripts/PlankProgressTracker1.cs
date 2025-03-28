@@ -90,7 +90,7 @@ public class PlankProgressTracker1 : MonoBehaviour
         if (progressText != null)
         {
             float progressPercentage = (currentProgress / maxProgress) * 100;
-            progressText.text = $"Progress: {progressPercentage.ToString("F0")}%";
+            progressText.text = $"Progress: {progressPercentage.ToString("F2")}%";
         }
     }
 
