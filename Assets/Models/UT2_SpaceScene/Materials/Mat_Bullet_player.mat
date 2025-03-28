@@ -1,5 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+<<<<<<<< HEAD:Assets/Models/UT2_SpaceScene/Materials/Mat_Bullet_player.mat
 --- !u!114 &-3800486732128209045
 MonoBehaviour:
   m_ObjectHideFlags: 11
@@ -13,6 +14,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 7
+========
+>>>>>>>> 15009de6d190b47afe298f467d231322344c6805:Assets/Models/UT2_VirtualObjects/Materials/WoodFine013_COL_2K.mat
 --- !u!21 &2100000
 Material:
   serializedVersion: 8
@@ -20,9 +23,14 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<<< HEAD:Assets/Models/UT2_SpaceScene/Materials/Mat_Bullet_player.mat
   m_Name: Mat_Bullet_player
   m_Shader: {fileID: -6465566751694194690, guid: a6e1bdf06a735d44685981adc708964c,
     type: 3}
+========
+  m_Name: WoodFine013_COL_2K
+  m_Shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
+>>>>>>>> 15009de6d190b47afe298f467d231322344c6805:Assets/Models/UT2_VirtualObjects/Materials/WoodFine013_COL_2K.mat
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -31,14 +39,15 @@ Material:
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
-  stringTagMap: {}
+  stringTagMap:
+    RenderType: Opaque
   disabledShaderPasses: []
   m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
     - _BaseMap:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: d64646ef7a415d548b423dbb037d8a76, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
@@ -109,13 +118,18 @@ Material:
     - _DstBlend: 0
     - _DstBlendAlpha: 0
     - _EnvironmentReflections: 1
-    - _GlossMapScale: 0
-    - _Glossiness: 0
-    - _GlossyReflections: 0
+    - _GlossMapScale: 1
+    - _Glossiness: 0.5
+    - _GlossyReflections: 1
     - _Metallic: 0
+    - _Mode: 0
     - _OcclusionStrength: 1
+<<<<<<<< HEAD:Assets/Models/UT2_SpaceScene/Materials/Mat_Bullet_player.mat
     - _Parallax: 0.005
     - _QueueControl: 0
+========
+    - _Parallax: 0.02
+>>>>>>>> 15009de6d190b47afe298f467d231322344c6805:Assets/Models/UT2_VirtualObjects/Materials/WoodFine013_COL_2K.mat
     - _QueueOffset: 0
     - _ReceiveShadows: 1
     - _Smoothness: 0.5
@@ -124,6 +138,7 @@ Material:
     - _SrcBlend: 1
     - _SrcBlendAlpha: 1
     - _Surface: 0
+    - _UVSec: 0
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
@@ -132,3 +147,16 @@ Material:
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
+--- !u!114 &5304758788003349683
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 7

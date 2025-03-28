@@ -59,6 +59,7 @@ MonoBehaviour:
   transformedWeightPoint: {x: 0, y: 0, z: 0}
   originalPivot: {fileID: 7904900015407044077}
   transformedPivot: {fileID: 5188484002367711269}
+<<<<<<< HEAD
   transitionDuration: 1.5
   transitionSlider: 0
   boundaryOffset: 0.1
@@ -67,6 +68,16 @@ MonoBehaviour:
   transLineNoiseScale: 1
   transLineNoiseSpeed: 1
   transLineColor: {r: 1, g: 1, b: 1, a: 1}
+=======
+  transitionDuration: 1
+  transitionSlider: 0
+  boundaryOffset: 0.1
+  roundRadius: 0.2
+  transLineThickness: 0.01
+  transLineNoiseScale: 12
+  transLineNoiseSpeed: 0.1
+  transLineColor: {r: 0, g: 8, b: 7.676491, a: 1}
+>>>>>>> 15009de6d190b47afe298f467d231322344c6805
   startMorphing: 0
   resetMorphing: 0
 --- !u!114 &3709283349881837513
