@@ -1924,8 +1924,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41b3e99747a442945b258e047edf32b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  positionOffset: {x: 0, y: 0.5, z: 0}
+  target: {fileID: 1601855814}
+  positionOffset: {x: 0.1, y: 0.1, z: 0.1}
   trackRotationChanges: 0
 --- !u!4 &91120835
 Transform:
@@ -17139,6 +17139,11 @@ PrefabInstance:
       objectReference: {fileID: 84282893}
     - target: {fileID: 5314579454460892102, guid: b30fc8688e791bd44af7a47f2b78435b,
         type: 3}
+      propertyPath: transitionSlider
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5314579454460892102, guid: b30fc8688e791bd44af7a47f2b78435b,
+        type: 3}
       propertyPath: hideObjects.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -19573,7 +19578,7 @@ PrefabInstance:
         type: 3}
       propertyPath: originalObjects.Array.data[0]
       value: 
-      objectReference: {fileID: 1690123866}
+      objectReference: {fileID: 1690123865}
     - target: {fileID: 5314579454460892102, guid: b30fc8688e791bd44af7a47f2b78435b,
         type: 3}
       propertyPath: transformedObjects.Array.data[0]
@@ -35750,7 +35755,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2609c54f376cffc4da1ab9401cc1a36f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _skeletonType: 0
+  _skeletonType: 4
   _updateRootPose: 0
   _updateRootScale: 1
   _enablePhysicsCapsules: 0
@@ -38328,6 +38333,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1601855809}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &1601855814 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5734932802484008321, guid: 43511173fa6dc0448930de411da3c442,
+    type: 3}
+  m_PrefabInstance: {fileID: 1601855809}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1609312962 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8553364197529364881, guid: 885ecae56b16f13428a67de5ae482a72,
@@ -39352,12 +39363,6 @@ Transform:
 --- !u!1 &1690123865 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2900195853336123940, guid: b8caf7e19aca54794b9946e61058e4ff,
-    type: 3}
-  m_PrefabInstance: {fileID: 1690123863}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1690123866 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5889266328732984126, guid: b8caf7e19aca54794b9946e61058e4ff,
     type: 3}
   m_PrefabInstance: {fileID: 1690123863}
   m_PrefabAsset: {fileID: 0}
@@ -49157,7 +49162,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2609c54f376cffc4da1ab9401cc1a36f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _skeletonType: 1
+  _skeletonType: 5
   _updateRootPose: 0
   _updateRootScale: 1
   _enablePhysicsCapsules: 0
