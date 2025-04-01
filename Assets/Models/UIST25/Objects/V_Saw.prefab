@@ -44,9 +44,10 @@ GameObject:
   - component: {fileID: 8807293038203063309}
   - component: {fileID: 8404573968330171017}
   - component: {fileID: 1877937355058732155}
+  - component: {fileID: 3087420741214370719}
   m_Layer: 0
   m_Name: Saw_FUNC
-  m_TagString: Untagged
+  m_TagString: Saw
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -116,6 +117,28 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &3087420741214370719
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4221014238566180461}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -6214541998892438614, guid: 26f8728e43f00c349be24d9a155add55, type: 3}
 --- !u!1 &8224237197907033103
 GameObject:
   m_ObjectHideFlags: 0

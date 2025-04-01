@@ -8,9 +8,9 @@ public class AssignSaw : MonoBehaviour
     public EventHandler EventHandler;
     public void Assign()
     {
-        foreach (GameObject triggerZone in TriggerZones)
-        {
-            triggerZone.GetComponent<TriggerZoneSaw>().Saw = EventHandler.InteractionObject;
-        }
+        // Set the tag on the interaction object
+        EventHandler.InteractionObject.tag = "Saw";
+        
+        // No need to modify trigger zones as they will find the object by tag
     }
 }

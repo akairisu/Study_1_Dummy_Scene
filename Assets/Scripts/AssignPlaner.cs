@@ -8,9 +8,9 @@ public class AssignPlaner : MonoBehaviour
     public EventHandler EventHandler;
     public void Assign()
     {
-        foreach (GameObject triggerZone in TriggerZones)
-        {
-            triggerZone.GetComponent<TriggerZonePlaner>().Planer = EventHandler.InteractionObject.transform;
-        }
+        // Set the tag on the interaction object
+        EventHandler.InteractionObject.tag = "Planer";
+        
+        // No need to modify trigger zones as they will find the object by tag
     }
 }
