@@ -85,21 +85,15 @@ public class MorphingManager : MonoBehaviour
 
     public void StartMorphing() {
         visualObject.SetActive(true);
-        // foreach (GameObject obj in showObjects) {
-        //     obj.SetActive(false);
-        // }
-        // foreach (GameObject obj in hideObjects) {
-        //     obj.SetActive(true);
-        // }
+        foreach (GameObject obj in hideObjects) {
+            obj.SetActive(false);
+        }
         if (noMatchMode) {
             return;
         }
         StartTransition(true);
         foreach (GameObject obj in showObjects) {
             obj.SetActive(true);
-        }
-        foreach (GameObject obj in hideObjects) {
-            obj.SetActive(false);
         }
     }
 
@@ -111,10 +105,10 @@ public class MorphingManager : MonoBehaviour
         foreach (GameObject obj in showObjects) {
             obj.SetActive(false);
         }
+        StartTransition(false);
         foreach (GameObject obj in hideObjects) {
             obj.SetActive(true);
         }
-        StartTransition(false);
     }
 
     void InitializeMaterials()
