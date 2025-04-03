@@ -13,6 +13,8 @@ public class ProximityDetector : MonoBehaviour
     [Tooltip("Whether to draw debug visualization in Scene view")]
     [SerializeField] private bool showDebugVisuals = true;
 
+    public bool isActive = true;
+
     [Tooltip("Event triggered when an object enters proximity range")]
     public UnityEvent<GameObject> onObjectEnterRange;
 
@@ -24,6 +26,8 @@ public class ProximityDetector : MonoBehaviour
 
     private void Update()
     {
+        if (!isActive) return;
+
         foreach (GameObject target in targetObjects)
         {
             if (target != null)
@@ -59,5 +63,15 @@ public class ProximityDetector : MonoBehaviour
             Gizmos.color = Color.yellow;
             Gizmos.DrawWireSphere(transform.position, proximityThreshold);
         }
+    }
+
+    public void DisableProximityDetection()
+    {
+        isActive = false;
+    }
+
+    public void EnableProximityDetection()
+    {
+        isActive = true;
     }
 } 
