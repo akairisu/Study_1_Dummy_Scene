@@ -28,6 +28,7 @@ public class ProximityDetector : MonoBehaviour
     {
         if (!isActive) return;
 
+        bool anyObjectInRange = false;
         foreach (GameObject target in targetObjects)
         {
             if (target != null)
@@ -38,6 +39,7 @@ public class ProximityDetector : MonoBehaviour
                 if (distance <= proximityThreshold)
                 {
                     // Object is within proximity threshold
+                    anyObjectInRange = true;
                     if (!wasInRange)
                     {
                         // Object just entered range
@@ -49,9 +51,15 @@ public class ProximityDetector : MonoBehaviour
                 {
                     // Object just exited range
                     objectsInRange.Remove(target);
-                    onObjectExitRange?.Invoke(target);
                 }
             }
+        }
+
+        // Only trigger exit event if no objects are in range
+        if (!anyObjectInRange && objectsInRange.Count > 0)
+        {
+            objectsInRange.Clear();
+            onObjectExitRange?.Invoke(null);
         }
     }
 
