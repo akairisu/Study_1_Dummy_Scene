@@ -52,7 +52,10 @@ public class TriggerZonePlaner : MonoBehaviour
             IsTriggered = false;
             _currentPlaner = null;
             _lastPosition = Vector3.zero;
-            _audioSource.Stop();
+            if (_audioSource != null)
+            {
+                _audioSource.Stop();
+            }
             if (_renderer != null && IdleMaterial != null)
             {
                 _renderer.material = IdleMaterial;
@@ -75,14 +78,17 @@ public class TriggerZonePlaner : MonoBehaviour
             if (moveDistance > 0.001f)
             {
                 CurrentDistance += moveDistance;
-                if (!_audioSource.isPlaying)
+                if (_audioSource != null && !_audioSource.isPlaying)
                 {
                     _audioSource.Play();
                 }
             }
             else
             {
-                _audioSource.Stop();
+                if (_audioSource != null)
+                {
+                    _audioSource.Stop();
+                }
             }
             _lastPosition = _currentPosition;
             if (CurrentDistance > TargetDistance)
@@ -90,6 +96,10 @@ public class TriggerZonePlaner : MonoBehaviour
                 gameObject.transform.GetComponent<Renderer>().enabled = false;
                 gameObject.transform.GetComponent<MeshCollider>().isTrigger = false;
                 IsTriggered = false;
+                if (_audioSource != null)
+                {
+                    _audioSource.Stop();
+                }
                 if (_renderer != null && TriggeredMaterial != null)
                 {
                     _renderer.material = TriggeredMaterial;

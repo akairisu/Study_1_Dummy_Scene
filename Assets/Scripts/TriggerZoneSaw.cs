@@ -38,7 +38,7 @@ public class TriggerZoneSaw : MonoBehaviour
             {
                 _renderer.material = TriggeredMaterial;
             }
-            if (!_audioSource.isPlaying)
+            if (_audioSource != null && !_audioSource.isPlaying)
             {
                 _audioSource.Play();
             }
@@ -52,7 +52,10 @@ public class TriggerZoneSaw : MonoBehaviour
             IsTriggered = false;
             _currentSaw = null;
             _lastSawZPosition = 0;
-            _audioSource.Stop();
+            if (_audioSource != null)
+            {
+                _audioSource.Stop();
+            }
             if (_renderer != null && IdleMaterial != null)
             {
                 _renderer.material = IdleMaterial;
@@ -75,14 +78,17 @@ public class TriggerZoneSaw : MonoBehaviour
             if(moveDistance > 0.001f)
             {
                 CurrentDistance += moveDistance;
-                if (!_audioSource.isPlaying)
+                if (_audioSource != null && !_audioSource.isPlaying)
                 {
                     _audioSource.Play();
                 }
             }
             else
             {
-                _audioSource.Stop();
+                if (_audioSource != null)
+                {
+                    _audioSource.Stop();
+                }
             }
             _lastSawZPosition = _currentZPosition;
             if (CurrentDistance > TargetDistance)
@@ -90,6 +96,10 @@ public class TriggerZoneSaw : MonoBehaviour
                 gameObject.transform.GetComponent<Renderer>().enabled = false;
                 gameObject.transform.GetComponent<MeshCollider>().isTrigger = false;
                 IsTriggered = false;
+                if (_audioSource != null)
+                {
+                    _audioSource.Stop();
+                }
                 if (_renderer != null && TriggeredMaterial != null)
                 {
                     _renderer.material = TriggeredMaterial;

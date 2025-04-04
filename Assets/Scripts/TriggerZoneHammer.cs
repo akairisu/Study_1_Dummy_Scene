@@ -7,10 +7,24 @@ public class TriggerZoneHammer : MonoBehaviour
     public float TargetHeight = 0.2f;
     public float DisplaceWeight = 0.01f;
     public Transform Nail;
+    private AudioSource audioSource;
+
+    private void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
+
     public void HitNail(Vector3 velocity)
     {
         float directionalVelocity = Vector3.Dot(velocity, -this.transform.forward);
         float displacement = Mathf.Abs(directionalVelocity) * DisplaceWeight;
+        
+        // Play sound on every hit if we have an audio source
+        if (audioSource != null)
+        {
+            audioSource.Play();
+        }
+
         if(displacement > TargetHeight)
         {
             displacement = TargetHeight;
