@@ -1064,6 +1064,30 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 1115133790}
+        m_TargetAssemblyTypeName: ObjectManager, Assembly-CSharp
+        m_MethodName: DisableTrackedTagsExcept
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Charger
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1039523168}
+        m_TargetAssemblyTypeName: MultipleAnchorFollower, Assembly-CSharp
+        m_MethodName: Disable
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   _whenHover:
     m_PersistentCalls:
       m_Calls: []
@@ -2826,6 +2850,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2119356169807643232, guid: 920ec0120ae7f7341abd8b5f888e49e7,
+        type: 3}
+      propertyPath: m_TagString
+      value: Mug
+      objectReference: {fileID: 0}
     - target: {fileID: 2732822620556240894, guid: 920ec0120ae7f7341abd8b5f888e49e7,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -3244,6 +3273,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2119356169807643232, guid: 920ec0120ae7f7341abd8b5f888e49e7,
+        type: 3}
+      propertyPath: m_TagString
+      value: Marker
       objectReference: {fileID: 0}
     - target: {fileID: 2732822620556240894, guid: 920ec0120ae7f7341abd8b5f888e49e7,
         type: 3}
@@ -6738,6 +6772,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6705290003783932129, guid: f0fd357552d2f9f42bc88c9fa56060b0,
+        type: 3}
+      propertyPath: m_TagString
+      value: Mug
+      objectReference: {fileID: 0}
     - target: {fileID: 8767581839641428814, guid: f0fd357552d2f9f42bc88c9fa56060b0,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7147,6 +7186,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2119356169807643232, guid: 920ec0120ae7f7341abd8b5f888e49e7,
+        type: 3}
+      propertyPath: m_TagString
+      value: Charger
+      objectReference: {fileID: 0}
     - target: {fileID: 2732822620556240894, guid: 920ec0120ae7f7341abd8b5f888e49e7,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -7513,6 +7557,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5100738973873856720, guid: 8422d97aa0b3ee74b9ec429c68666329,
+        type: 3}
+      propertyPath: m_TagString
+      value: Charger
       objectReference: {fileID: 0}
     - target: {fileID: 6685880201795333134, guid: 8422d97aa0b3ee74b9ec429c68666329,
         type: 3}
@@ -8075,6 +8124,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2119356169807643232, guid: 920ec0120ae7f7341abd8b5f888e49e7,
+        type: 3}
+      propertyPath: m_TagString
+      value: Umbrella
+      objectReference: {fileID: 0}
     - target: {fileID: 2732822620556240894, guid: 920ec0120ae7f7341abd8b5f888e49e7,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -8395,6 +8449,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1250646101670136360, guid: 43511173fa6dc0448930de411da3c442,
+        type: 3}
+      propertyPath: m_TagString
+      value: Yogurt
       objectReference: {fileID: 0}
     - target: {fileID: 1284277039256069534, guid: 43511173fa6dc0448930de411da3c442,
         type: 3}
@@ -8920,6 +8979,30 @@ MonoBehaviour:
       - m_Target: {fileID: 810804444}
         m_TargetAssemblyTypeName: StudyLogManager, Assembly-CSharp
         m_MethodName: LogActiveObjects
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1115133790}
+        m_TargetAssemblyTypeName: ObjectManager, Assembly-CSharp
+        m_MethodName: DisableTrackedTagsExcept
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Marker
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 810804443}
+        m_TargetAssemblyTypeName: MultipleAnchorFollower, Assembly-CSharp
+        m_MethodName: Disable
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -9800,6 +9883,30 @@ MonoBehaviour:
       - m_Target: {fileID: 1981126211}
         m_TargetAssemblyTypeName: StudyLogManager, Assembly-CSharp
         m_MethodName: LogActiveObjects
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1115133790}
+        m_TargetAssemblyTypeName: ObjectManager, Assembly-CSharp
+        m_MethodName: DisableTrackedTagsExcept
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Yogurt
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1981126210}
+        m_TargetAssemblyTypeName: MultipleAnchorFollower, Assembly-CSharp
+        m_MethodName: Disable
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -11028,6 +11135,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2119356169807643232, guid: 920ec0120ae7f7341abd8b5f888e49e7,
+        type: 3}
+      propertyPath: m_TagString
+      value: Umbrella
       objectReference: {fileID: 0}
     - target: {fileID: 2732822620556240894, guid: 920ec0120ae7f7341abd8b5f888e49e7,
         type: 3}
@@ -13235,6 +13347,30 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 1115133790}
+        m_TargetAssemblyTypeName: ObjectManager, Assembly-CSharp
+        m_MethodName: DisableTrackedTagsExcept
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Umbrella
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1763621020}
+        m_TargetAssemblyTypeName: MultipleAnchorFollower, Assembly-CSharp
+        m_MethodName: Disable
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   _whenHover:
     m_PersistentCalls:
       m_Calls: []
@@ -14038,6 +14174,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2119356169807643232, guid: 920ec0120ae7f7341abd8b5f888e49e7,
+        type: 3}
+      propertyPath: m_TagString
+      value: Mug
       objectReference: {fileID: 0}
     - target: {fileID: 2732822620556240894, guid: 920ec0120ae7f7341abd8b5f888e49e7,
         type: 3}
@@ -15262,6 +15403,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2119356169807643232, guid: 920ec0120ae7f7341abd8b5f888e49e7,
+        type: 3}
+      propertyPath: m_TagString
+      value: Mug
       objectReference: {fileID: 0}
     - target: {fileID: 2732822620556240894, guid: 920ec0120ae7f7341abd8b5f888e49e7,
         type: 3}
@@ -16635,6 +16781,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2119356169807643232, guid: 920ec0120ae7f7341abd8b5f888e49e7,
+        type: 3}
+      propertyPath: m_TagString
+      value: Marker
       objectReference: {fileID: 0}
     - target: {fileID: 2732822620556240894, guid: 920ec0120ae7f7341abd8b5f888e49e7,
         type: 3}
@@ -20758,6 +20909,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2119356169807643232, guid: 920ec0120ae7f7341abd8b5f888e49e7,
+        type: 3}
+      propertyPath: m_TagString
+      value: Umbrella
+      objectReference: {fileID: 0}
     - target: {fileID: 2732822620556240894, guid: 920ec0120ae7f7341abd8b5f888e49e7,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -21688,6 +21844,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2119356169807643232, guid: 920ec0120ae7f7341abd8b5f888e49e7,
+        type: 3}
+      propertyPath: m_TagString
+      value: Marker
+      objectReference: {fileID: 0}
     - target: {fileID: 2732822620556240894, guid: 920ec0120ae7f7341abd8b5f888e49e7,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -22081,6 +22242,7 @@ MonoBehaviour:
   - {fileID: 990418708}
   positionOffset: {x: 0, y: 0.25, z: 0}
   trackRotationChanges: 0
+  disable: 0
 --- !u!114 &810804444
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25319,6 +25481,30 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 1115133790}
+        m_TargetAssemblyTypeName: ObjectManager, Assembly-CSharp
+        m_MethodName: DisableTrackedTagsExcept
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Mug
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1241877911}
+        m_TargetAssemblyTypeName: MultipleAnchorFollower, Assembly-CSharp
+        m_MethodName: Disable
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   _whenHover:
     m_PersistentCalls:
       m_Calls: []
@@ -26006,6 +26192,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5100738973873856720, guid: 8422d97aa0b3ee74b9ec429c68666329,
+        type: 3}
+      propertyPath: m_TagString
+      value: Marker
       objectReference: {fileID: 0}
     - target: {fileID: 6685880201795333134, guid: 8422d97aa0b3ee74b9ec429c68666329,
         type: 3}
@@ -27182,6 +27373,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1029100129}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1029100131 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6581760646184166381, guid: 6e700323e870a914eb0333fa6aa3fb56,
+    type: 3}
+  m_PrefabInstance: {fileID: 1029100129}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1037588667
 GameObject:
   m_ObjectHideFlags: 0
@@ -27485,6 +27682,7 @@ MonoBehaviour:
   - {fileID: 192270399}
   positionOffset: {x: 0, y: 0.25, z: 0}
   trackRotationChanges: 0
+  disable: 0
 --- !u!114 &1039523169
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28036,6 +28234,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5100738973873856720, guid: 8422d97aa0b3ee74b9ec429c68666329,
+        type: 3}
+      propertyPath: m_TagString
+      value: Yogurt
       objectReference: {fileID: 0}
     - target: {fileID: 6685880201795333134, guid: 8422d97aa0b3ee74b9ec429c68666329,
         type: 3}
@@ -28979,6 +29182,73 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &1115133789
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1115133792}
+  - component: {fileID: 1115133791}
+  - component: {fileID: 1115133790}
+  m_Layer: 0
+  m_Name: StudyTool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1115133790
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1115133789}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c3ed615aefc6af46bcd9a84523d4358, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trackedTags:
+  - Mug
+  - Charger
+  - Marker
+  - Umbrella
+  - Yogurt
+--- !u!114 &1115133791
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1115133789}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da1ed4ae29024ea4f9ba642a62a7b24e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rightHand: {fileID: 418534723}
+  rightAnchor: {fileID: 1029100131}
+  cameraRig: {fileID: 1585823012}
+  setAnchor: 0
+--- !u!4 &1115133792
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1115133789}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1116306628
 GameObject:
   m_ObjectHideFlags: 0
@@ -30275,6 +30545,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2119356169807643232, guid: 920ec0120ae7f7341abd8b5f888e49e7,
+        type: 3}
+      propertyPath: m_TagString
+      value: Yogurt
+      objectReference: {fileID: 0}
     - target: {fileID: 2732822620556240894, guid: 920ec0120ae7f7341abd8b5f888e49e7,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -31303,6 +31578,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2119356169807643232, guid: 920ec0120ae7f7341abd8b5f888e49e7,
+        type: 3}
+      propertyPath: m_TagString
+      value: Yogurt
+      objectReference: {fileID: 0}
     - target: {fileID: 2732822620556240894, guid: 920ec0120ae7f7341abd8b5f888e49e7,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -32248,6 +32528,7 @@ MonoBehaviour:
   - {fileID: 185166008176531065}
   positionOffset: {x: 0, y: 0.25, z: 0}
   trackRotationChanges: 0
+  disable: 0
 --- !u!114 &1241877912
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36498,6 +36779,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1250646101670136360, guid: 43511173fa6dc0448930de411da3c442,
+        type: 3}
+      propertyPath: m_TagString
+      value: Umbrella
+      objectReference: {fileID: 0}
     - target: {fileID: 1284277039256069534, guid: 43511173fa6dc0448930de411da3c442,
         type: 3}
       propertyPath: m_IsActive
@@ -38924,6 +39210,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5100738973873856720, guid: 8422d97aa0b3ee74b9ec429c68666329,
+        type: 3}
+      propertyPath: m_TagString
+      value: Umbrella
+      objectReference: {fileID: 0}
     - target: {fileID: 6685880201795333134, guid: 8422d97aa0b3ee74b9ec429c68666329,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -40133,6 +40424,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2119356169807643232, guid: 920ec0120ae7f7341abd8b5f888e49e7,
+        type: 3}
+      propertyPath: m_TagString
+      value: Charger
+      objectReference: {fileID: 0}
     - target: {fileID: 2732822620556240894, guid: 920ec0120ae7f7341abd8b5f888e49e7,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -40452,6 +40748,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2119356169807643232, guid: 920ec0120ae7f7341abd8b5f888e49e7,
+        type: 3}
+      propertyPath: m_TagString
+      value: Marker
       objectReference: {fileID: 0}
     - target: {fileID: 2732822620556240894, guid: 920ec0120ae7f7341abd8b5f888e49e7,
         type: 3}
@@ -41648,6 +41949,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2119356169807643232, guid: 920ec0120ae7f7341abd8b5f888e49e7,
+        type: 3}
+      propertyPath: m_TagString
+      value: Yogurt
       objectReference: {fileID: 0}
     - target: {fileID: 2732822620556240894, guid: 920ec0120ae7f7341abd8b5f888e49e7,
         type: 3}
@@ -43648,6 +43954,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2119356169807643232, guid: 920ec0120ae7f7341abd8b5f888e49e7,
+        type: 3}
+      propertyPath: m_TagString
+      value: Yogurt
+      objectReference: {fileID: 0}
     - target: {fileID: 2732822620556240894, guid: 920ec0120ae7f7341abd8b5f888e49e7,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -44770,6 +45081,7 @@ MonoBehaviour:
   - {fileID: 1571748658}
   positionOffset: {x: 0, y: 0.25, z: 0}
   trackRotationChanges: 0
+  disable: 0
 --- !u!114 &1763621021
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -46702,6 +47014,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4296497977833100331, guid: b96f8166ea4d271478d2db6cd614634c,
+        type: 3}
+      propertyPath: m_TagString
+      value: Charger
       objectReference: {fileID: 0}
     - target: {fileID: 6206137343074868580, guid: b96f8166ea4d271478d2db6cd614634c,
         type: 3}
@@ -49386,6 +49703,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1250646101670136360, guid: 43511173fa6dc0448930de411da3c442,
+        type: 3}
+      propertyPath: m_TagString
+      value: Marker
       objectReference: {fileID: 0}
     - target: {fileID: 2012592704938985808, guid: 43511173fa6dc0448930de411da3c442,
         type: 3}
@@ -52141,6 +52463,7 @@ MonoBehaviour:
   - {fileID: 1069170438}
   positionOffset: {x: 0, y: 0.25, z: 0}
   trackRotationChanges: 0
+  disable: 0
 --- !u!114 &1981126211
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -52474,6 +52797,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2119356169807643232, guid: 920ec0120ae7f7341abd8b5f888e49e7,
+        type: 3}
+      propertyPath: m_TagString
+      value: Umbrella
       objectReference: {fileID: 0}
     - target: {fileID: 2732822620556240894, guid: 920ec0120ae7f7341abd8b5f888e49e7,
         type: 3}
@@ -57364,6 +57692,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5100738973873856720, guid: 8422d97aa0b3ee74b9ec429c68666329,
+        type: 3}
+      propertyPath: m_TagString
+      value: Mug
+      objectReference: {fileID: 0}
     - target: {fileID: 6685880201795333134, guid: 8422d97aa0b3ee74b9ec429c68666329,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -57634,6 +57967,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2119356169807643232, guid: 920ec0120ae7f7341abd8b5f888e49e7,
+        type: 3}
+      propertyPath: m_TagString
+      value: Mug
       objectReference: {fileID: 0}
     - target: {fileID: 2732822620556240894, guid: 920ec0120ae7f7341abd8b5f888e49e7,
         type: 3}
@@ -58057,6 +58395,7 @@ SceneRoots:
   m_Roots:
   - {fileID: 734903571}
   - {fileID: 410087041}
+  - {fileID: 1115133792}
   - {fileID: 832575519}
   - {fileID: 1911361640}
   - {fileID: 1585823016}

@@ -17,6 +17,9 @@ public class MultipleAnchorFollower : MonoBehaviour
     private Quaternion initialObjectRotation;
     private Transform currentTarget;
 
+    [Header("Disable the Component")]
+    public bool disable = false;
+
     void Start()
     {
         // Find the first active target
@@ -32,8 +35,14 @@ public class MultipleAnchorFollower : MonoBehaviour
 
     void Update()
     {
+        if (disable)
+        {
+            gameObject.SetActive(false);
+            return;
+        }
+
         UpdateCurrentTarget();
-        
+
         if (currentTarget == null) return;
 
         // Update position with offset
@@ -65,5 +74,10 @@ public class MultipleAnchorFollower : MonoBehaviour
                 break;
             }
         }
+    }
+
+    public void Disable()
+    {
+        disable = true;
     }
 }

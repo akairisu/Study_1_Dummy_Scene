@@ -5,6 +5,7 @@ using System;
 
 public class StudyTool : MonoBehaviour
 {
+  [Header("Anchors")]
   public GameObject rightHand;
   public GameObject rightAnchor;
   public GameObject cameraRig;
