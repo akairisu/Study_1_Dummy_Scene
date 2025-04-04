@@ -2461,7 +2461,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 100105930}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 41b3e99747a442945b258e047edf32b1, type: 3}
   m_Name: 
@@ -2477,15 +2477,15 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 100105930}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0.1549, y: 1.26, z: 0.4921}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalRotation: {x: -0, y: 0.9744405, z: -0.22464578, w: 0}
+  m_LocalPosition: {x: -0.103, y: 0.77, z: -0.415}
+  m_LocalScale: {x: 0.67, y: 0.67, z: 0.67}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1881458322}
   - {fileID: 1048459166}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 25.964, y: 180, z: 0}
 --- !u!1 &102607507
 GameObject:
   m_ObjectHideFlags: 0
@@ -19248,18 +19248,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 1225299898}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
@@ -19271,6 +19259,66 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 156071570}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1805095934}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1871906192}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1459472724}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 206853230}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
         m_CallState: 2
   _whenHover:
     m_PersistentCalls:
@@ -22240,7 +22288,7 @@ MonoBehaviour:
   - {fileID: 805731995}
   - {fileID: 613698362}
   - {fileID: 990418708}
-  positionOffset: {x: 0, y: 0.25, z: 0}
+  positionOffset: {x: 0.25, y: 0.25, z: 0}
   trackRotationChanges: 0
   disable: 0
 --- !u!114 &810804444
@@ -27680,7 +27728,7 @@ MonoBehaviour:
   - {fileID: 187643322}
   - {fileID: 1592768870}
   - {fileID: 192270399}
-  positionOffset: {x: 0, y: 0.25, z: 0}
+  positionOffset: {x: 0.25, y: 0.25, z: 0}
   trackRotationChanges: 0
   disable: 0
 --- !u!114 &1039523169
@@ -29231,8 +29279,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rightHand: {fileID: 418534723}
+  leftHand: {fileID: 0}
   rightAnchor: {fileID: 1029100131}
+  leftAnchor: {fileID: 0}
   cameraRig: {fileID: 1585823012}
+  setRotation: 0
   setAnchor: 0
 --- !u!4 &1115133792
 Transform:
@@ -32526,7 +32577,7 @@ MonoBehaviour:
   - {fileID: 446718837}
   - {fileID: 506622886}
   - {fileID: 185166008176531065}
-  positionOffset: {x: 0, y: 0.25, z: 0}
+  positionOffset: {x: 0.25, y: 0.25, z: 0}
   trackRotationChanges: 0
   disable: 0
 --- !u!114 &1241877912
@@ -45079,7 +45130,7 @@ MonoBehaviour:
   - {fileID: 767113292}
   - {fileID: 317963287}
   - {fileID: 1571748658}
-  positionOffset: {x: 0, y: 0.25, z: 0}
+  positionOffset: {x: 0.25, y: 0.25, z: 0}
   trackRotationChanges: 0
   disable: 0
 --- !u!114 &1763621021
@@ -52461,7 +52512,7 @@ MonoBehaviour:
   - {fileID: 1641063372}
   - {fileID: 1218076016}
   - {fileID: 1069170438}
-  positionOffset: {x: 0, y: 0.25, z: 0}
+  positionOffset: {x: 0.25, y: 0.25, z: 0}
   trackRotationChanges: 0
   disable: 0
 --- !u!114 &1981126211
@@ -58394,15 +58445,15 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 734903571}
-  - {fileID: 410087041}
   - {fileID: 1115133792}
+  - {fileID: 410087041}
+  - {fileID: 1825941869}
   - {fileID: 832575519}
   - {fileID: 1911361640}
   - {fileID: 1585823016}
   - {fileID: 1794415772}
   - {fileID: 202794731}
   - {fileID: 100105932}
-  - {fileID: 1825941869}
   - {fileID: 1425501763}
   - {fileID: 700700686}
   - {fileID: 1241877910}

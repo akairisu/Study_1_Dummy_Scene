@@ -2447,8 +2447,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rightHand: {fileID: 1243708971}
+  leftHand: {fileID: 0}
   rightAnchor: {fileID: 1390740729}
+  leftAnchor: {fileID: 0}
   cameraRig: {fileID: 1585823012}
+  setRotation: 0
   setAnchor: 0
 --- !u!4 &92592860
 Transform:
@@ -12949,7 +12952,7 @@ MonoBehaviour:
   - {fileID: 942142474}
   - {fileID: 1704336190}
   - {fileID: 147310947}
-  positionOffset: {x: 0, y: 0.25, z: 0}
+  positionOffset: {x: 0.25, y: 0.25, z: 0}
   trackRotationChanges: 0
   disable: 0
 --- !u!114 &381922360
@@ -19633,18 +19636,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 1225299898}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
@@ -19656,6 +19647,66 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1580521193}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1001038299}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 292552837}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 650096016}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 230573192}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
         m_CallState: 2
   _whenHover:
     m_PersistentCalls:
@@ -23797,7 +23848,7 @@ MonoBehaviour:
   - {fileID: 1639659790}
   - {fileID: 1563282987}
   - {fileID: 1878815737}
-  positionOffset: {x: 0, y: 0.25, z: 0}
+  positionOffset: {x: 0.25, y: 0.25, z: 0}
   trackRotationChanges: 0
   disable: 0
 --- !u!114 &901957209
@@ -30216,22 +30267,22 @@ PrefabInstance:
     - target: {fileID: 3922363326003679113, guid: 59d11832f23fa7f4383e123f03d52ae3,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.5
+      value: 0.33
       objectReference: {fileID: 0}
     - target: {fileID: 3922363326003679113, guid: 59d11832f23fa7f4383e123f03d52ae3,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.5
+      value: 0.33
       objectReference: {fileID: 0}
     - target: {fileID: 3922363326003679113, guid: 59d11832f23fa7f4383e123f03d52ae3,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.049999997
+      value: 0.033
       objectReference: {fileID: 0}
     - target: {fileID: 3922363326003679113, guid: 59d11832f23fa7f4383e123f03d52ae3,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.001
+      value: -0.089
       objectReference: {fileID: 0}
     - target: {fileID: 3922363326003679113, guid: 59d11832f23fa7f4383e123f03d52ae3,
         type: 3}
@@ -30241,7 +30292,7 @@ PrefabInstance:
     - target: {fileID: 3922363326003679113, guid: 59d11832f23fa7f4383e123f03d52ae3,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.4921
+      value: -0.399
       objectReference: {fileID: 0}
     - target: {fileID: 3922363326003679113, guid: 59d11832f23fa7f4383e123f03d52ae3,
         type: 3}
@@ -30396,7 +30447,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1273989785}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 41b3e99747a442945b258e047edf32b1, type: 3}
   m_Name: 
@@ -35735,7 +35786,7 @@ MonoBehaviour:
   - {fileID: 1163927864}
   - {fileID: 321990220}
   - {fileID: 245963818}
-  positionOffset: {x: 0, y: 0.25, z: 0}
+  positionOffset: {x: 0.25, y: 0.25, z: 0}
   trackRotationChanges: 0
   disable: 0
 --- !u!114 &1555837176
@@ -37909,7 +37960,7 @@ MonoBehaviour:
   - {fileID: 1850902804}
   - {fileID: 1171269896}
   - {fileID: 2021332562}
-  positionOffset: {x: 0, y: 0.25, z: 0}
+  positionOffset: {x: 0.25, y: 0.25, z: 0}
   trackRotationChanges: 0
   disable: 0
 --- !u!114 &1618400923
@@ -43534,7 +43585,7 @@ PrefabInstance:
     - target: {fileID: 2859147190566827361, guid: b16424dcc3deba241b1457370a8e5b5e,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -0.048
+      value: -0.063
       objectReference: {fileID: 0}
     - target: {fileID: 2859147190566827361, guid: b16424dcc3deba241b1457370a8e5b5e,
         type: 3}
@@ -54210,7 +54261,7 @@ MonoBehaviour:
   - {fileID: 1172235134}
   - {fileID: 1064763248}
   - {fileID: 9104176627588598958}
-  positionOffset: {x: 0, y: 0.25, z: 0}
+  positionOffset: {x: 0.25, y: 0.25, z: 0}
   trackRotationChanges: 0
   disable: 0
 --- !u!114 &1292035939119910699
@@ -58828,15 +58879,15 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 159124967}
-  - {fileID: 410087041}
   - {fileID: 92592860}
+  - {fileID: 881859131194626072}
+  - {fileID: 410087041}
   - {fileID: 1911361640}
   - {fileID: 832575519}
   - {fileID: 1585823016}
   - {fileID: 1497838305}
   - {fileID: 1794415772}
   - {fileID: 1273989784}
-  - {fileID: 881859131194626072}
   - {fileID: 151909904}
   - {fileID: 510492411}
   - {fileID: 1292035939119910697}

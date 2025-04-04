@@ -1509,7 +1509,7 @@ MonoBehaviour:
   - {fileID: 587416773}
   - {fileID: 132324410}
   - {fileID: 994209244}
-  positionOffset: {x: 0, y: 0.25, z: 0}
+  positionOffset: {x: 0.25, y: 0.25, z: 0}
   trackRotationChanges: 0
   disable: 0
 --- !u!114 &64823266
@@ -2541,7 +2541,7 @@ MonoBehaviour:
   - {fileID: 969198995}
   - {fileID: 809679493}
   - {fileID: 302923607}
-  positionOffset: {x: 0, y: 0.25, z: 0}
+  positionOffset: {x: 0.25, y: 0.25, z: 0}
   trackRotationChanges: 0
   disable: 0
 --- !u!114 &91120837
@@ -8973,7 +8973,7 @@ MonoBehaviour:
   - {fileID: 806847537}
   - {fileID: 1792895401}
   - {fileID: 212620375}
-  positionOffset: {x: 0, y: 0.25, z: 0}
+  positionOffset: {x: 0.25, y: 0.25, z: 0}
   trackRotationChanges: 0
   disable: 0
 --- !u!114 &279370757
@@ -10319,7 +10319,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2f8f6e9e6f3e114b9bf9a57c2160615, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _pointable: {fileID: 2136565286}
+  _pointable: {fileID: 351428696}
   _whenRelease:
     m_PersistentCalls:
       m_Calls:
@@ -17152,7 +17152,7 @@ MonoBehaviour:
   - {fileID: 1092592753}
   - {fileID: 2079368227}
   - {fileID: 1791412123}
-  positionOffset: {x: 0, y: 0.25, z: 0}
+  positionOffset: {x: 0.25, y: 0.25, z: 0}
   trackRotationChanges: 0
   disable: 0
 --- !u!114 &614099064
@@ -18748,7 +18748,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1697530314}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -18758,7 +18758,55 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 732891184}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1486413644}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1601855810}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1811460899}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
         m_CallState: 2
   _whenHover:
     m_PersistentCalls:
@@ -23271,7 +23319,7 @@ MonoBehaviour:
   - {fileID: 155725147}
   - {fileID: 728566322}
   - {fileID: 2139222899019180029}
-  positionOffset: {x: 0, y: 0.25, z: 0}
+  positionOffset: {x: 0.25, y: 0.25, z: 0}
   trackRotationChanges: 0
   disable: 0
 --- !u!114 &855460356
@@ -34285,8 +34333,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rightHand: {fileID: 2049125864}
+  leftHand: {fileID: 1659264982}
   rightAnchor: {fileID: 6508544319380334234}
+  leftAnchor: {fileID: 6508544319380334235}
   cameraRig: {fileID: 2063709759}
+  setRotation: 0
   setAnchor: 0
 --- !u!114 &1200812922
 MonoBehaviour:
@@ -34787,7 +34838,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2f8f6e9e6f3e114b9bf9a57c2160615, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _pointable: {fileID: 2136565286}
+  _pointable: {fileID: 1231578256}
   _whenRelease:
     m_PersistentCalls:
       m_Calls:
@@ -49252,7 +49303,7 @@ PrefabInstance:
     - target: {fileID: 2859147190566827361, guid: b16424dcc3deba241b1457370a8e5b5e,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -0.031
+      value: -0.1
       objectReference: {fileID: 0}
     - target: {fileID: 2859147190566827361, guid: b16424dcc3deba241b1457370a8e5b5e,
         type: 3}
@@ -49982,7 +50033,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1805096145}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 41b3e99747a442945b258e047edf32b1, type: 3}
   m_Name: 
@@ -49999,9 +50050,9 @@ Transform:
   m_GameObject: {fileID: 1805096145}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0.1549, y: 1.1918, z: 0.666}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: -0.102, y: 0.777, z: -0.396}
+  m_LocalScale: {x: 0.67, y: 0.67, z: 0.67}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 2859147190597982650}
   - {fileID: 1747026864}
@@ -58401,6 +58452,12 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 6508544319380334233}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &6508544319380334235 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5435952305496419882, guid: 1c4fd306f52c59d4a90a7bcc4b1d1e39,
+    type: 3}
+  m_PrefabInstance: {fileID: 6508544319380334233}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &7771959205456014510 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5314579454460892102, guid: b30fc8688e791bd44af7a47f2b78435b,
@@ -58779,6 +58836,7 @@ SceneRoots:
   m_Roots:
   - {fileID: 1197748579}
   - {fileID: 1200812920}
+  - {fileID: 274134336}
   - {fileID: 410087041}
   - {fileID: 832575519}
   - {fileID: 1911361640}
@@ -58786,7 +58844,6 @@ SceneRoots:
   - {fileID: 1794415772}
   - {fileID: 6508544319380334233}
   - {fileID: 1805096147}
-  - {fileID: 274134336}
   - {fileID: 1105435794}
   - {fileID: 2003897317}
   - {fileID: 855460354}
