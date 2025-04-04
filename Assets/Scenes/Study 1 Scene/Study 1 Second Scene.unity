@@ -1052,6 +1052,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 1039523169}
+        m_TargetAssemblyTypeName: StudyLogManager, Assembly-CSharp
+        m_MethodName: LogActiveObjects
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   _whenHover:
     m_PersistentCalls:
       m_Calls: []
@@ -7892,7 +7904,7 @@ PrefabInstance:
     - target: {fileID: 5974931537713500869, guid: 1c4fd306f52c59d4a90a7bcc4b1d1e39,
         type: 3}
       propertyPath: m_Name
-      value: Room
+      value: Space
       objectReference: {fileID: 0}
     - target: {fileID: 5974931537713500869, guid: 1c4fd306f52c59d4a90a7bcc4b1d1e39,
         type: 3}
@@ -8905,6 +8917,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 810804444}
+        m_TargetAssemblyTypeName: StudyLogManager, Assembly-CSharp
+        m_MethodName: LogActiveObjects
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   _whenHover:
     m_PersistentCalls:
       m_Calls: []
@@ -9765,6 +9789,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1981126211}
+        m_TargetAssemblyTypeName: StudyLogManager, Assembly-CSharp
+        m_MethodName: LogActiveObjects
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -12848,7 +12884,7 @@ GameObject:
   - component: {fileID: 410087040}
   - component: {fileID: 410087042}
   m_Layer: 0
-  m_Name: Directional Light
+  m_Name: DirectionalLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13179,6 +13215,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1763621021}
+        m_TargetAssemblyTypeName: StudyLogManager, Assembly-CSharp
+        m_MethodName: LogActiveObjects
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -21988,6 +22036,7 @@ GameObject:
   m_Component:
   - component: {fileID: 810804442}
   - component: {fileID: 810804443}
+  - component: {fileID: 810804444}
   m_Layer: 0
   m_Name: MARKER_MENU
   m_TagString: Untagged
@@ -22032,6 +22081,25 @@ MonoBehaviour:
   - {fileID: 990418708}
   positionOffset: {x: 0, y: 0.25, z: 0}
   trackRotationChanges: 0
+--- !u!114 &810804444
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 810804440}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 633726fd7c2b65b40b787db1cb1cad51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectsToTrack:
+  - {fileID: 1871906192}
+  - {fileID: 1598996163}
+  - {fileID: 113983993}
+  - {fileID: 805731991}
+  - {fileID: 613698358}
+  - {fileID: 990418705}
 --- !u!1 &812844136
 GameObject:
   m_ObjectHideFlags: 0
@@ -22318,7 +22386,7 @@ GameObject:
   - component: {fileID: 832575519}
   - component: {fileID: 832575518}
   m_Layer: 0
-  m_Name: Global Volume
+  m_Name: GlobalVolume
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25239,6 +25307,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 1241877912}
+        m_TargetAssemblyTypeName: StudyLogManager, Assembly-CSharp
+        m_MethodName: LogActiveObjects
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   _whenHover:
     m_PersistentCalls:
       m_Calls: []
@@ -26989,7 +27069,7 @@ PrefabInstance:
     - target: {fileID: 90517174365725129, guid: 6e700323e870a914eb0333fa6aa3fb56,
         type: 3}
       propertyPath: m_Name
-      value: OptitrackAlignment (1)
+      value: OptitrackAlignment
       objectReference: {fileID: 0}
     - target: {fileID: 1620958816638781594, guid: 6e700323e870a914eb0333fa6aa3fb56,
         type: 3}
@@ -27362,6 +27442,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1039523167}
   - component: {fileID: 1039523168}
+  - component: {fileID: 1039523169}
   m_Layer: 0
   m_Name: CHARGER_MENU
   m_TagString: Untagged
@@ -27404,6 +27485,23 @@ MonoBehaviour:
   - {fileID: 192270399}
   positionOffset: {x: 0, y: 0.25, z: 0}
   trackRotationChanges: 0
+--- !u!114 &1039523169
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1039523165}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 633726fd7c2b65b40b787db1cb1cad51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectsToTrack:
+  - {fileID: 1805095934}
+  - {fileID: 187643320}
+  - {fileID: 1592768866}
+  - {fileID: 192270396}
 --- !u!1 &1042849018
 GameObject:
   m_ObjectHideFlags: 0
@@ -32105,6 +32203,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1241877910}
   - component: {fileID: 1241877911}
+  - component: {fileID: 1241877912}
   m_Layer: 0
   m_Name: MUG_MENU
   m_TagString: Untagged
@@ -32149,6 +32248,25 @@ MonoBehaviour:
   - {fileID: 185166008176531065}
   positionOffset: {x: 0, y: 0.25, z: 0}
   trackRotationChanges: 0
+--- !u!114 &1241877912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1241877908}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 633726fd7c2b65b40b787db1cb1cad51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectsToTrack:
+  - {fileID: 156071570}
+  - {fileID: 5898129175430951402}
+  - {fileID: 630192634}
+  - {fileID: 446718833}
+  - {fileID: 506622884}
+  - {fileID: 2119356169716430701}
 --- !u!1 &1242462340
 GameObject:
   m_ObjectHideFlags: 0
@@ -40333,7 +40451,7 @@ PrefabInstance:
     - target: {fileID: 2119356169807643232, guid: 920ec0120ae7f7341abd8b5f888e49e7,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2732822620556240894, guid: 920ec0120ae7f7341abd8b5f888e49e7,
         type: 3}
@@ -44607,6 +44725,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1763621019}
   - component: {fileID: 1763621020}
+  - component: {fileID: 1763621021}
   m_Layer: 0
   m_Name: UMBRELLA_MENU
   m_TagString: Untagged
@@ -44651,6 +44770,25 @@ MonoBehaviour:
   - {fileID: 1571748658}
   positionOffset: {x: 0, y: 0.25, z: 0}
   trackRotationChanges: 0
+--- !u!114 &1763621021
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1763621017}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 633726fd7c2b65b40b787db1cb1cad51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectsToTrack:
+  - {fileID: 1459472724}
+  - {fileID: 205837387}
+  - {fileID: 2007194880}
+  - {fileID: 767113288}
+  - {fileID: 317963285}
+  - {fileID: 1571748655}
 --- !u!1 &1770404635
 GameObject:
   m_ObjectHideFlags: 0
@@ -51958,6 +52096,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1981126209}
   - component: {fileID: 1981126210}
+  - component: {fileID: 1981126211}
   m_Layer: 0
   m_Name: YOGURT_MENU
   m_TagString: Untagged
@@ -52002,6 +52141,25 @@ MonoBehaviour:
   - {fileID: 1069170438}
   positionOffset: {x: 0, y: 0.25, z: 0}
   trackRotationChanges: 0
+--- !u!114 &1981126211
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1981126207}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 633726fd7c2b65b40b787db1cb1cad51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectsToTrack:
+  - {fileID: 206853230}
+  - {fileID: 1172953860}
+  - {fileID: 1716716105}
+  - {fileID: 1641063368}
+  - {fileID: 1285108798}
+  - {fileID: 1069170436}
 --- !u!1001 &1999547933
 PrefabInstance:
   m_ObjectHideFlags: 0

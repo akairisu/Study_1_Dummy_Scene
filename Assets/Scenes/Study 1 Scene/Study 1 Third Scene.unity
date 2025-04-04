@@ -6596,6 +6596,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 381922360}
+        m_TargetAssemblyTypeName: StudyLogManager, Assembly-CSharp
+        m_MethodName: LogActiveObjects
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   _whenHover:
     m_PersistentCalls:
       m_Calls: []
@@ -12579,6 +12591,7 @@ GameObject:
   m_Component:
   - component: {fileID: 381922358}
   - component: {fileID: 381922359}
+  - component: {fileID: 381922360}
   m_Layer: 0
   m_Name: MARKER_MENU
   m_TagString: Untagged
@@ -12623,6 +12636,25 @@ MonoBehaviour:
   - {fileID: 147310947}
   positionOffset: {x: 0, y: 0.25, z: 0}
   trackRotationChanges: 0
+--- !u!114 &381922360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 381922356}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 633726fd7c2b65b40b787db1cb1cad51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectsToTrack:
+  - {fileID: 292552837}
+  - {fileID: 2119230070}
+  - {fileID: 1381659745}
+  - {fileID: 942142475}
+  - {fileID: 1704336188}
+  - {fileID: 147310944}
 --- !u!1 &383580428
 GameObject:
   m_ObjectHideFlags: 0
@@ -13280,7 +13312,7 @@ GameObject:
   - component: {fileID: 410087040}
   - component: {fileID: 410087042}
   m_Layer: 0
-  m_Name: Directional Light
+  m_Name: DirectionalLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -20243,6 +20275,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 901957209}
+        m_TargetAssemblyTypeName: StudyLogManager, Assembly-CSharp
+        m_MethodName: LogActiveObjects
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   _whenHover:
     m_PersistentCalls:
       m_Calls: []
@@ -21116,7 +21160,7 @@ GameObject:
   - component: {fileID: 832575519}
   - component: {fileID: 832575518}
   m_Layer: 0
-  m_Name: Global Volume
+  m_Name: GlobalVolume
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -23064,6 +23108,7 @@ GameObject:
   m_Component:
   - component: {fileID: 901957207}
   - component: {fileID: 901957208}
+  - component: {fileID: 901957209}
   m_Layer: 0
   m_Name: UMBRELLA_MENU
   m_TagString: Untagged
@@ -23108,6 +23153,25 @@ MonoBehaviour:
   - {fileID: 1878815737}
   positionOffset: {x: 0, y: 0.25, z: 0}
   trackRotationChanges: 0
+--- !u!114 &901957209
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 901957205}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 633726fd7c2b65b40b787db1cb1cad51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectsToTrack:
+  - {fileID: 650096016}
+  - {fileID: 1517663090}
+  - {fileID: 723571148}
+  - {fileID: 1639659786}
+  - {fileID: 1563282983}
+  - {fileID: 1878815733}
 --- !u!1 &914133731
 GameObject:
   m_ObjectHideFlags: 0
@@ -25517,7 +25581,7 @@ PrefabInstance:
     - target: {fileID: 1250646101670136360, guid: 43511173fa6dc0448930de411da3c442,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2012592704938985808, guid: 43511173fa6dc0448930de411da3c442,
         type: 3}
@@ -26545,6 +26609,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1618400923}
+        m_TargetAssemblyTypeName: StudyLogManager, Assembly-CSharp
+        m_MethodName: LogActiveObjects
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -32442,7 +32518,7 @@ PrefabInstance:
     - target: {fileID: 90517174365725129, guid: 6e700323e870a914eb0333fa6aa3fb56,
         type: 3}
       propertyPath: m_Name
-      value: OptitrackAlignment (1)
+      value: OptitrackAlignment
       objectReference: {fileID: 0}
     - target: {fileID: 1620958816638781594, guid: 6e700323e870a914eb0333fa6aa3fb56,
         type: 3}
@@ -33753,7 +33829,7 @@ PrefabInstance:
     - target: {fileID: 5974931537713500869, guid: 1c4fd306f52c59d4a90a7bcc4b1d1e39,
         type: 3}
       propertyPath: m_Name
-      value: Room
+      value: Space
       objectReference: {fileID: 0}
     - target: {fileID: 5974931537713500869, guid: 1c4fd306f52c59d4a90a7bcc4b1d1e39,
         type: 3}
@@ -34725,6 +34801,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1555837174}
   - component: {fileID: 1555837175}
+  - component: {fileID: 1555837176}
   m_Layer: 0
   m_Name: YOGURT_MENU
   m_TagString: Untagged
@@ -34769,6 +34846,25 @@ MonoBehaviour:
   - {fileID: 245963818}
   positionOffset: {x: 0, y: 0.25, z: 0}
   trackRotationChanges: 0
+--- !u!114 &1555837176
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1555837172}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 633726fd7c2b65b40b787db1cb1cad51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectsToTrack:
+  - {fileID: 230573192}
+  - {fileID: 889107785}
+  - {fileID: 2137972936}
+  - {fileID: 1163927860}
+  - {fileID: 321990216}
+  - {fileID: 245963815}
 --- !u!1 &1556167022
 GameObject:
   m_ObjectHideFlags: 0
@@ -36870,6 +36966,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1618400921}
   - component: {fileID: 1618400922}
+  - component: {fileID: 1618400923}
   m_Layer: 0
   m_Name: CHARGER_MENU
   m_TagString: Untagged
@@ -36912,6 +37009,23 @@ MonoBehaviour:
   - {fileID: 2021332562}
   positionOffset: {x: 0, y: 0.25, z: 0}
   trackRotationChanges: 0
+--- !u!114 &1618400923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1618400919}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 633726fd7c2b65b40b787db1cb1cad51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectsToTrack:
+  - {fileID: 1001038299}
+  - {fileID: 1850902800}
+  - {fileID: 1171269892}
+  - {fileID: 2021332559}
 --- !u!1001 &1618644503
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -51568,6 +51682,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 1555837176}
+        m_TargetAssemblyTypeName: StudyLogManager, Assembly-CSharp
+        m_MethodName: LogActiveObjects
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   _whenHover:
     m_PersistentCalls:
       m_Calls: []
@@ -52442,6 +52568,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1292035939119910697}
   - component: {fileID: 1292035939119910698}
+  - component: {fileID: 1292035939119910699}
   m_Layer: 0
   m_Name: MUG_MENU
   m_TagString: Untagged
@@ -53011,6 +53138,25 @@ MonoBehaviour:
   - {fileID: 9104176627588598958}
   positionOffset: {x: 0, y: 0.25, z: 0}
   trackRotationChanges: 0
+--- !u!114 &1292035939119910699
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 252434730030955745}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 633726fd7c2b65b40b787db1cb1cad51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectsToTrack:
+  - {fileID: 1580521193}
+  - {fileID: 2307518405879926913}
+  - {fileID: 1985026470}
+  - {fileID: 1172235126}
+  - {fileID: 2054984090}
+  - {fileID: 1250646101996686533}
 --- !u!4 &1332316298155741045
 Transform:
   m_ObjectHideFlags: 0
@@ -55629,6 +55775,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1292035939119910699}
+        m_TargetAssemblyTypeName: StudyLogManager, Assembly-CSharp
+        m_MethodName: LogActiveObjects
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
