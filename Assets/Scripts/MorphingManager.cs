@@ -51,6 +51,7 @@ public class MorphingManager : MonoBehaviour
 
     private float intersectionLowestY;
     private float intersectionHighestY;
+    private float objectHeight;
 
     private List<Material> originalMaterials = new List<Material>();
     private List<Material> transformedMaterials = new List<Material>();
@@ -152,6 +153,8 @@ public class MorphingManager : MonoBehaviour
             overallHighestY = Mathf.Max(overallHighestY, objMaxY);
         }
 
+        objectHeight = overallHighestY - overallLowestY;
+
         intersectionLowestY = overallLowestY - boundaryOffset;
         intersectionHighestY = overallHighestY + boundaryOffset;
     }
@@ -180,15 +183,19 @@ public class MorphingManager : MonoBehaviour
     }
 
     void UpdateShader(float t) {
-        // If transition is at 0 or 1, set currentY to a very low value to hide the line
-
         float currentY = (t == 0f) ? -100000f : (t == 1f) ? 100000f : Mathf.Lerp(intersectionLowestY, intersectionHighestY, t);
+        
+        float normalizedY = 0f;
+        if (objectHeight > 0f) {
+            normalizedY = (currentY - intersectionLowestY) / (intersectionHighestY - intersectionLowestY);
+        }
+        
         Vector3 currentWeightPosition = Vector3.Lerp(originalWeightWorld, transformedWeightWorld, t);
 
         foreach (Material mat in originalMaterials)
         {
             mat.SetFloat("_BaseTransparency", 1f);
-            mat.SetFloat("_TransitionLineY", currentY);
+            mat.SetFloat("_TransitionLineY", normalizedY);
             mat.SetInt("_ShowUpperPart", 1);
             mat.SetVector("_WeightPosition", currentWeightPosition);
             mat.SetFloat("_RoundRadius", roundRadius);
@@ -200,7 +207,7 @@ public class MorphingManager : MonoBehaviour
 
         foreach (Material mat in transformedMaterials)
         {
-            mat.SetFloat("_TransitionLineY", currentY);
+            mat.SetFloat("_TransitionLineY", normalizedY);
             mat.SetInt("_ShowUpperPart", 0);
             mat.SetVector("_WeightPosition", currentWeightPosition);
             mat.SetFloat("_RoundRadius", roundRadius);

@@ -1805,7 +1805,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TargetHeight: 0.2
-  DisplaceWeight: 0.01
+  DisplaceWeight: 5
   Nail: {fileID: 977258734}
 --- !u!23 &53534041
 MeshRenderer:
@@ -2161,7 +2161,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TargetHeight: 0.2
-  DisplaceWeight: 0.01
+  DisplaceWeight: 5
   Nail: {fileID: 269263667}
 --- !u!23 &77954655
 MeshRenderer:
@@ -15860,7 +15860,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TargetHeight: 0.2
-  DisplaceWeight: 0.01
+  DisplaceWeight: 5
   Nail: {fileID: 1736091379}
 --- !u!23 &525159913
 MeshRenderer:
@@ -20460,7 +20460,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TargetHeight: 0.2
-  DisplaceWeight: 0.01
+  DisplaceWeight: 5
   Nail: {fileID: 1483617132}
 --- !u!23 &767123808
 MeshRenderer:
@@ -21984,7 +21984,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TargetHeight: 0.2
-  DisplaceWeight: 0.01
+  DisplaceWeight: 5
   Nail: {fileID: 502657402}
 --- !u!23 &848107225
 MeshRenderer:
@@ -34438,7 +34438,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TargetHeight: 0.2
-  DisplaceWeight: 0.01
+  DisplaceWeight: 5
   Nail: {fileID: 1562786979}
 --- !u!23 &1492748449
 MeshRenderer:
@@ -35439,7 +35439,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TargetHeight: 0.2
-  DisplaceWeight: 0.01
+  DisplaceWeight: 5
   Nail: {fileID: 987307816}
 --- !u!23 &1544300159
 MeshRenderer:
@@ -47263,7 +47263,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TargetHeight: 0.2
-  DisplaceWeight: 0.01
+  DisplaceWeight: 5
   Nail: {fileID: 1324061718}
 --- !u!23 &1944673265
 MeshRenderer:
@@ -51589,6 +51589,11 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: d93e6eaca1078d342b5de46fd6c3b7be, type: 2}
     - target: {fileID: 3338309040088164455, guid: d490ba80549464c4389563faa690399b,
         type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3338309040088164455, guid: d490ba80549464c4389563faa690399b,
+        type: 3}
       propertyPath: roundRadius
       value: 0.2
       objectReference: {fileID: 0}
@@ -51662,6 +51667,16 @@ PrefabInstance:
       propertyPath: transformedObjects.Array.data[1]
       value: 
       objectReference: {fileID: 930985411}
+    - target: {fileID: 3807833323223271025, guid: d490ba80549464c4389563faa690399b,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3807833323223271025, guid: d490ba80549464c4389563faa690399b,
+        type: 3}
+      propertyPath: RigidBodyId
+      value: 1001
+      objectReference: {fileID: 0}
     - target: {fileID: 3807833323223271025, guid: d490ba80549464c4389563faa690399b,
         type: 3}
       propertyPath: StreamingClient
@@ -55244,6 +55259,11 @@ PrefabInstance:
     - target: {fileID: 3338309040088164455, guid: d490ba80549464c4389563faa690399b,
         type: 3}
       propertyPath: transLineColor.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3338309040088164455, guid: d490ba80549464c4389563faa690399b,
+        type: 3}
+      propertyPath: transitionSlider
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3338309040088164455, guid: d490ba80549464c4389563faa690399b,
