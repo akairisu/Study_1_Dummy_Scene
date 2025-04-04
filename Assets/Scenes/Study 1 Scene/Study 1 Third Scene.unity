@@ -8740,6 +8740,11 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 05181c413020a43a0ba509a76394196a, type: 2}
     - target: {fileID: 9104176627510594113, guid: 43511173fa6dc0448930de411da3c442,
         type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9104176627510594113, guid: 43511173fa6dc0448930de411da3c442,
+        type: 3}
       propertyPath: originalPivot
       value: 
       objectReference: {fileID: 0}
@@ -16910,6 +16915,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 762850b4e533543fbbaa351a8141105a, type: 2}
+    - target: {fileID: 9104176627510594113, guid: 43511173fa6dc0448930de411da3c442,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9104176627510594113, guid: 43511173fa6dc0448930de411da3c442,
         type: 3}
       propertyPath: originalPivot
@@ -26368,6 +26378,11 @@ PrefabInstance:
       objectReference: {fileID: 2058357904}
     - target: {fileID: 9104176627510594113, guid: 43511173fa6dc0448930de411da3c442,
         type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9104176627510594113, guid: 43511173fa6dc0448930de411da3c442,
+        type: 3}
       propertyPath: visualObject
       value: 
       objectReference: {fileID: 1634881885}
@@ -34685,7 +34700,7 @@ PrefabInstance:
     - target: {fileID: 5974931537713500869, guid: 1c4fd306f52c59d4a90a7bcc4b1d1e39,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8924662104568077546, guid: 1c4fd306f52c59d4a90a7bcc4b1d1e39,
         type: 3}
@@ -58921,8 +58936,8 @@ SceneRoots:
   - {fileID: 1911361640}
   - {fileID: 832575519}
   - {fileID: 1585823016}
-  - {fileID: 1497838305}
   - {fileID: 1794415772}
+  - {fileID: 1497838305}
   - {fileID: 1273989784}
   - {fileID: 151909904}
   - {fileID: 510492411}
