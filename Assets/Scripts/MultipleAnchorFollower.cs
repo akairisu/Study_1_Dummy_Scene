@@ -37,13 +37,22 @@ public class MultipleAnchorFollower : MonoBehaviour
     {
         if (disable)
         {
-            gameObject.SetActive(false);
+            if (gameObject.activeInHierarchy)
+            {
+                gameObject.SetActive(false);
+            }
             return;
         }
 
         UpdateCurrentTarget();
 
-        if (currentTarget == null) return;
+        if (currentTarget == null) {
+            if (gameObject.activeInHierarchy)
+            {
+                gameObject.SetActive(false);
+            }
+            return;
+        };
 
         // Update position with offset
         transform.position = currentTarget.position + currentTarget.TransformDirection(positionOffset);
