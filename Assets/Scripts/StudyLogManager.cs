@@ -7,7 +7,8 @@ public class StudyLogManager : MonoBehaviour
 {
     [SerializeField]
     private List<GameObject> objectsToTrack = new List<GameObject>();
-
+    [SerializeField]
+    private SelectRecorder selectRecorder;
     private string logFilePath;
 
     private void Start()
@@ -42,6 +43,38 @@ public class StudyLogManager : MonoBehaviour
         Debug.Log($"Logged active objects to: {logFilePath}");
     }
 
+    public void setSwordMapping(){
+        if(selectRecorder == null){
+            Debug.LogError("SelectRecorder is not assigned");
+            return;
+        }
+        foreach (GameObject obj in objectsToTrack)
+        {
+            selectRecorder.SwordMapping = obj;
+        } 
+    }
+
+    public void setShieldMapping(){
+        if(selectRecorder == null){
+            Debug.LogError("SelectRecorder is not assigned");
+            return;
+        }
+        foreach (GameObject obj in objectsToTrack)
+        {
+            selectRecorder.ShieldMapping = obj;
+        }
+    }
+
+    public void setMagicCircleMapping(){
+        if(selectRecorder == null){
+            Debug.LogError("SelectRecorder is not assigned");
+            return;
+        }
+        foreach (GameObject obj in objectsToTrack)
+        {
+            selectRecorder.MagicCircleMapping = obj;
+        }
+    }
     // Optional: Add a button in the editor to trigger logging
     [ContextMenu("Log Active Objects")]
     private void LogActiveObjectsFromEditor()
