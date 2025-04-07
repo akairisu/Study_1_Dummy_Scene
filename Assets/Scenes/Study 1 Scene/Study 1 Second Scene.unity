@@ -26934,7 +26934,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f77bc200897df4f4483b478b598b0c51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StreamingClient: {fileID: 0}
+  StreamingClient: {fileID: 1084262299}
   RigidBodyId: 9001
   NetworkCompensation: 1
 --- !u!135 &1016687860
@@ -29475,8 +29475,11 @@ MonoBehaviour:
   cameraRig: {fileID: 1585823012}
   calibrateTable: 0
   calibrateOVR: 0
+  levelingDelta: 0.01
   levelUpOVR: 0
   levelDownOVR: 0
+  showTrackedAnchors: 0
+  hideTrackedAnchors: 0
 --- !u!4 &1115133792
 Transform:
   m_ObjectHideFlags: 0
@@ -39138,7 +39141,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f77bc200897df4f4483b478b598b0c51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StreamingClient: {fileID: 0}
+  StreamingClient: {fileID: 1084262299}
   RigidBodyId: 9002
   NetworkCompensation: 1
 --- !u!135 &1546705564
