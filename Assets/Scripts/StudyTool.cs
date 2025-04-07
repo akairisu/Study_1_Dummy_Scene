@@ -20,6 +20,16 @@ public class StudyTool : MonoBehaviour
   [Tooltip("This will modify the OVR's transform position to match the anchor point")]
   public bool setAnchor = false;
 
+  [Header("3. Fit Anchors to Objects")]
+  [Tooltip("Objects to use as reference for anchor positioning")]
+  public GameObject leftObject;
+  public GameObject rightObject;
+
+  [Tooltip("Additional objects to transform (may include parents of anchors)")]
+  public List<GameObject> objectsToTransform = new List<GameObject>();
+  public bool fitAnchorsRotation = false;
+  public bool fitAnchorsPosition = false;
+
   public void SetRotation() {
     if (rightHand == null || leftHand == null || rightAnchor == null || leftAnchor == null) {
       Debug.LogError("Missing required references: rightHand, leftHand, rightAnchor, or leftAnchor");
@@ -56,6 +66,50 @@ public class StudyTool : MonoBehaviour
     Debug.Log($"Anchor set: Camera rig moved by {positionDifference} to align right hand with anchor");
   }
 
+  public void FitAnchorsRotation() {
+    if (leftObject == null || rightObject == null || leftAnchor == null || rightAnchor == null) {
+      Debug.LogError("Missing required references: leftObject, rightObject, leftAnchor, or rightAnchor");
+      return;
+    }
+
+    // Calculate the direction vector between the reference objects
+    Vector3 referenceDirection = rightObject.transform.position - leftObject.transform.position;
+    
+    // Calculate the direction vector between the anchors
+    Vector3 anchorDirection = rightAnchor.transform.position - leftAnchor.transform.position;
+    
+    // Calculate the rotation needed to align the anchor direction with the reference direction
+    Quaternion rotationDifference = Quaternion.FromToRotation(anchorDirection, referenceDirection);
+    
+    // Apply the same rotation to all additional objects
+    foreach (GameObject obj in objectsToTransform) {
+      if (obj != null) {
+        obj.transform.rotation = rotationDifference * obj.transform.rotation;
+      }
+    }
+    
+    Debug.Log($"Anchors rotation fitted to reference objects and rotation applied to {objectsToTransform.Count} additional objects");
+  }
+
+  public void FitAnchorsPosition() {
+    if (leftObject == null || leftAnchor == null) {
+      Debug.LogError("Missing required references: leftObject or leftAnchor");
+      return;
+    }
+
+    // Calculate the position difference to move anchors to match reference objects
+    Vector3 positionDifference = leftObject.transform.position - leftAnchor.transform.position;
+
+    // Apply the same position adjustment to all additional objects
+    foreach (GameObject obj in objectsToTransform) {
+      if (obj != null) {
+        obj.transform.position += positionDifference;
+      }
+    }
+    
+    Debug.Log($"Anchors position fitted to reference objects and position adjustment applied to {objectsToTransform.Count} additional objects");
+  }
+
   private void Update() {
     if (setRotation) {
       SetRotation();
@@ -65,6 +119,16 @@ public class StudyTool : MonoBehaviour
     if (setAnchor) {
       SetAnchor();
       setAnchor = false;
+    }
+    
+    if (fitAnchorsRotation) {
+      FitAnchorsRotation();
+      fitAnchorsRotation = false;
+    }
+    
+    if (fitAnchorsPosition) {
+      FitAnchorsPosition();
+      fitAnchorsPosition = false;
     }
   }
 }

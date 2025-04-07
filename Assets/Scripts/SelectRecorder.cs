@@ -8,15 +8,24 @@ public class SelectRecorder : MonoBehaviour
     public GameObject ShieldMapping;
     public GameObject MagicCircleMapping;
     // Start is called before the first frame update
-    void showSwordMapping(){
+    public void showSwordMapping(){
         SwordMapping.SetActive(true);
     }
+    public void CloseSwordMapping(){
+        SwordMapping.SetActive(false);
+    }
 
-    void showShieldMapping(){
+    public void showShieldMapping(){
         ShieldMapping.SetActive(true);
     }
+    public void CloseShieldMapping(){
+        ShieldMapping.SetActive(false);
+    }
     
-    void showMagicCircleMapping(){
+    public void showMagicCircleMapping(){
         MagicCircleMapping.SetActive(true);
+    }
+    public void CloseMagicCircleMapping(){
+        MagicCircleMapping.SetActive(false);
     }
 }
