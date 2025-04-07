@@ -5,32 +5,68 @@ using System;
 
 public class StudyTool : MonoBehaviour
 {
-  [Header("Anchors")]
-  public GameObject rightHand;
-  public GameObject leftHand;
+  [Header("Scene Anchors")]
   public GameObject rightAnchor;
   public GameObject leftAnchor;
+  public GameObject trackedRightAnchor;
+  public GameObject trackedLeftAnchor;
+  public GameObject scene;
+
+  [Header("OVR Anchors")]
+  public GameObject rightHand;
+  public GameObject leftHand;
   public GameObject cameraRig;
 
-  [Header("1. Set Rotation in User Study")]
-  [Tooltip("This will modify the OVR's transform rotation to match the anchor points")]
-  public bool setRotation = false;
+  [Header("1. Calibrate Scene")]
+  public bool calibrateTable = false;
 
-  [Header("2. Set Anchor Position in User Study")]
-  [Tooltip("This will modify the OVR's transform position to match the anchor point")]
-  public bool setAnchor = false;
+  [Header("2. Calibrate OVR")]
+  public bool calibrateOVR = false;
 
-  [Header("3. Fit Anchors to Objects")]
-  [Tooltip("Objects to use as reference for anchor positioning")]
-  public GameObject leftObject;
-  public GameObject rightObject;
+  [Header("3. Additional Control")]
+  public float levelingDelta = 0.01f;
+  public bool levelUpOVR = false;
+  public bool levelDownOVR = false;
+  public bool showTrackedAnchors = false;
+  public bool hideTrackedAnchors = false;
 
-  [Tooltip("Additional objects to transform (may include parents of anchors)")]
-  public List<GameObject> objectsToTransform = new List<GameObject>();
-  public bool fitAnchorsRotation = false;
-  public bool fitAnchorsPosition = false;
+  public void SetSceneRotation() {
+    if (trackedRightAnchor == null || trackedLeftAnchor == null || rightAnchor == null || leftAnchor == null || scene == null) {
+      Debug.LogError("Missing required references: trackedRightAnchor, trackedLeftAnchor, rightAnchor, leftAnchor, or scene");
+      return;
+    }
 
-  public void SetRotation() {
+    // Calculate the direction vector between the anchor points
+    Vector3 anchorDirection = rightAnchor.transform.position - leftAnchor.transform.position;
+    
+    // Calculate the direction vector between the tracked anchors
+    Vector3 trackedDirection = trackedRightAnchor.transform.position - trackedLeftAnchor.transform.position;
+    
+    // Calculate the rotation needed to align the tracked direction with the anchor direction
+    Quaternion rotationDifference = Quaternion.FromToRotation(anchorDirection, trackedDirection);
+    
+    // Apply the rotation to the scene
+    scene.transform.rotation = rotationDifference * scene.transform.rotation;
+    
+    Debug.Log($"Scene rotation set: Aligned tracked anchors with anchor points");
+  }
+
+  public void SetScenePosition() {
+    if (trackedRightAnchor == null || rightAnchor == null || scene == null) {
+      Debug.LogError("Missing required references: trackedRightAnchor, rightAnchor, or scene");
+      return;
+    }
+
+    // Calculate the current position difference between the right anchor and the tracked right anchor
+    Vector3 positionDifference = rightAnchor.transform.position - trackedRightAnchor.transform.position;
+    
+    // Apply this difference to the scene's position (moving the scene in the opposite direction)
+    scene.transform.position -= positionDifference;
+    
+    Debug.Log($"Scene position set: Scene moved by {positionDifference} to align tracked right anchor with anchor");
+  }
+
+  public void SetOVRRotation() {
     if (rightHand == null || leftHand == null || rightAnchor == null || leftAnchor == null) {
       Debug.LogError("Missing required references: rightHand, leftHand, rightAnchor, or leftAnchor");
       return;
@@ -51,7 +87,7 @@ public class StudyTool : MonoBehaviour
     Debug.Log($"Rotation set: Aligned hands with anchor points");
   }
 
-  public void SetAnchor() {
+  public void SetOVRPosition() {
     if (rightHand == null || rightAnchor == null || cameraRig == null) {
       Debug.LogError("Missing required references: rightHand, rightAnchor, or cameraRig");
       return;
@@ -66,69 +102,75 @@ public class StudyTool : MonoBehaviour
     Debug.Log($"Anchor set: Camera rig moved by {positionDifference} to align right hand with anchor");
   }
 
-  public void FitAnchorsRotation() {
-    if (leftObject == null || rightObject == null || leftAnchor == null || rightAnchor == null) {
-      Debug.LogError("Missing required references: leftObject, rightObject, leftAnchor, or rightAnchor");
+  public void LevelUpOVR() {
+    if (cameraRig == null) {
+      Debug.LogError("Missing required references: cameraRig");
       return;
     }
 
-    // Calculate the direction vector between the reference objects
-    Vector3 referenceDirection = rightObject.transform.position - leftObject.transform.position;
-    
-    // Calculate the direction vector between the anchors
-    Vector3 anchorDirection = rightAnchor.transform.position - leftAnchor.transform.position;
-    
-    // Calculate the rotation needed to align the anchor direction with the reference direction
-    Quaternion rotationDifference = Quaternion.FromToRotation(anchorDirection, referenceDirection);
-    
-    // Apply the same rotation to all additional objects
-    foreach (GameObject obj in objectsToTransform) {
-      if (obj != null) {
-        obj.transform.rotation = rotationDifference * obj.transform.rotation;
-      }
-    }
-    
-    Debug.Log($"Anchors rotation fitted to reference objects and rotation applied to {objectsToTransform.Count} additional objects");
+    cameraRig.transform.position += new Vector3(0, levelingDelta, 0);
   }
-
-  public void FitAnchorsPosition() {
-    if (leftObject == null || leftAnchor == null) {
-      Debug.LogError("Missing required references: leftObject or leftAnchor");
+  
+  public void LevelDownOVR() {
+    if (cameraRig == null) {
+      Debug.LogError("Missing required references: cameraRig");
       return;
     }
-
-    // Calculate the position difference to move anchors to match reference objects
-    Vector3 positionDifference = leftObject.transform.position - leftAnchor.transform.position;
-
-    // Apply the same position adjustment to all additional objects
-    foreach (GameObject obj in objectsToTransform) {
-      if (obj != null) {
-        obj.transform.position += positionDifference;
-      }
-    }
     
-    Debug.Log($"Anchors position fitted to reference objects and position adjustment applied to {objectsToTransform.Count} additional objects");
+    cameraRig.transform.position -= new Vector3(0, levelingDelta, 0);
   }
 
   private void Update() {
-    if (setRotation) {
-      SetRotation();
-      setRotation = false;
+    if (calibrateTable) {
+      SetSceneRotation();
+      SetScenePosition();
+      calibrateTable = false;
     }
 
-    if (setAnchor) {
-      SetAnchor();
-      setAnchor = false;
+    if (calibrateOVR) {
+      SetOVRRotation();
+      SetOVRPosition();
+      calibrateOVR = false;
     }
-    
-    if (fitAnchorsRotation) {
-      FitAnchorsRotation();
-      fitAnchorsRotation = false;
+
+    if (levelUpOVR) {
+      LevelUpOVR();
+      levelUpOVR = false;
     }
-    
-    if (fitAnchorsPosition) {
-      FitAnchorsPosition();
-      fitAnchorsPosition = false;
+
+    if (levelDownOVR) {
+      LevelDownOVR();
+      levelDownOVR = false;
     }
+
+    if (hideTrackedAnchors) {
+      HideTrackedAnchors();
+      hideTrackedAnchors = false;
+    }
+
+    if (showTrackedAnchors) {
+      ShowTrackedAnchors();
+      showTrackedAnchors = false;
+    }
+  }
+
+  private void HideTrackedAnchors() {
+    if (trackedRightAnchor == null || trackedLeftAnchor == null) {
+      Debug.LogError("Missing required references: trackedRightAnchor or trackedLeftAnchor");
+      return;
+    }
+
+    trackedRightAnchor.SetActive(false);
+    trackedLeftAnchor.SetActive(false);
+  }
+
+  private void ShowTrackedAnchors() {
+    if (trackedRightAnchor == null || trackedLeftAnchor == null) {
+      Debug.LogError("Missing required references: trackedRightAnchor or trackedLeftAnchor");
+      return;
+    }
+
+    trackedRightAnchor.SetActive(true);
+    trackedLeftAnchor.SetActive(true);
   }
 }

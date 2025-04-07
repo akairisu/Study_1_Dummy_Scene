@@ -5,6 +5,10 @@ public class ObjectManager : MonoBehaviour
 {
     [SerializeField]
     private List<string> trackedTags = new List<string>();
+    [Header("Debug")]
+    [SerializeField]
+    private string exceptionTag;
+    public bool debugDisable = false;
 
     public void DisableObjectsByTag(string tagName)
     {
@@ -27,6 +31,13 @@ public class ObjectManager : MonoBehaviour
                     obj.SetActive(false);
                 }
             }
+        }
+    }
+
+    private void Update() {
+        if (debugDisable) {
+            DisableTrackedTagsExcept(exceptionTag);
+            debugDisable = false;
         }
     }
 }
