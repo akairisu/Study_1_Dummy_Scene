@@ -20,15 +20,22 @@ public class StudyTool : MonoBehaviour
   [Header("1. Calibrate Scene")]
   public bool calibrateTable = false;
 
-  [Header("2. Calibrate OVR")]
+  [Header("2. Refine Scene")]
+  public float levelingSceneDelta = 0.01f;
+  public bool levelUpScene = false;
+  public bool levelDownScene = false;
+
+  [Header("3. Calibrate OVR")]
   public bool calibrateOVR = false;
 
-  [Header("3. Additional Control")]
-  public float levelingDelta = 0.01f;
+  [Header("4. Refine OVR")]
+  public float levelingOVRDelta = 0.01f;
   public bool levelUpOVR = false;
   public bool levelDownOVR = false;
-  public bool showTrackedAnchors = false;
+
+  [Header("5. Hide/Show Tracked Anchors")]
   public bool hideTrackedAnchors = false;
+  public bool showTrackedAnchors = false;
 
   public void SetSceneRotation() {
     if (trackedRightAnchor == null || trackedLeftAnchor == null || rightAnchor == null || leftAnchor == null || scene == null) {
@@ -108,7 +115,7 @@ public class StudyTool : MonoBehaviour
       return;
     }
 
-    cameraRig.transform.position += new Vector3(0, levelingDelta, 0);
+    cameraRig.transform.position += new Vector3(0, levelingOVRDelta, 0);
   }
   
   public void LevelDownOVR() {
@@ -117,8 +124,26 @@ public class StudyTool : MonoBehaviour
       return;
     }
     
-    cameraRig.transform.position -= new Vector3(0, levelingDelta, 0);
+    cameraRig.transform.position -= new Vector3(0, levelingOVRDelta, 0);
   }
+
+  public void LevelUpScene() {
+    if (scene == null) {
+      Debug.LogError("Missing required references: scene");
+      return;
+    }
+    
+    scene.transform.position += new Vector3(0, levelingSceneDelta, 0);
+  }
+
+  public void LevelDownScene() {
+    if (scene == null) {
+      Debug.LogError("Missing required references: scene");
+      return;
+    }
+
+    scene.transform.position -= new Vector3(0, levelingSceneDelta, 0);
+  }  
 
   private void Update() {
     if (calibrateTable) {
@@ -151,6 +176,16 @@ public class StudyTool : MonoBehaviour
     if (showTrackedAnchors) {
       ShowTrackedAnchors();
       showTrackedAnchors = false;
+    }
+
+    if (levelUpScene) {
+      LevelUpScene();
+      levelUpScene = false;
+    }
+
+    if (levelDownScene) {
+      LevelDownScene();
+      levelDownScene = false;
     }
   }
 

@@ -1310,17 +1310,17 @@ PrefabInstance:
     - target: {fileID: 6380438773111518055, guid: b8caf7e19aca54794b9946e61058e4ff,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 2
+      value: 5.384
       objectReference: {fileID: 0}
     - target: {fileID: 6380438773111518055, guid: b8caf7e19aca54794b9946e61058e4ff,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 2
+      value: 5.384
       objectReference: {fileID: 0}
     - target: {fileID: 6380438773111518055, guid: b8caf7e19aca54794b9946e61058e4ff,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 2
+      value: 5.384
       objectReference: {fileID: 0}
     - target: {fileID: 6380438773111518055, guid: b8caf7e19aca54794b9946e61058e4ff,
         type: 3}
@@ -11164,17 +11164,17 @@ PrefabInstance:
     - target: {fileID: 2763600883686281166, guid: 920ec0120ae7f7341abd8b5f888e49e7,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 1.67
+      value: 0.13
       objectReference: {fileID: 0}
     - target: {fileID: 2763600883686281166, guid: 920ec0120ae7f7341abd8b5f888e49e7,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.67
+      value: 0.13
       objectReference: {fileID: 0}
     - target: {fileID: 2763600883686281166, guid: 920ec0120ae7f7341abd8b5f888e49e7,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 1.67
+      value: 0.13
       objectReference: {fileID: 0}
     - target: {fileID: 2763600883686281166, guid: 920ec0120ae7f7341abd8b5f888e49e7,
         type: 3}
@@ -29474,12 +29474,15 @@ MonoBehaviour:
   leftHand: {fileID: 19032288}
   cameraRig: {fileID: 1585823012}
   calibrateTable: 0
+  levelingSceneDelta: 0.01
+  levelUpScene: 0
+  levelDownScene: 0
   calibrateOVR: 0
-  levelingDelta: 0.01
+  levelingOVRDelta: 0.01
   levelUpOVR: 0
   levelDownOVR: 0
-  showTrackedAnchors: 0
   hideTrackedAnchors: 0
+  showTrackedAnchors: 0
 --- !u!4 &1115133792
 Transform:
   m_ObjectHideFlags: 0

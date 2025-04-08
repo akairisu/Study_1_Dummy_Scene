@@ -2457,9 +2457,15 @@ MonoBehaviour:
   leftHand: {fileID: 1138711193}
   cameraRig: {fileID: 1585823012}
   calibrateTable: 0
+  levelingSceneDelta: 0.01
+  levelUpScene: 0
+  levelDownScene: 0
   calibrateOVR: 0
+  levelingOVRDelta: 0.01
   levelUpOVR: 0
   levelDownOVR: 0
+  hideTrackedAnchors: 0
+  showTrackedAnchors: 0
 --- !u!4 &92592860
 Transform:
   m_ObjectHideFlags: 0
@@ -53542,12 +53548,12 @@ PrefabInstance:
     - target: {fileID: 1190077295875191228, guid: 24273e0c35fec7b479d35348cb22bb00,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.0522
+      value: 0.0046
       objectReference: {fileID: 0}
     - target: {fileID: 1190077295875191228, guid: 24273e0c35fec7b479d35348cb22bb00,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.0012000258
+      value: -0.0012
       objectReference: {fileID: 0}
     - target: {fileID: 1190077295875191228, guid: 24273e0c35fec7b479d35348cb22bb00,
         type: 3}
